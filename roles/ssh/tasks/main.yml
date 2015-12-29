@@ -1,0 +1,2 @@
+---
+- synchronize: src=/home/carl/Notebooks/carl/.ssh/ dest=/home/carl/.ssh/

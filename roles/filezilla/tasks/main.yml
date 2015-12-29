@@ -1,0 +1,8 @@
+---
+- apt: name="filezilla" state=present
+  become: yes
+  become_method: sudo
+
+- file: path=/home/carl/.filezilla state=directory
+- file: path=/home/carl/.filezilla/sitemanager.xml state=absent
+- file: src=/home/carl/Notebooks/carl/.filezilla/sitemanager.xml dest=/home/carl/.filezilla/sitemanager.xml state=link

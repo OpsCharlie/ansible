@@ -1,0 +1,13 @@
+---
+- apt_repository: repo="ppa:diodon-team/stable" update_cache=yes
+  become: yes
+  become_method: sudo
+
+- apt: name=unity-scope-diodon  state=present
+  become: yes
+  become_method: sudo
+
+- apt: name=unity-scope-diodon  state=present
+  become: yes
+  become_method: sudo
+

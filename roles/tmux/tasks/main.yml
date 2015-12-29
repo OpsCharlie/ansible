@@ -1,0 +1,10 @@
+---
+- apt: name=tmux state=present
+  become: yes
+  become_method: sudo
+
+- file: src=/home/carl/Notebooks/carl/.tmux.conf dest=/home/carl/.tmux.conf state=link
+
+- file: src=/home/carl/Notebooks/carl/.tmux dest=/home/carl/.tmux state=link
+
+- copy: src=/home/carl/Notebooks/carl/.bashrc dest=/home/carl/.bashrc

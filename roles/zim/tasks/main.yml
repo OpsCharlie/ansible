@@ -1,0 +1,13 @@
+---
+- apt_repository: repo="ppa:jaap.karssenberg/zim" update_cache=yes
+  become: yes
+  become_method: sudo
+
+- apt: name="zim" state=present
+  become: yes
+  become_method: sudo
+
+- apt: name="python-gtksourceview2" state=present
+  become: yes
+  become_method: sudo
+

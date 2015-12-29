@@ -1,0 +1,8 @@
+---
+- apt: name=mysql-workbench state=present
+  become: yes
+  become_method: sudo
+
+- file: path=/home/carl/.mysql/workbench state=directory
+
+- synchronize: src=/home/carl/Notebooks/carl/.mysql/workbench dest=/home/carl/.mysql/workbench

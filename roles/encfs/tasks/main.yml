@@ -1,0 +1,11 @@
+---
+- apt_repository: repo="ppa:gencfsm/ppa" update_cache=yes
+  become: yes
+  become_method: sudo
+
+- apt: name="gnome-encfs-manager" state=present
+  become: yes
+  become_method: sudo
+
+- file: path=/home/carl/Notebooks state=directory
+

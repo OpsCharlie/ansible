@@ -1,0 +1,8 @@
+---
+- apt: name=vagrant state=present
+  become: yes
+  become_method: sudo
+
+- apt: name=nfs-kernel-server state=present
+  become: yes
+  become_method: sudo

@@ -1,0 +1,6 @@
+---
+- file: path=/home/carl/.vimrc state=absent
+- file: src=/home/carl/Notebooks/carl/.vimrc dest=/home/carl/.vimrc state=link
+
+- file: path=/home/carl/.vim state=absent
+- file: src=/home/carl/Notebooks/carl/.vim dest=/home/carl/.vim state=link

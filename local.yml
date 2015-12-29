@@ -1,0 +1,30 @@
+---
+# Usage: ansible-playbook -K local.yml 
+
+- hosts: 127.0.0.1
+
+  vars:
+    packaging_ubuntu_extras_repository: false
+    packaging_ubuntu_partner_repository: true
+    packaging_ubuntu_multiverse_repository: true
+
+  roles:
+#    - extra
+
+#    - dropbox   # first run dropbox before continuing
+
+#    - encfs     # Directory /home/carl/Dropbox/Notebooks  ; Mount /home/carl/Notebooks
+
+#    - vim
+#    - tmux
+#    - zim
+    - mysqlworkbench
+#    - diodon
+#    - virtualbox
+#    - vagrant
+#    - filezilla
+#    - skype
+#    - pac
+#    - ssh
+#    - openvpn   # import config from /home/carl/Notebooks/carl/openvpn
+#    - radiotray
