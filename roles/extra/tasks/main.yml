@@ -28,10 +28,6 @@
     - "deb-src http://archive.ubuntu.com/ubuntu/  {{ansible_distribution_release}}-updates multiverse"
   when: packaging_ubuntu_multiverse_repository
 
-- apt: name=vim state=present
-  become: yes
-  become_method: sudo
-
 - apt: name=python-gpgme state=present
   become: yes
   become_method: sudo
