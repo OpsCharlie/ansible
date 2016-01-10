@@ -1,7 +1,0 @@
-localhost ansible_connection=local
-
-#VAGRANT -> ansible-playbook -s -k 192.168.33.10.yml
-[127.0.0.1]
-127.0.0.1
-
-
