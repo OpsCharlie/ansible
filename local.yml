@@ -9,7 +9,7 @@
     packaging_ubuntu_multiverse_repository: true
 
   roles:
-#    - extra     # extra repos
+#    - extra_repo     # extra repos
 
 #    - dropbox   # first run dropbox before continuing
 
@@ -18,14 +18,12 @@
 #    - vim
 #    - tmux
 #    - zim
-#    - shutter
 #    - mysqlworkbench
 #    - diodon
 #    - virtualbox
-#    - vagrant
 #    - filezilla
-#    - skype
 #    - pac
 #    - ssh
 #    - openvpn   # import config from /home/carl/Notebooks/carl/openvpn
 #    - radiotray
+#    - extra_soft

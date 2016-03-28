@@ -1,0 +1,9 @@
+---
+- apt: name={{ item }} state=latest
+  become: yes
+  become_method: sudo
+  with_items:
+  - shutter
+  - vagrant
+  - nfs-kernel-server 
+  - skype 

@@ -10,6 +10,6 @@
   become_method: sudo
 
 - name: Install VirtualBox
-  apt: name=virtualbox-5.0 state=present
+  apt: name=virtualbox-5.0 state=latest
   become: yes
   become_method: sudo
