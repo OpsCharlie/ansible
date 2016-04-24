@@ -15,6 +15,7 @@
   become: yes
   become_method: sudo
   with_items:
+  - inxi
   - network-manager-openvpn-gnome     #import config from /home/carl/Notebooks/carl/openvpn
   - shutter
   - zeal

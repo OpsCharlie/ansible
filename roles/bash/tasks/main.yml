@@ -2,6 +2,6 @@
   git: repo="https://github.com/Charlietje/bash-full-of-colors.git" dest=/home/carl/bash
 
 - name: deploy bash config
-  shell: /home/carl/bash/__deploy.sh
+  command: bash -x /home/carl/bash/__deploy.sh
 
 
