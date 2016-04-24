@@ -10,6 +10,9 @@
     - "ppa:webupd8team/y-ppa-manager"
     - "ppa:webupd8team/nemo"
     - "ppa:nilarimogard/webupd8"
+    - "ppa:linrunner/tlp"
+    - "ppa:ravefinity-project/ppa"
+
 
 - apt: name={{ item }} state=latest
   become: yes
@@ -42,6 +45,17 @@
   - unoconv
   - gnumeric
   - nemo-gloobus-sushi
+  - p7zip
+  - unrar
+  - zip
+  - unzip
+  - bleachbit
+  - icedtea-8-plugin 
+  - openjdk-8-jre
+  - tlp
+  - tlp-rdw
+  - vivacious-colors-gtk-dark
+  - vivacious-colors-gtk-light
 
 
 # Nautilus from handling the desktop icons
