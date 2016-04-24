@@ -17,6 +17,7 @@
   with_items:
   - network-manager-openvpn-gnome     #import config from /home/carl/Notebooks/carl/openvpn
   - shutter
+  - zeal
   - diodon
   - vagrant
   - nfs-kernel-server 
