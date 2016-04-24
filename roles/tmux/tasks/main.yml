@@ -3,8 +3,9 @@
   become: yes
   become_method: sudo
 
-- file: src=/home/carl/Notebooks/carl/.tmux.conf dest=/home/carl/.tmux.conf state=link
+- name: download tmuxrc from git
+  git: repo="https://github.com/Charlietje/tmux.git" dest=/home/carl/tmux
 
-- file: src=/home/carl/Notebooks/carl/.tmux dest=/home/carl/.tmux state=link
+- name: deploy vim config
+  shell: /home/carl/tmux/__deploy.sh
 
-- copy: src=/home/carl/Notebooks/carl/.bashrc dest=/home/carl/.bashrc

@@ -9,21 +9,21 @@
     packaging_ubuntu_multiverse_repository: true
 
   roles:
-#    - extra_repo     # extra repos
-
-#    - dropbox   # first run dropbox before continuing
-
-#    - encfs     # Directory /home/carl/Dropbox/Notebooks  ; Mount /home/carl/Notebooks
-
-#    - vim
-#    - tmux
-#    - zim
-#    - mysqlworkbench
-#    - diodon
-#    - virtualbox
-#    - filezilla
-#    - pac
-#    - ssh
-#    - openvpn   # import config from /home/carl/Notebooks/carl/openvpn
-#    - radiotray
-#    - extra_soft
+  # - extra_repo     # extra repos
+# 
+  # - dropbox   # first run dropbox before continuing
+# 
+  # - encfs     # Directory /home/carl/Dropbox/Notebooks  ; Mount /home/carl/Notebooks
+# 
+  # - bash
+  # - vim
+  # - tmux
+  # - zim
+  # - mysqlworkbench
+  # - virtualbox
+  # - filezilla
+  # - pac
+  # - ssh
+  # - openvpn   # import config from /home/carl/Notebooks/carl/openvpn
+  # - radiotray
+  - extra_soft

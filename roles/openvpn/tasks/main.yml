@@ -1,4 +1,0 @@
----
-- apt: name="network-manager-openvpn-gnome" state=present
-  become: yes
-  become_method: sudo
