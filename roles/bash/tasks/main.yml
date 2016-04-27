@@ -1,5 +1,5 @@
 - name: download bashrc from git
-  git: repo="https://github.com/Charlietje/bash-full-of-colors.git" dest=/home/carl/bash
+  git: repo="https://github.com/Charlietje/bash.git" dest=/home/carl/bash
 
 - name: deploy bash config
   command: bash -x /home/carl/bash/__deploy.sh
