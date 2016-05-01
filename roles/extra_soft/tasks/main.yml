@@ -12,6 +12,7 @@
     - "ppa:nilarimogard/webupd8"
     - "ppa:linrunner/tlp"
     - "ppa:ravefinity-project/ppa"
+    - "ppa:teejee2008/ppa"
 
 
 - apt: name={{ item }} state=latest
@@ -56,6 +57,7 @@
   - tlp-rdw
   - vivacious-colors-gtk-dark
   - vivacious-colors-gtk-light
+  - timeshift
 
 
 # Nautilus from handling the desktop icons
