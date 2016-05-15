@@ -3,7 +3,7 @@
   become: yes
   become_method: sudo
 
-- apt: name="gnome-encfs-manager" state=present
+- apt: name="gnome-encfs-manager" state=present update_cache=yes
   become: yes
   become_method: sudo
 

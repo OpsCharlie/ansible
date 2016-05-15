@@ -28,6 +28,9 @@
     - "deb-src http://archive.ubuntu.com/ubuntu/  {{ansible_distribution_release}}-updates multiverse"
   when: packaging_ubuntu_multiverse_repository
 
+- name: apt get update
+  apt: update_cache=yes
+
 - apt: name={{ item }} state=present
   become: yes
   become_method: sudo

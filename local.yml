@@ -20,10 +20,9 @@
   # - tmux
   # - zim
   # - mysqlworkbench
-  # - virtualbox    #key: sudo sh -c 'wget -q -O- http://download.virtualbox.org/virtualbox/debian/oracle_vbox_2016.asc | apt-key add -' 
+  # - virtualbox
   # - filezilla
   # - pac
   # - ssh
-  # - openvpn   # import config from /home/carl/Notebooks/carl/openvpn
   # - radiotray
   - extra_soft

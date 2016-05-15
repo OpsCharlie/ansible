@@ -1,6 +1,6 @@
 ---
 - name: Configure the Oracle APT key
-  apt_key: url=https://www.virtualbox.org/download/oracle_vbox.asc state=present
+  apt_key: url=https://www.virtualbox.org/download/oracle_vbox_2016.asc state=present
   become: yes
   become_method: sudo
 
@@ -10,6 +10,6 @@
   become_method: sudo
 
 - name: Install VirtualBox
-  apt: name=virtualbox-5.0 state=latest
+  apt: name=virtualbox-5.0 state=latest update_cache=yes
   become: yes
   become_method: sudo
