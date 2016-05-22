@@ -58,7 +58,15 @@
   - vivacious-colors-gtk-dark
   - vivacious-colors-gtk-light
   - timeshift
-
+  - pidgin
+  - pidgin-themes
+  - pidgin-hangouts
+  - pidgin-guifications
+  - pidgin-indicator
+  - pidgin-extprefs
+  - pidgin-plugin-pack
+  - pidgin-libnotify
+  # - pidgin-microblog
 
 # Nautilus from handling the desktop icons
 # and set Nemo as the default file manager
@@ -74,4 +82,12 @@
   # with_items:
   # - "gsettings set org.gnome.desktop.background show-desktop-icons true"
   # - "xdg-mime default nautilus.desktop inode/directory application/x-gnome-saved-search"
+
+- name: install window merge plugin
+  copy: src={{ item }} dest=/usr/lib/pidgin/{{ item }}
+  become: yes
+  become_method: sudo
+  with_items:
+  - window_merge.so
+  - window_merge.la
 

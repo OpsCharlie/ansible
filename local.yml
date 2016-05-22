@@ -25,4 +25,5 @@
   # - pac
   # - ssh
   # - radiotray
-  - extra_soft
+  # - openxenmanager
+   - extra_soft
