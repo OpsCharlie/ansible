@@ -1,0 +1,28 @@
+---
+- name: install dependancies
+  apt: name={{ item }} state=installed
+  with_items:
+  - python-gtk2
+  - glade
+  - python-gtk-vnc
+  - python-glade2
+  - python-configobj
+  - python-setuptools
+
+- name: git clone
+  git: repo=https://github.com/OpenXenManager/openxenmanager.git dest=/opt/openxenmanager
+  become: yes
+  become_method: sudo
+
+- name: setup
+  shell: cd /opt/openxenmanager && python setup.py install
+  become: yes
+  become_method: sudo
+
+- name: create icon
+  copy: src=AppIcon.ico dest=/opt/openxenmanager/AppIcon.ico
+  become: yes
+  become_method: sudo
+
+- name: create desktop file
+  copy: src=openxenmanager.desktop dest=~/.local/share/applications/openxenmanager.desktop

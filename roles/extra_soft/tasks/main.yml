@@ -25,8 +25,8 @@
   - zeal
   - diodon
   - vagrant
-  - nfs-kernel-server 
-  - skype 
+  - nfs-kernel-server
+  - skype
   - corebird
   - my-weather-indicator
   - y-ppa-manager
@@ -51,7 +51,7 @@
   - zip
   - unzip
   - bleachbit
-  - icedtea-8-plugin 
+  - icedtea-8-plugin
   - openjdk-8-jre
   - tlp
   - tlp-rdw
@@ -67,6 +67,7 @@
   - pidgin-plugin-pack
   - pidgin-libnotify
   # - pidgin-microblog
+  - gstreamer0.10-pulseaudio       # for gtkzabbix
 
 # Nautilus from handling the desktop icons
 # and set Nemo as the default file manager
