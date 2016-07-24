@@ -9,3 +9,5 @@
 
 - file: path=/home/carl/Notebooks state=directory
 
+- pause: prompt="Start EncFS GUI: Directory /home/carl/Dropbox/Notebooks  ; Mount /home/carl/Notebooks"
+

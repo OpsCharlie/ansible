@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=GTKZabbix
+Icon=gtkzabbix_py.png
+Path=/home/carl/gtkzabbix
+Exec=python src/GTKZabbix.py
+StartupNotify=false
+StartupWMClass=GTKZabbix.py
+OnlyShowIn=Unity;
+X-UnityGenerated=true

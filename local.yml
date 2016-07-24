@@ -11,10 +11,8 @@
   roles:
   # - extra_repo     # extra repos
  
-  # - dropbox   # first run dropbox before continuing
- 
-  # - encfs     # Directory /home/carl/Dropbox/Notebooks  ; Mount /home/carl/Notebooks
- 
+  # - dropbox     
+  # - encfs      
   # - bash
   # - vim
   # - tmux
@@ -26,4 +24,5 @@
   # - ssh
   # - radiotray
   # - openxenmanager
+  # - chrome
    - extra_soft
