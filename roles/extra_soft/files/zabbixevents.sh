@@ -1,0 +1,1 @@
+../../../../../scripts/se_scripts/shzabbix/zabbixevents.sh

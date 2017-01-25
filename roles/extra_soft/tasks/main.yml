@@ -5,14 +5,17 @@
   become_method: sudo
   ignore_errors: yes
   with_items:
-    - "ppa:diodon-team/stable"
-    - "ppa:atareao/atareao"
-    - "ppa:webupd8team/y-ppa-manager"
-    - "ppa:webupd8team/nemo"
-    - "ppa:nilarimogard/webupd8"
-    - "ppa:linrunner/tlp"
-    - "ppa:ravefinity-project/ppa"
-    - "ppa:teejee2008/ppa"
+    - "ppa:diodon-team/stable"                       #clipboard manager
+    - "ppa:atareao/atareao"                          #my-weather-indicator
+    - "ppa:webupd8team/y-ppa-manager"                #y-ppa-manager
+    - "ppa:webupd8team/nemo"                         #nemo-filemanager
+    - "ppa:nilarimogard/webupd8"                     #gloobus-preview
+    - "ppa:linrunner/tlp"                            #power management tool
+    - "ppa:ravefinity-project/ppa"                   #themes
+    - "ppa:teejee2008/ppa"                           #timeshift
+    - "ppa:leolik/leolik"                            #notify-osd
+    - "ppa:libreoffice/ppa"                          #libreoffice
+    - "ppa:zeal-developers/ppa"                      #zeal
 
 
 - apt: name={{ item }} state=latest update_cache=yes
@@ -59,16 +62,21 @@
   - vivacious-colors-gtk-dark
   - vivacious-colors-gtk-light
   - timeshift
-  - pidgin
-  - pidgin-themes
-  - pidgin-hangouts
-  - pidgin-guifications
-  - pidgin-indicator
-  - pidgin-extprefs
-  - pidgin-plugin-pack
-  - pidgin-libnotify
+  - notify-osd
+  - zenmap
+  - fwbuilder
+  - gvim
+  - wireshark
+  # - pidgin
+  # - pidgin-themes
+  # - pidgin-hangouts
+  # - pidgin-guifications
+  # - pidgin-indicator
+  # - pidgin-extprefs
+  # - pidgin-plugin-pack
+  # - pidgin-libnotify
   # - pidgin-microblog
-  - gstreamer0.10-pulseaudio       # for gtkzabbix
+  # - gstreamer0.10-pulseaudio       # for gtkzabbix
 
 # Nautilus from handling the desktop icons
 # and set Nemo as the default file manager
@@ -85,11 +93,45 @@
   # - "gsettings set org.gnome.desktop.background show-desktop-icons true"
   # - "xdg-mime default nautilus.desktop inode/directory application/x-gnome-saved-search"
 
-- name: install window merge plugin
-  copy: src={{ item }} dest=/usr/lib/pidgin/{{ item }}
+# - name: install window merge plugin
+#   copy: src={{ item }} dest=/usr/lib/pidgin/{{ item }}
+#   become: yes
+#   become_method: sudo
+#   with_items:
+#   - window_merge.so
+#   - window_merge.la
+
+- name: install vagrant bash completion
   become: yes
   become_method: sudo
+  command: wget https://raw.github.com/kura/vagrant-bash-completion/master/etc/bash_completion.d/vagrant -O /etc/bash_completion.d/vagrant
+
+- name: download franz
+  unarchive: src=https://github.com/meetfranz/franz-app/releases/download/4.0.4/Franz-linux-x64-4.0.4.tgz dest=/home/carl/Franz remote_src=yes
+
+- name: install desktop.file
+  copy: src=franz.desktop dest=/home/carll/.local/share/applications/franz.desktop
+
+- name: install scripts
+  copy: src={{ item }} dest=/usr/local/bin/{{ item }} mode=775 follow=yes
   with_items:
-  - window_merge.so
-  - window_merge.la
+    - convertzim2wiki.sh
+    - counter.sh
+    - ddig
+    - gvim
+    - remotecopy.sh
+    - sshrm
+    - ssl-cert-info
+    - swap.sh
+    - zabbixevents.sh
+
+- name: install startup
+  copy: src={{ item }} dest=/home/carl/.config/autostart/{{ item }}
+  with_items:
+    - radiotray.desktop
+    - shutter.desktop
+    - remotecopy.sh.desktop
+    - zabbixevents.sh.desktop
+    - gnome-encfs-manager.desktop
+
 

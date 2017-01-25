@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/local/bin/remotecopy.sh
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=remote copy
+Name=remote copy
+Comment[en_US]=remote copy with nc
+Comment=remote copy with nc

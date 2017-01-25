@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/home/carl/shzabbix/zabbixevents.sh
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=Zabbix Notifier
+Name=Zabbix Notifier
+Comment[en_US]=Zabbix Notifier in BASH
+Comment=Zabbix Notifier in BASH
