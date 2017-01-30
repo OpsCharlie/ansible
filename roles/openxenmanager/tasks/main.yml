@@ -1,6 +1,8 @@
 ---
 - name: install dependancies
   apt: name={{ item }} state=installed
+  become: yes
+  become_method: sudo
   with_items:
   - python-gtk2
   - glade

@@ -1,7 +1,8 @@
 ---
-# Usage: ansible-playbook -K local.yml 
+# Usage: ansible-playbook -K local.yml
 
 - hosts: 127.0.0.1
+  connection: local
 
   vars:
     packaging_ubuntu_extras_repository: true
@@ -9,20 +10,20 @@
     packaging_ubuntu_multiverse_repository: true
 
   roles:
-  # - extra_repo     # extra repos
- 
-  # - dropbox     
-  # - encfs      
-  # - bash
-  # - vim
-  # - tmux
-  # - zim
-  # - mysqlworkbench
-  # - virtualbox
-  # - filezilla
-  # - pac
-  # - ssh
-  # - radiotray
-  # - openxenmanager
-  # - chrome
-  # - extra_soft
+   # - extra_repo     # extra repos
+
+   # - dropbox
+   # - encfs
+   # - bash
+   # - vim
+   # - tmux
+   # - zim
+   # - mysqlworkbench
+   # - virtualbox
+   # - filezilla
+   # - pac
+   # - ssh
+   # - radiotray
+   # - openxenmanager
+   # - chrome
+   - extra_soft

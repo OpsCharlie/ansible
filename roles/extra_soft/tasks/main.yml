@@ -23,6 +23,7 @@
   become_method: sudo
   with_items:
   - inxi
+  - touchpad-indicator
   - unity-tweak-tool
   - network-manager-openvpn-gnome     #import config from /home/carl/Notebooks/carl/openvpn
   - shutter
@@ -30,8 +31,8 @@
   - diodon
   - vagrant
   - nfs-kernel-server
-  - skype
-  - corebird
+  #  - skype
+  #- corebird
   - my-weather-indicator
   - y-ppa-manager
   - meld
@@ -65,7 +66,7 @@
   - notify-osd
   - zenmap
   - fwbuilder
-  - gvim
+  - vim-gnome
   - wireshark
   # - pidgin
   # - pidgin-themes
@@ -106,14 +107,19 @@
   become_method: sudo
   command: wget https://raw.github.com/kura/vagrant-bash-completion/master/etc/bash_completion.d/vagrant -O /etc/bash_completion.d/vagrant
 
+- name: create Franz dir
+  file: path=/home/carl/Franz state=directory
+
 - name: download franz
   unarchive: src=https://github.com/meetfranz/franz-app/releases/download/4.0.4/Franz-linux-x64-4.0.4.tgz dest=/home/carl/Franz remote_src=yes
 
 - name: install desktop.file
-  copy: src=franz.desktop dest=/home/carll/.local/share/applications/franz.desktop
+  copy: src=franz.desktop dest=/home/carl/.local/share/applications/franz.desktop
 
 - name: install scripts
-  copy: src={{ item }} dest=/usr/local/bin/{{ item }} mode=775 follow=yes
+  copy: src=/home/carl/Notebooks/scripts/carl_scripts/{{ item }} dest=/usr/local/bin/{{ item }} mode=775 follow=yes
+  become: yes
+  become_method: sudo
   with_items:
     - convertzim2wiki.sh
     - counter.sh
@@ -124,6 +130,12 @@
     - ssl-cert-info
     - swap.sh
     - zabbixevents.sh
+    - zabbix_off.wav
+    - zabbix_on_average.wav
+    - zabbix_on_disaster.wav
+    - zabbix_on_high.wav
+    - zabbix_on_warning.wav
+    - zabbix_on.wav
 
 - name: install startup
   copy: src={{ item }} dest=/home/carl/.config/autostart/{{ item }}

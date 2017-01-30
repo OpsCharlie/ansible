@@ -1,5 +1,5 @@
 ---
-- apt_repository: repo="ppa:gencfsm/ppa" update_cache=yes
+- apt_repository: repo="ppa:gencfsm/ppa" update_cache=yes validate_certs=no
   become: yes
   become_method: sudo
 
@@ -9,5 +9,5 @@
 
 - file: path=/home/carl/Notebooks state=directory
 
-- pause: prompt="Start EncFS GUI: Directory /home/carl/Dropbox/Notebooks  ; Mount /home/carl/Notebooks"
+- pause: prompt="Start EncFS GUI  Directory /home/carl/Dropbox/Notebooks  ; Mount /home/carl/Notebooks"
 

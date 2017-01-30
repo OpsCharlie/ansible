@@ -1,3 +1,6 @@
+- name: install git
+  apt: name=git state=present
+
 - name: download bashrc from git
   git: repo="https://github.com/Charlietje/bash.git" dest=/home/carl/bash
 

@@ -23,7 +23,7 @@
   become: yes
   become_method: sudo
 
-- file: src=/home/carl/Notebooks/carl/.local/share/radiotray/{{ item }} dest=/home/carl/.local/share/radiotray/{{ item }} state=link
+- copy: src=/home/carl/Notebooks/carl/.local/share/radiotray/{{ item }} dest=/home/carl/.local/share/radiotray/{{ item }}
   with_items:
   - bookmarks.xml
   - config.xml
