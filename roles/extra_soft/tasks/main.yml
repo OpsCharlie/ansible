@@ -64,10 +64,13 @@
   - vivacious-colors-gtk-light
   - timeshift
   - notify-osd
+  - notifyosdconfig
   - zenmap
   - fwbuilder
   - vim-gnome
   - wireshark
+  - geany
+  - geany-plugins
   # - pidgin
   # - pidgin-themes
   # - pidgin-hangouts
@@ -113,6 +116,9 @@
 - name: download franz
   unarchive: src=https://github.com/meetfranz/franz-app/releases/download/4.0.4/Franz-linux-x64-4.0.4.tgz dest=/home/carl/Franz remote_src=yes
 
+- name: set franz icon
+  copy: src=/home/carl/Franz/resources/app.asar.unpacked/assets/franz.png dest=/home/carl/.local/share/icons/franz.png remote_src=true
+
 - name: install desktop.file
   copy: src=franz.desktop dest=/home/carl/.local/share/applications/franz.desktop
 
@@ -146,4 +152,6 @@
     - zabbixevents.sh.desktop
     - gnome-encfs-manager.desktop
 
+- name: install geany config
+  unarchive: src=geany.tgz dest=/home/carl/.config/geany
 
