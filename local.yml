@@ -5,9 +5,9 @@
   connection: local
 
   vars:
-    packaging_ubuntu_extras_repository: true
-    packaging_ubuntu_partner_repository: true
-    packaging_ubuntu_multiverse_repository: true
+    packaging_ubuntu_extras_repository: no
+    packaging_ubuntu_partner_repository: no
+    packaging_ubuntu_multiverse_repository: no
 
   roles:
    # - extra_repo     # extra repos

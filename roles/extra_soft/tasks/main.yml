@@ -31,7 +31,7 @@
   - diodon
   - vagrant
   - nfs-kernel-server
-  #  - skype
+  #- skype
   #- corebird
   - my-weather-indicator
   - y-ppa-manager
@@ -71,6 +71,8 @@
   - wireshark
   - geany
   - geany-plugins
+  - compizconfig-settings-manager
+  - compiz-plugins-extra
   # - pidgin
   # - pidgin-themes
   # - pidgin-hangouts
@@ -108,7 +110,7 @@
 - name: install vagrant bash completion
   become: yes
   become_method: sudo
-  command: wget https://raw.github.com/kura/vagrant-bash-completion/master/etc/bash_completion.d/vagrant -O /etc/bash_completion.d/vagrant
+  get_url: url=https://raw.github.com/kura/vagrant-bash-completion/master/etc/bash_completion.d/vagrant dest=/etc/bash_completion.d/vagrant
 
 - name: create Franz dir
   file: path=/home/carl/Franz state=directory
@@ -119,7 +121,7 @@
 - name: set franz icon
   copy: src=/home/carl/Franz/resources/app.asar.unpacked/assets/franz.png dest=/home/carl/.local/share/icons/franz.png remote_src=true
 
-- name: install desktop.file
+- name: install franz desktop.file
   copy: src=franz.desktop dest=/home/carl/.local/share/applications/franz.desktop
 
 - name: install scripts
