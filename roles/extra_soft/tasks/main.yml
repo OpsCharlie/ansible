@@ -53,6 +53,7 @@
   - nemo-gloobus-sushi
   - p7zip
   - unrar
+  - tree
   - zip
   - unzip
   - bleachbit
@@ -73,6 +74,7 @@
   - geany-plugins
   - compizconfig-settings-manager
   - compiz-plugins-extra
+  - vlc
   # - pidgin
   # - pidgin-themes
   # - pidgin-hangouts
