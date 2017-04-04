@@ -5,9 +5,16 @@
   connection: local
 
   vars:
-    packaging_ubuntu_extras_repository: no
-    packaging_ubuntu_partner_repository: no
-    packaging_ubuntu_multiverse_repository: no
+    - packaging_ubuntu_extras_repository: no
+    - packaging_ubuntu_partner_repository: no
+    - packaging_ubuntu_multiverse_repository: no
+    - fail2ban_services:                     # for fail2ban (not extended)
+      - name: ssh
+        enabled: false
+        port: ssh
+        filter: sshd
+        logpath: /var/log/auth.log
+        maxretry: 3
 
   roles:
    # - extra_repo     # extra repos
@@ -19,6 +26,7 @@
    # - tmux
    # - zim
    # - mysqlworkbench
+   # - fail2ban
    # - virtualbox
    # - filezilla
    # - pac
@@ -26,4 +34,4 @@
    # - radiotray
    # - openxenmanager
    # - chrome
-   - extra_soft
+   # - extra_soft
