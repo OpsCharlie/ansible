@@ -6,3 +6,9 @@
 - apt: name=nfs-kernel-server state=present
   become: yes
   become_method: sudo
+
+- name: install vagrant bash completion
+  become: yes
+  become_method: sudo
+  get_url: url=https://raw.github.com/kura/vagrant-bash-completion/master/etc/bash_completion.d/vagrant dest=/etc/bash_completion.d/vagrant
+

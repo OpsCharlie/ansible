@@ -1,27 +1,9 @@
 ---
-- apt: name={{ item }} state=present
-  become: yes
-  become_method: sudo
-  with_items:
-  - gstreamer0.10-plugins-good
-  - python-appindicator
-  - gnome-themes-standard
-
-- get_url: url=http://downloads.sourceforge.net/project/radiotray/releases/radiotray_0.7.3_all.deb dest=/tmp/radiotray.deb
-
-#- apt: name=python-central state=present
-#  become: yes
-#  become_method: sudo
-
-- get_url: url=http://packages.linuxmint.com//pool/upstream/p/python-central/python-central_0.6.17ubuntu2_all.deb dest=/tmp/python-central.deb
-
-- apt: deb="/tmp/python-central.deb"
+- apt: name=radiotray state=latest
   become: yes
   become_method: sudo
 
-- apt: deb="/tmp/radiotray.deb"
-  become: yes
-  become_method: sudo
+- file: path=/home/carl/.local/share/radiotray state=directory
 
 - copy: src=/home/carl/Notebooks/carl/.local/share/radiotray/{{ item }} dest=/home/carl/.local/share/radiotray/{{ item }}
   with_items:

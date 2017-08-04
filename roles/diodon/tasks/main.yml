@@ -1,0 +1,9 @@
+---
+- name: Add repositories clipboard manager
+  apt_repository: repo=ppa:diodon-team/stable
+  become: yes
+  become_method: sudo
+
+- apt: name=diodon state=latest
+  become: yes
+  become_method: sudo

@@ -1,0 +1,11 @@
+---
+- name: Add repositories y-ppa-manager
+  apt_repository: repo=ppa:webupd8team/y-ppa-manager
+  become: yes
+  become_method: sudo
+
+- apt: name={{ item }} state=latest
+  become: yes
+  become_method: sudo
+  with_items:
+  - y-ppa-manager

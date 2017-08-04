@@ -1,0 +1,30 @@
+- name: install scripts
+  copy: src=/home/carl/Notebooks/scripts/carl_scripts/{{ item }} dest=/usr/local/bin/{{ item }} mode=775 follow=yes
+  become: yes
+  become_method: sudo
+  with_items:
+    - convertzim2wiki.sh
+    - counter.sh
+    - ddig
+    - gvim
+    - remotecopy.sh
+    - sshrm
+    - ssl-cert-info
+    - swap.sh
+    - zabbixevents.sh
+    - zabbix_off.wav
+    - zabbix_on_average.wav
+    - zabbix_on_disaster.wav
+    - zabbix_on_high.wav
+    - zabbix_on_warning.wav
+    - zabbix_on.wav
+
+- name: install startup
+  copy: src={{ item }} dest=/home/carl/.config/autostart/{{ item }}
+  with_items:
+    - radiotray.desktop
+    - shutter.desktop
+    - remotecopy.sh.desktop
+    - zabbixevents.sh.desktop
+    - gnome-encfs-manager.desktop
+

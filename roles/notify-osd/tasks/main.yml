@@ -1,0 +1,13 @@
+---
+- name: Add repositories notify-osd
+  apt_repository: repo=ppa:leolik/leolik
+  become: yes
+  become_method: sudo
+
+- apt: name={{ item }} state=latest
+  become: yes
+  become_method: sudo
+  with_items:
+  - notify-osd
+  - notifyosdconfig
+

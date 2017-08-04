@@ -1,0 +1,12 @@
+---
+- name: Add repositories my-weather-indicator
+  apt_repository: repo=ppa:atareao/atareao update_cache=yes
+  become: yes
+  become_method: sudo
+
+- apt: name={{ item }} state=latest
+  become: yes
+  become_method: sudo
+  with_items:
+  - my-weather-indicator
+

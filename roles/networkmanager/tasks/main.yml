@@ -1,0 +1,13 @@
+---
+- name: install network manager extentsions
+  apt: name={{ item }} state=present
+  become: yes
+  become_method: sudo
+  with_items:
+    - vpnc
+    - network-manager-vpnc
+    - network-manager-vpnc-gnome
+    - network-manager-strongswan
+    - network-manager-openconnect
+    - network-manager-openvpn-gnome     #import config from /home/carl/Notebooks/carl/openvpn
+

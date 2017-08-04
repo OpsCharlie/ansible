@@ -21,17 +21,39 @@
 
    # - dropbox
    # - encfs
+   # - nemo
    # - bash
    # - vim
    # - tmux
    # - zim
+   # - java
    # - mysqlworkbench
    # - fail2ban
    # - virtualbox
+   # - vagrant
    # - filezilla
    # - pac
    # - ssh
-   # - radiotray
    # - openxenmanager
    # - chrome
+   # - networkmanager
+   # - networktools
+   # - scripts     # tools and zabbix notification
+
+   #### extra software
    # - extra_soft
+   # - diodon  # clipboard manager
+   # - radiotray
+   # - my-weather-indicator
+   # - ppa-manager
+   # - tlp     # power manager
+   # - themes
+   # - timeshift
+   # - notify-osd
+   # - libreoffice
+   # - zeal
+   # - franz
+   # - pidgin
+   # - shutter
+
+

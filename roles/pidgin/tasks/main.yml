@@ -1,0 +1,25 @@
+---
+- apt: name={{ item }} state=latest
+  become: yes
+  become_method: sudo
+  with_items:
+  - pidgin
+  - pidgin-themes
+  - pidgin-hangouts
+  - pidgin-guifications
+  - pidgin-indicator
+  - pidgin-extprefs
+  - pidgin-plugin-pack
+  - pidgin-libnotify
+  - pidgin-microblog
+
+- name: install window merge plugin
+  copy: src={{ item }} dest=/usr/lib/pidgin/{{ item }}
+  become: yes
+  become_method: sudo
+  with_items:
+  - window_merge.so
+  - window_merge.la
+
+
+

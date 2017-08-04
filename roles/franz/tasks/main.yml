@@ -1,0 +1,13 @@
+---
+- name: create Franz dir
+  file: path=/home/carl/Franz state=directory
+
+- name: download franz
+  unarchive: src=https://github.com/meetfranz/franz-app/releases/download/4.0.4/Franz-linux-x64-4.0.4.tgz dest=/home/carl/Franz remote_src=yes
+
+- name: set franz icon
+  copy: src=/home/carl/Franz/resources/app.asar.unpacked/assets/franz.png dest=/home/carl/.local/share/icons/franz.png remote_src=true
+
+- name: install franz desktop.file
+  copy: src=franz.desktop dest=/home/carl/.local/share/applications/franz.desktop
+

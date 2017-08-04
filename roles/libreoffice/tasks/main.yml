@@ -1,0 +1,13 @@
+---
+- name: Add repositories libreoffice
+  apt_repository: repo=ppa:libreoffice/ppa
+  become: yes
+  become_method: sudo
+
+- apt: name={{ item }} state=latest
+  become: yes
+  become_method: sudo
+  with_items:
+    - libreoffice
+
+
