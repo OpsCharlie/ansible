@@ -1,0 +1,12 @@
+---
+- name: Add repositories flux gui
+  apt_repository: repo=ppa:nathan-renniewaldock/ppa
+  become: yes
+  become_method: sudo
+
+- apt: name={{ item }} state=latest
+  become: yes
+  become_method: sudo
+  with_items:
+  - fluxgui
+

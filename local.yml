@@ -38,6 +38,7 @@
    # - chrome
    # - networkmanager
    # - networktools
+   # - ansible-tools
    # - scripts     # tools and zabbix notification
 
    #### extra software
@@ -52,8 +53,11 @@
    # - notify-osd
    # - libreoffice
    # - zeal
+   # - rambox
    # - franz
    # - pidgin
    # - shutter
+   # - insync
+   # - flux
 
 

@@ -4,15 +4,16 @@
   become_method: sudo
   with_items:
   #- touchpad-indicator
-  - unity-tweak-tool
+  #- unity-tweak-tool
   #- skype
   #- corebird
   - bleachbit
   - geany
   - geany-plugins
-  - compizconfig-settings-manager
-  - compiz-plugins-extra
+  #- compizconfig-settings-manager
+  #- compiz-plugins-extra
   - vlc
+  - pyrename
 
 - name: install geany config
   unarchive: src=geany.tgz dest=/home/carl/.config/geany
