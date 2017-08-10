@@ -13,8 +13,11 @@
   #- compizconfig-settings-manager
   #- compiz-plugins-extra
   - vlc
-  - pyrename
+  - pyrenamer
+
+- file: path=/home/carl/.config/geany state=directory
+  become_user: carl
 
 - name: install geany config
   unarchive: src=geany.tgz dest=/home/carl/.config/geany
-
+  become_user: carl

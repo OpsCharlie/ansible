@@ -8,4 +8,5 @@
 
 - name: deploy vim config
   shell: /home/carl/tmux/__deploy.sh
+  become_user: carl
 

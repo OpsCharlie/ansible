@@ -8,6 +8,6 @@
   become: yes
   become_method: sudo
   with_items:
-  - vivacious-colors-gtk-dark
-  - vivacious-colors-gtk-light
+  - vibrancy-colors
+  - vivacious-colors
 

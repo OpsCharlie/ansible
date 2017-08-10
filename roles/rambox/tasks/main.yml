@@ -1,4 +1,4 @@
 ---
-- apt: deb='https://getrambox.herokuapp.com/download/linux_64?filetype=deb' state=latest
+- apt: deb='https://getrambox.herokuapp.com/download/linux_64?filetype=deb' state=present
   become: yes
   become_method: sudo

@@ -3,8 +3,10 @@
 
 - name: download bashrc from git
   git: repo="https://github.com/Charlietje/bash.git" dest=/home/carl/bash
+  become_user: carl
 
 - name: deploy bash config
   command: bash /home/carl/bash/__deploy.sh
+  become_user: carl
 
 

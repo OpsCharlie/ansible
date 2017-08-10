@@ -28,3 +28,4 @@
 
 - name: create desktop file
   copy: src=openxenmanager.desktop dest=~/.local/share/applications/openxenmanager.desktop
+  become_user: carl

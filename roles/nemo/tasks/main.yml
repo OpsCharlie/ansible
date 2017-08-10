@@ -16,7 +16,7 @@
   - nemo-fileroller
   - nemo-compare
   - nemo-dropbox
-  - nemo-media-columns
+    #  - nemo-media-columns
   - nemo-pastebin
   - nemo-seahorse
   - nemo-share

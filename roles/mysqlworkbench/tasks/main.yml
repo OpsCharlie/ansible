@@ -4,5 +4,7 @@
   become_method: sudo
 
 - file: path=/home/carl/.mysql/workbench state=directory
+  become_user: carl
 
 - synchronize: src=/home/carl/Notebooks/carl/.mysql/workbench dest=/home/carl/.mysql/workbench
+  become_user: carl

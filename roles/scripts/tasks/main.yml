@@ -21,6 +21,7 @@
 
 - name: install startup
   copy: src={{ item }} dest=/home/carl/.config/autostart/{{ item }}
+  become_user: carl
   with_items:
     - radiotray.desktop
     - shutter.desktop

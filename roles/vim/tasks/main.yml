@@ -5,9 +5,11 @@
 
 - name: download vimrc from git
   git: repo="https://github.com/Charlietje/vim.git" dest=/home/carl/vim
+  become_user: carl
 
 - name: deploy vim config
   shell: /home/carl/vim/__deploy.sh
+  become_user: carl
 
 - apt: name=vim-gnome state=present
   become: yes

@@ -10,8 +10,10 @@
   become_method: sudo
 
 - file: path=/home/carl/.config/pac state=directory
+  become_user: carl
 
 - file: src=/home/carl/Notebooks/carl/.config/pac/{{ item }} dest=/home/carl/.config/pac/{{ item }} state=link
+  become_user: carl
   with_items:
   - pac.dumper
   - pac.nfreeze
@@ -20,3 +22,31 @@
   - pac.yml.tree
   - pac_notray.notified
   - pac_stats.nfreeze
+
+
+- apt: name={{ item }} state=installed
+  with_items:
+    - libgtk2-appindicator-perl
+
+- copy: src=libgnome2-vte-perl_0.11-1_amd64.deb dest=/tmp/libvte.deb
+
+- apt: deb=/tmp/libvte.deb state=installed
+
+- command: find /opt/pac/ -name "Vte.so*" -exec rm {} +
+  become: yes
+  become_method: sudo
+
+
+
+### create libgnome2-vte-perl_0.11-1_amd64.deb
+#- apt: name={{ item }} state=installed
+#  with_items:
+#    - libglib2.0-dev
+#    - libpango1.0-dev
+#    - libvte-dev
+#    - libvte-2.91-dev
+#    - dh-make-perl
+#    - libextutils-pkgconfig-perl
+#    - libextutils-depends-perl
+#
+#- command: echo -e "\n\n\no\n" | dh-make-perl --cpan Gnome2::Vte --build

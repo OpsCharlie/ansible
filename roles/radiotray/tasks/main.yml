@@ -4,8 +4,10 @@
   become_method: sudo
 
 - file: path=/home/carl/.local/share/radiotray state=directory
+  become_user: carl
 
 - copy: src=/home/carl/Notebooks/carl/.local/share/radiotray/{{ item }} dest=/home/carl/.local/share/radiotray/{{ item }}
+  become_user: carl
   with_items:
   - bookmarks.xml
   - config.xml
