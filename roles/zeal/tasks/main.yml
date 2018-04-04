@@ -6,7 +6,6 @@
 
 - apt: name={{ item }} state=latest
   become: yes
-  become_method: sudo
   with_items:
   - zeal
 

@@ -1,12 +1,10 @@
 - name: install git
   apt: name=git state=present
+  become: yes
 
 - name: download bashrc from git
-  git: repo="https://github.com/Charlietje/bash.git" dest=/home/carl/bash
-  become_user: carl
+  git: repo="https://github.com/Charlietje/bash.git" dest={{ home }}/bash
 
 - name: deploy bash config
-  command: bash /home/carl/bash/__deploy.sh
-  become_user: carl
-
+  command: bash {{ home }}/bash/__deploy.sh
 

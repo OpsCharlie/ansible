@@ -1,3 +1,2 @@
 ---
-- synchronize: src=/home/carl/Notebooks/carl/.ssh/ dest=/home/carl/.ssh/
-  become_user: carl
+- synchronize: src={{ home }}/Notebooks/carl/.ssh/ dest={{ home }}/.ssh/

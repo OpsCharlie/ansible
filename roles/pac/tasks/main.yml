@@ -7,13 +7,10 @@
 - name: Install pac-4.5.5.7-all.deb
   apt: deb="/tmp/pac.deb"
   become: yes
-  become_method: sudo
 
-- file: path=/home/carl/.config/pac state=directory
-  become_user: carl
+- file: path={{ home }}/.config/pac state=directory
 
-- file: src=/home/carl/Notebooks/carl/.config/pac/{{ item }} dest=/home/carl/.config/pac/{{ item }} state=link
-  become_user: carl
+- file: src={{ home }}/Notebooks/carl/.config/pac/{{ item }} dest={{ home }}/.config/pac/{{ item }} state=link
   with_items:
   - pac.dumper
   - pac.nfreeze
@@ -34,7 +31,6 @@
 
 - command: find /opt/pac/ -name "Vte.so*" -exec rm {} +
   become: yes
-  become_method: sudo
 
 
 

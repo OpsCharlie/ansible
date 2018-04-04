@@ -1,0 +1,23 @@
+---
+- apt: name=php-cli state=installed
+  become: yes
+
+- shell: 'curl -sS https://getcomposer.org/installer | php'
+  args: chdir=/tmp
+
+- shell: 'mv /tmp/composer.phar /usr/local/bin/composer'
+  become: yes
+
+- composer:
+    global_command: yes
+    command: require
+    arguments: bramus/mixed-content-scan:~2.8
+
+- file:
+    src: {{ home }}/.config/composer/vendor/bin/mixed-content-scan
+    dest: /usr/local/bin/mixed-content-scan
+    state: link
+  become: yes
+
+
+

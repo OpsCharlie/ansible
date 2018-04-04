@@ -1,4 +1,3 @@
 ---
 - apt: name="shutter" state=present
   become: yes
-  become_method: sudo

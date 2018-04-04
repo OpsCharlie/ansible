@@ -1,5 +1,4 @@
 ---
 - apt: name=skype state=present
   become: yes
-  become_method: sudo
 

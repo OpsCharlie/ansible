@@ -1,6 +1,7 @@
 ---
-- git: repo=https://github.com/larsks/ansible-toolbox.git dest=~/ansible-toolbox
+- file: path='{{ home }}/apps' state=directory
 
-- command: chdir=~/ansible-toolbox python setup.py install
+- git: repo=https://github.com/larsks/ansible-toolbox.git dest={{ home }}/apps/ansible-toolbox
+
+- command: chdir={{ home }}/apps/ansible-toolbox python setup.py install
   become: yes
-  become_method: sudo

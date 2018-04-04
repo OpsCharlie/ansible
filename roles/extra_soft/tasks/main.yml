@@ -1,7 +1,6 @@
 ---
 - apt: name={{ item }} state=latest
   become: yes
-  become_method: sudo
   with_items:
   #- touchpad-indicator
   #- unity-tweak-tool
@@ -15,9 +14,7 @@
   - vlc
   - pyrenamer
 
-- file: path=/home/carl/.config/geany state=directory
-  become_user: carl
+- file: path={{ home }}/.config/geany state=directory
 
 - name: install geany config
-  unarchive: src=geany.tgz dest=/home/carl/.config/geany
-  become_user: carl
+  unarchive: src=geany.tgz dest={{ home }}/.config/geany

@@ -1,12 +1,10 @@
 ---
 - apt: name=tmux state=present
   become: yes
-  become_method: sudo
 
 - name: download tmuxrc from git
-  git: repo="https://github.com/Charlietje/tmux.git" dest=/home/carl/tmux
+  git: repo="https://github.com/Charlietje/tmux.git" dest={{ home }}/tmux
 
 - name: deploy vim config
-  shell: /home/carl/tmux/__deploy.sh
-  become_user: carl
+  shell: {{ home }}/tmux/__deploy.sh
 

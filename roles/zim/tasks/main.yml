@@ -1,22 +1,17 @@
 ---
 - apt_repository: repo="ppa:jaap.karssenberg/zim" update_cache=yes
   become: yes
-  become_method: sudo
 
 - apt: name="zim" state=present
   become: yes
-  become_method: sudo
 
 - apt: name="python-gtksourceview2" state=present
   become: yes
-  become_method: sudo
 
-- file: src=/home/carl/Notebooks/carl/.config/zim dest=/home/carl/.config/zim state=link force=true
-  become_user: carl
+- file: src={{ home }}/Notebooks/carl/.config/zim dest={{ home }}/.config/zim state=link force=true
 
 - replace: path=/usr/lib/python2.7/dist-packages/zim/plugins/sourceview.py regexp='\'monospace\'' replace='\'monospace 9\'' backup=yes
   become: yes
-  become_method: sudo
 
 - copy: src={{ item }} dest=/usr/share/zim/pixmaps/{{ item }}
   with_items:
@@ -24,5 +19,4 @@
       - icon_bash.png
       - terminal_icon.png
   become: yes
-  become_method: sudo
 

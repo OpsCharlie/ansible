@@ -2,7 +2,6 @@
 - name: Add repositories
   apt_repository: repo="{{item}}"
   become: yes
-  become_method: sudo
   ignore_errors: yes
   with_items:
     - "ppa:webupd8team/nemo3"                         #nemo-filemanager
@@ -10,7 +9,6 @@
 
 - apt: name={{ item }} state=latest
   become: yes
-  become_method: sudo
   with_items:
   - nemo
   - nemo-fileroller

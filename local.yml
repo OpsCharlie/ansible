@@ -5,6 +5,7 @@
   connection: local
 
   vars:
+    - home: /home/carl
     - packaging_ubuntu_extras_repository: no
     - packaging_ubuntu_partner_repository: no
     - packaging_ubuntu_multiverse_repository: no
@@ -59,5 +60,6 @@
    # - shutter
    # - insync
    # - flux
+   # - testssl
 
 

@@ -2,11 +2,9 @@
 - name: Add repositories themes
   apt_repository: repo=ppa:ravefinity-project/ppa
   become: yes
-  become_method: sudo
 
 - apt: name={{ item }} state=latest
   become: yes
-  become_method: sudo
   with_items:
   - vibrancy-colors
   - vivacious-colors

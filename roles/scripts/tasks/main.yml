@@ -1,7 +1,6 @@
 - name: install scripts
-  copy: src=/home/carl/Notebooks/scripts/carl_scripts/{{ item }} dest=/usr/local/bin/{{ item }} mode=775 follow=yes
+  copy: src={{ home }}/Notebooks/scripts/carl_scripts/{{ item }} dest=/usr/local/bin/{{ item }} mode=775 follow=yes
   become: yes
-  become_method: sudo
   with_items:
     - convertzim2wiki.sh
     - counter.sh
@@ -11,6 +10,9 @@
     - sshrm
     - ssl-cert-info
     - swap.sh
+    - ps_mem
+    - sshrm
+    - remove_color.sh
     - zabbixevents.sh
     - zabbix_off.wav
     - zabbix_on_average.wav
@@ -20,8 +22,7 @@
     - zabbix_on.wav
 
 - name: install startup
-  copy: src={{ item }} dest=/home/carl/.config/autostart/{{ item }}
-  become_user: carl
+  copy: src={{ item }} dest={{ home }}/.config/autostart/{{ item }}
   with_items:
     - radiotray.desktop
     - shutter.desktop

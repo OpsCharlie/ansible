@@ -1,17 +1,13 @@
 ---
 - apt: name=vim state=present
   become: yes
-  become_method: sudo
 
 - name: download vimrc from git
-  git: repo="https://github.com/Charlietje/vim.git" dest=/home/carl/vim
-  become_user: carl
+  git: repo="https://github.com/Charlietje/vim.git" dest={{ home }}/vim
 
 - name: deploy vim config
-  shell: /home/carl/vim/__deploy.sh
-  become_user: carl
+  shell: {{ home }}/vim/__deploy.sh
 
 - apt: name=vim-gnome state=present
   become: yes
-  become_method: sudo
 

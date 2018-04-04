@@ -2,11 +2,9 @@
 - name: Add repositories timeshift
   apt_repository: repo=ppa:teejee2008/ppa
   become: yes
-  become_method: sudo
 
 - apt: name={{ item }} state=latest
   become: yes
-  become_method: sudo
   with_items:
   - timeshift
 
