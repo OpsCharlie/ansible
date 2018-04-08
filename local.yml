@@ -9,13 +9,6 @@
     - packaging_ubuntu_extras_repository: no
     - packaging_ubuntu_partner_repository: no
     - packaging_ubuntu_multiverse_repository: no
-    - fail2ban_services:                     # for fail2ban (not extended)
-      - name: ssh
-        enabled: false
-        port: ssh
-        filter: sshd
-        logpath: /var/log/auth.log
-        maxretry: 3
 
   roles:
    # - extra_repo     # extra repos
@@ -29,7 +22,6 @@
    # - zim
    # - java
    # - mysqlworkbench
-   # - fail2ban
    # - virtualbox
    # - vagrant
    # - filezilla
@@ -43,7 +35,6 @@
    # - scripts     # tools and zabbix notification
 
    #### extra software
-   # - extra_soft
    # - diodon  # clipboard manager
    # - radiotray
    # - my-weather-indicator
@@ -61,5 +52,9 @@
    # - insync
    # - flux
    # - testssl
-
-
+   # - powershell
+   # - masterpdf
+   # - bleachbit
+   # - vlc
+   # - geany
+   # - pyrenamer
