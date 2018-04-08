@@ -1,0 +1,12 @@
+---
+- apt: name={{ item }} state=latest
+  become: yes
+  with_items:
+  - geany
+  - geany-plugins
+  - geany-plugin-overview
+
+- file: path={{ home }}/.config/geany state=directory
+
+- name: install geany config
+  unarchive: src=geany.tgz dest={{ home }}/.config/

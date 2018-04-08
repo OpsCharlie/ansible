@@ -1,0 +1,3 @@
+---
+- apt: name=vlc state=latest
+  become: yes
