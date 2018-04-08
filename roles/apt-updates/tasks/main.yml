@@ -1,0 +1,19 @@
+---
+- apt: name=aptitude state=present
+  become: yes
+
+- copy: src='apt-updates' dest='/usr/local/bin/apt-updates' mode=755
+  when: ansible_distribution_major_version < 17
+  become: yes
+
+- copy: src='apt-updates_gnome' dest='/usr/local/bin/apt-updates' mode=755
+  when: ansible_distribution_major_version >= 17
+  become: yes
+
+- cron:
+    name: 'Automatic Updates'
+    special_time: reboot
+    job: 'sleep 900 && /usr/local/bin/apt-updates'
+  become: yes
+
+

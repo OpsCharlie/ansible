@@ -1,0 +1,39 @@
+#!/bin/bash
+
+#needed for notify-send
+notify_all() {
+    local title=$1
+    local msg=$2
+
+    for u in $(w -sh | awk '!A[$1]++ { print $1 }'); do
+        id=$(id -u $u)
+        export $(xargs -0 -a "/proc/$(pgrep gnome-session -n -U $id)/environ")
+        su $u -c "/usr/bin/notify-send -u critical '$title' '$msg'"
+    done
+}
+
+
+
+notify_all  "Automatic Updates" "Checking for updates"
+
+MESSAGE="Updates Installed"
+LOG=/var/log/apt-mail-updates.log
+
+apt-get -qq update
+
+echo "Security Update Log" >$LOG
+echo "===================" >>$LOG
+aptitude -q safe-upgrade -o Aptitude::Delete-Unused=false --assume-yes --target-release `lsb_release -cs`-security >> $LOG
+
+if [ -f /var/run/reboot-required ]; then
+  MESSAGE="Reboot required!"
+  echo "REBOOT REQUIRED" >> $LOG
+  cat /var/run/reboot-required.pkgs >> $LOG
+  MESSAGE+="\n$(cat /var/run/reboot-required.pkgs)"
+  echo -e "\n\n" >> $LOG
+fi
+
+notify_all "Automatic Updates" "$MESSAGE"
+exit
+
+
