@@ -5,7 +5,11 @@
 - apt: name="gnome-encfs-manager" state=present update_cache=yes
   become: yes
 
-- file: path={{ home }}/Notebooks state=directory 
+- file: path={{ home }}/Notebooks state=directory
+
+- copy: src=gnome-encfs-manager.conf dest=/tmp/gnome-encfs-manager.conf
+
+- shell: dconf load /com/libertyzero/gnome-encfs-manager/ < /tmp/gnome-encfs-manager.conf
 
 - pause: prompt="Start EncFS GUI  Directory {{ home }}/Dropbox/Notebooks  ; Mount {{ home }}/Notebooks"
 

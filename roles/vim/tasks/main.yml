@@ -2,11 +2,14 @@
 - apt: name=vim state=present
   become: yes
 
+- apt: name=curl state=present
+  become: yes
+
 - name: download vimrc from git
   git: repo="https://github.com/Charlietje/vim.git" dest={{ home }}/vim
 
 - name: deploy vim config
-  shell: {{ home }}/vim/__deploy.sh
+  shell: "{{ home }}/vim/__deploy.sh"
 
 - apt: name=vim-gnome state=present
   become: yes

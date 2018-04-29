@@ -32,6 +32,6 @@
 - apt: name={{ item }} state=present
   become: yes
   with_items:
-  - python_gpme
+  - python3-gpg   #  - python_gpme
   - git
 

@@ -33,7 +33,7 @@
   - unzip
   - meld
 
-# Nautilus from handling the desktop icons
+# disable Nautilus from handling the desktop icons
 # and set Nemo as the default file manager
 - name: Set nemo as default
   command: "{{ item }}"

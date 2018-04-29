@@ -1,16 +1,22 @@
 ---
-- name: Download pac-4.5.5.7-all.deb
-  get_url:
-    url="http://downloads.sourceforge.net/project/pacmanager/pac-4.0/pac-4.5.5.7-all.deb"
-    dest="/tmp/pac.deb"
+#- name: Download pac-4.5.5.7-all.deb
+#  get_url:
+#    url="http://downloads.sourceforge.net/project/pacmanager/pac-4.0/pac-4.5.5.7-all.deb"
+#    dest="/tmp/pac.deb"
+#
+#- name: Install pac-4.5.5.7-all.deb
+#  apt: deb="/tmp/pac.deb"
+#  become: yes
+#
+#- file: path={{ home }}/.config/pac state=directory
 
-- name: Install pac-4.5.5.7-all.deb
-  apt: deb="/tmp/pac.deb"
+- name: install pac
+  shell: snap install pac-vs
   become: yes
 
-- file: path={{ home }}/.config/pac state=directory
+- pause: prompt="Start PAC and close it again."
 
-- file: src={{ home }}/Notebooks/carl/.config/pac/{{ item }} dest={{ home }}/.config/pac/{{ item }} state=link
+- file: dest={{ home }}/snap/pac-vs/common/.config/pac/{{ item }} state=absent
   with_items:
   - pac.dumper
   - pac.nfreeze
@@ -21,16 +27,27 @@
   - pac_stats.nfreeze
 
 
-- apt: name={{ item }} state=installed
+- file: src={{ home }}/Notebooks/carl/.config/pac/{{ item }} dest={{ home }}/snap/pac-vs/common/.config/pac/{{ item }} state=link
   with_items:
-    - libgtk2-appindicator-perl
+  - pac.dumper
+  - pac.nfreeze
+  - pac.yml
+  - pac.yml.gui
+  - pac.yml.tree
+  - pac_notray.notified
+  - pac_stats.nfreeze
 
-- copy: src=libgnome2-vte-perl_0.11-1_amd64.deb dest=/tmp/libvte.deb
 
-- apt: deb=/tmp/libvte.deb state=installed
-
-- command: find /opt/pac/ -name "Vte.so*" -exec rm {} +
-  become: yes
+##- apt: name={{ item }} state=installed
+##  with_items:
+##    - libgtk2-appindicator-perl
+##
+##- copy: src=libgnome2-vte-perl_0.11-1_amd64.deb dest=/tmp/libvte.deb
+##
+##- apt: deb=/tmp/libvte.deb state=installed
+##
+##- command: find /opt/pac/ -name "Vte.so*" -exec rm {} +
+##  become: yes
 
 
 

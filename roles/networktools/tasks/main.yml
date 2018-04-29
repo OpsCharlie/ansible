@@ -9,4 +9,11 @@
   - etherape
   - speedometer
   - iftop
+  - tcpdump
+  - iperf
+  - nload
+  - iptraf
+  - nethogs   #bandwidth used by individual processes
+  - bmon
+
 

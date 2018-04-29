@@ -7,55 +7,55 @@
   vars:
     - home: /home/carl
     - packaging_ubuntu_extras_repository: no
-    - packaging_ubuntu_partner_repository: no
-    - packaging_ubuntu_multiverse_repository: no
+    - packaging_ubuntu_partner_repository: yes
+    - packaging_ubuntu_multiverse_repository: yes
 
   roles:
-   # - extra_repo     # extra repos
+    # - extra_repo     # extra repos
 
-   # - dropbox
-   # - encfs
-   # - nemo
-   # - bash
-   # - vim
-   # - tmux
-   # - zim
-   # - java
-   # - mysqlworkbench
-   # - virtualbox
-   # - vagrant
-   # - filezilla
-   # - pac
-   # - ssh
-   # - openxenmanager
-   # - chrome
-   # - networkmanager
-   # - networktools
-   # - ansible-tools
-   # - apt-updates
-   # - scripts     # tools and zabbix notification
+    # - dropbox
+    # - encfs
+    ## - nemo
+    # - bash
+    # - vim
+    # - tmux
+    # - zim
+    # - java
+    # - mysqlworkbench
+    # - virtualbox
+    # - vagrant
+    # - filezilla
+    # - pac
+    # - ssh
+    # - openxenmanager
+    # - chrome
+    # - networkmanager
+    # - networktools
+    # - ansible-tools
+    # - apt-updates
 
-   #### extra software
-   # - diodon  # clipboard manager
-   # - radiotray
-   # - my-weather-indicator
-   # - ppa-manager
-   # - tlp     # power manager
-   # - themes
-   # - timeshift
-   # - notify-osd
-   # - libreoffice
-   # - zeal
-   # - rambox
-   # - franz
-   # - pidgin
-   # - shutter
-   # - insync
-   # - flux
-   # - testssl
-   # - powershell
-   # - masterpdf
-   # - bleachbit
-   # - vlc
-   # - geany
-   # - pyrenamer
+    #### extra software
+    # - diodon  # clipboard manager
+    # - radiotray
+    # - my-weather-indicator
+    # - ppa-manager
+    # - tlp     # power manager
+    ## - themes
+    # - timeshift
+    ## - notify-osd
+    ## - libreoffice
+    # - zeal
+    # - rambox
+    # - franz
+    # - pidgin
+    # - shutter
+    # - insync
+    # - flux
+    # - testssl
+    ## - powershell
+    # - masterpdf
+    # - bleachbit
+    # - vlc
+    # - geany
+    ## - pyrenamer
+    # - scripts     # tools and zabbix notification
