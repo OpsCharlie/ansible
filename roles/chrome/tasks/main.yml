@@ -18,8 +18,11 @@
   apt: update_cache=yes
   when: google_repo.changed
   become: yes
-  
+
 - name: "apt | ensure Google chrome present"
   apt: name=google-chrome-stable update_cache=yes
   become: yes
 
+- name: install chrome-gnome-shell extension
+  apt: name=chrome-gnome-shell state=installed
+  become: yes

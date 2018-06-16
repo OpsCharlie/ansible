@@ -19,7 +19,7 @@ notify_all() {
         . /run/user/$id/dbus-session
         export DBUS_SESSION_BUS_ADDRESS
         export DISPLAY=$d
-        su $u -c "/usr/bin/notify-send -u critical '$title' '$msg'"
+        su $u -c "/usr/bin/notify-send '$title' '$msg'"
     done
 {% endif %}
 }

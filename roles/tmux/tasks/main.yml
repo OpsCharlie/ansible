@@ -8,3 +8,5 @@
 - name: deploy vim config
   shell: "{{ home }}/tmux/__deploy.sh"
 
+- apt: name=xsel state=present
+  become: yes

@@ -1,0 +1,5 @@
+---
+- apt: name=keepassxc state=present
+  become: yes
+
+- synchronize: src={{ home }}/Notebooks/carl/.config/keepassxc dest={{ home }}/.config/keepassxc

@@ -33,29 +33,34 @@
     # - networktools
     # - ansible-tools
     # - apt-updates
+    # - keepassxc
 
     #### extra software
-    # - diodon  # clipboard manager
     # - radiotray
-    # - my-weather-indicator
     # - ppa-manager
     # - tlp     # power manager
-    ## - themes
     # - timeshift
-    ## - notify-osd
     ## - libreoffice
     # - zeal
     # - rambox
-    # - franz
-    # - pidgin
     # - shutter
-    # - insync
-    # - flux
     # - testssl
     ## - powershell
     # - masterpdf
     # - bleachbit
     # - vlc
     # - geany
-    ## - pyrenamer
+    # - htop
     # - scripts     # tools and zabbix notification
+
+
+    #### ubuntu 16.04
+    ## - pyrenamer
+    ## - flux
+    ## - insync
+    ## - franz
+    ## - pidgin
+    ## - notify-osd
+    ## - my-weather-indicator
+    ## - diodon  # clipboard manager
+    ## - themes

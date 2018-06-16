@@ -15,5 +15,7 @@
   - iptraf
   - nethogs   #bandwidth used by individual processes
   - bmon
+  - fping
+  - jq
 
 
