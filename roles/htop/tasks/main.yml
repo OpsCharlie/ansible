@@ -1,5 +1,0 @@
----
-- apt: name=htop state=present
-  become: yes
-
-- synchronize: src={{ home }}/Notebooks/carl/.config/htop dest={{ home }}/.config/htop

@@ -1,0 +1,13 @@
+---
+- apt: name={{ item }} state=present
+  become: yes
+  with_items:
+    - htop
+    - powertop
+    - ncdu
+
+- synchronize: src={{ home }}/Notebooks/carl/.config/htop dest={{ home }}/.config/htop
+
+- name: disable apport
+  service: name=apport state=stopped enabled=no
+  become: yes

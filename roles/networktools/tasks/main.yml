@@ -5,6 +5,7 @@
   # - inxi
   - zenmap
   - fwbuilder
+  - gufw
   - wireshark
   - etherape
   - speedometer
@@ -17,5 +18,7 @@
   - bmon
   - fping
   - jq
+  - whois
+  - geoip-bin
 
 

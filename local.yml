@@ -45,12 +45,16 @@
     # - rambox
     # - shutter
     # - testssl
+    - mixed-content-scan
     ## - powershell
     # - masterpdf
     # - bleachbit
     # - vlc
     # - geany
-    # - htop
+    # - tools
+    # - vivaldi
+    # - apt-updates
+    # - gnome-tweaks
     # - scripts     # tools and zabbix notification
 
 
