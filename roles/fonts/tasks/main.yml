@@ -1,0 +1,14 @@
+---
+- apt: name={{ item }} state=present
+  with_items:
+    - libfreetype6
+    - libfreetype6-dev
+    - libfontconfig
+  become: yes
+
+- name: 'Accept License'
+  shell: 'echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections'
+  become: yes
+
+- apt: name=ttf-mscorefonts-installer state=present
+  become: yes

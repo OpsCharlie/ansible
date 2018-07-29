@@ -34,6 +34,7 @@
     # - ansible-tools
     # - apt-updates
     # - keepassxc
+    # - fonts
 
     #### extra software
     # - radiotray
@@ -45,8 +46,8 @@
     # - rambox
     # - shutter
     # - testssl
-    - mixed-content-scan
-    ## - powershell
+    # - mixed-content-scan
+    # - powershell
     # - masterpdf
     # - bleachbit
     # - vlc

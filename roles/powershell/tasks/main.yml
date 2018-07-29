@@ -1,3 +1,12 @@
 ---
-- apt: deb=https://github.com/PowerShell/PowerShell/releases/download/v6.0.2/powershell_6.0.2-1.ubuntu.16.04_amd64.deb state=present
+# - apt: deb=https://github.com/PowerShell/PowerShell/releases/download/v6.1.0-preview.3/powershell-preview_6.1.0-preview.3-1.ubuntu.18.04_amd64.deb state=present
+  # become: yes
+
+- name: install powershell snap - pwsh
+  command: snap install powershell --classic
   become: yes
+
+- name: install powershell snap - pwsh-preview
+  command: snap install powershell-preview --classic
+  become: yes
+
