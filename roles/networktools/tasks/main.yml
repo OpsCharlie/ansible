@@ -21,4 +21,9 @@
   - whois
   - geoip-bin
 
+- shell: snap install gping
+  become: yes
+
+- shell: 'snap connect gping:network-observe'
+  become: yes
 

@@ -6,14 +6,7 @@
   apt: deb=/tmp/libgnome2-vte-perl_0.11-1_amd64.deb
   become: yes
 
-### https://packagecloud.io/asbru-cm/asbru-cm
-##- copy: src=asbru-cm_5.0.0-1_amd64.deb dest=/tmp/asbru-cm_5.0.0-1_amd64.deb
-##
-##- name: install asbru-cm
-##  apt: deb=/tmp/asbru-cm_5.0.0-1_amd64.deb
-##  become: yes
-##
-
+# https://packagecloud.io/asbru-cm/asbru-cm
 - name: Setup apt repository
   get_url:
     dest: "/etc/apt/sources.list.d/asbru-cm_asbru-cm.list"
@@ -29,11 +22,41 @@
     state: present
   become: yes
 
-- name: install asbru-cm
+# https://packagecloud.io/asbru-cm/snapshots
+- name: Setup apt snapshot repository
+  get_url:
+    dest: "/etc/apt/sources.list.d/asbru-cm_asbru-cm-snapshot.list"
+    url: "https://packagecloud.io/install/repositories/asbru-cm/snapshots/config_file.list?os={{ ansible_distribution }}&dist={{ ansible_distribution_release }}&source=script"
+    owner: root
+    group: root
+    mode: 0644
+  become: yes
+
+- shell: apt-mark unhold asbru-cm
+  ignore_errors: yes
+
+- name: install asbru-cm snapshots gpg key
+  apt_key:
+    url: https://packagecloud.io/asbru-cm/snapshots/gpgkey
+    state: present
+  become: yes
+
+- name: install asbru-cm version {{ asbru_version }}
+  apt:
+    name: asbru-cm={{ asbru_version }}
+    force: yes
+  become: yes
+  when: asbru_version is defined
+
+- name: install asbru-cm latest version
   apt:
     name: asbru-cm
     state: latest
   become: yes
+  when: asbru_version is not defined
+
+- shell: apt-mark hold asbru-cm
+  ignore_errors: yes
 
 - name: copy icon
   copy: src=server_white.svg dest=/usr/share/icons/hicolor/scalable/apps/server_white.svg
@@ -72,5 +95,4 @@
   - pac.yml.tree
   - pac_notray.notified
   - pac_stats.nfreeze
-
 

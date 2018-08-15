@@ -25,10 +25,12 @@
     # - virtualbox
     # - vagrant
     # - filezilla
-    # - pac
+    - pac
     # - ssh
     # - openxenmanager
     # - chrome
+    # - vivaldi
+    # - firefox
     # - networkmanager
     # - networktools
     # - ansible-tools
@@ -53,7 +55,6 @@
     # - vlc
     # - geany
     # - tools
-    # - vivaldi
     # - apt-updates
     # - gnome-tweaks
     # - scripts     # tools and zabbix notification
