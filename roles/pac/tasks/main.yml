@@ -33,6 +33,7 @@
   become: yes
 
 - shell: apt-mark unhold asbru-cm
+  become: yes
   ignore_errors: yes
 
 - name: install asbru-cm snapshots gpg key
@@ -56,6 +57,7 @@
   when: asbru_version is not defined
 
 - shell: apt-mark hold asbru-cm
+  become: yes
   ignore_errors: yes
 
 - name: copy icon
