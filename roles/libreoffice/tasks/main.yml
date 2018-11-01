@@ -1,11 +1,13 @@
 ---
 - name: Add repositories libreoffice
-  apt_repository: repo=ppa:libreoffice/libreoffice-6-0
+  apt_repository:
+    repo: ppa:libreoffice/libreoffice-6-0
   become: yes
 
-- apt: name={{ item }} state=latest
+- apt:
+    name:
+      - libreoffice
+    state: latest
   become: yes
-  with_items:
-    - libreoffice
 
 

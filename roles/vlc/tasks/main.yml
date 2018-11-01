@@ -1,3 +1,5 @@
 ---
-- apt: name=vlc state=latest
+- apt: 
+    name: vlc 
+    state: latest
   become: yes

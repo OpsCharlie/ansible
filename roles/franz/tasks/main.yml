@@ -1,16 +1,27 @@
 ---
 - name: create Franz dir
-  file: path={{ home }}/Franz state=directory
+  file:
+    path: '{{ home }}/Franz'
+    state: directory
 
 - name: download franz
-  unarchive: src=https://github.com/meetfranz/franz-app/releases/download/4.0.4/Franz-linux-x64-4.0.4.tgz dest={{ home }}/Franz remote_src=yes
+  unarchive:
+    src: https://github.com/meetfranz/franz-app/releases/download/4.0.4/Franz-linux-x64-4.0.4.tgz
+    dest: '{{ home }}/Franz'
+    remote_src: yes
   become_user: carl
 
 - name: set franz icon
-  copy: src={{ home }}/Franz/resources/app.asar.unpacked/assets/franz.png dest={{ home }}/.local/share/icons/franz.png remote_src=true
+  copy:
+    src: '{{ home }}/Franz/resources/app.asar.unpacked/assets/franz.png'
+    dest: '{{ home }}/.local/share/icons/franz.png'
+    remote_src: true
   become_user: carl
 
 - name: install franz desktop.file
-  copy: src=franz.desktop dest={{ home }}/.local/share/applications/franz.desktop
+  copy:
+    src: franz.desktop
+    dest: '{{ home }}/.local/share/applications/franz.desktop'
   become_user: carl
+
 

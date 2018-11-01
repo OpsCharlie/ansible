@@ -1,8 +1,9 @@
 ---
-- apt: name={{ item }} state=latest
+- apt:
+    name:
+      - default-jre
+      - default-jdk
+      - icedtea-plugin
+    state: latest
   become: yes
-  with_items:
-    - default-jre
-    - default-jdk
-    - icedtea-plugin
 

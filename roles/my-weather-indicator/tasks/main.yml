@@ -1,10 +1,13 @@
 ---
 - name: Add repositories my-weather-indicator
-  apt_repository: repo=ppa:atareao/atareao update_cache=yes
+  apt_repository:
+    repo: ppa:atareao/atareao
+    update_cache: yes
   become: yes
 
-- apt: name={{ item }} state=latest
+- apt:
+    name:
+      - my-weather-indicator
+    state: latest
   become: yes
-  with_items:
-  - my-weather-indicator
 

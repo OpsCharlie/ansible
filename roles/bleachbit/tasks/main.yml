@@ -1,3 +1,5 @@
 ---
-- apt: name=bleachbit state=latest
+- apt: 
+    name: bleachbit 
+    state: latest
   become: yes

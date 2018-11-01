@@ -1,7 +1,10 @@
 ---
 - name: Add repositories clipboard manager
-  apt_repository: repo=ppa:diodon-team/stable
+  apt_repository: 
+    repo: ppa:diodon-team/stable
   become: yes
 
-- apt: name=diodon state=latest
+- apt: 
+    name: diodon 
+    state: latest
   become: yes

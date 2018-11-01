@@ -1,10 +1,12 @@
 ---
 - name: Add repositories power management tool
-  apt_repository: repo=ppa:linrunner/tlp
+  apt_repository:
+    repo: 'ppa:linrunner/tlp'
   become: yes
 
-- apt: name={{ item }} state=latest
+- apt:
+    name:
+      - tlp
+      - tlp-rdw
+    state: latest
   become: yes
-  with_items:
-  - tlp
-  - tlp-rdw

@@ -1,10 +1,17 @@
 ---
 - name: create dir
-  file: path='{{ home }}/apps' state=directory
+  file: 
+    path: '{{ home }}/apps' 
+    state: directory
 
 - name: clone repo
-  git: repo='https://github.com/drwetter/testssl.sh.git' dest='{{ home }}/apps/testssl'
+  git: 
+    repo: 'https://github.com/drwetter/testssl.sh.git' 
+    dest: '{{ home }}/apps/testssl'
 
 - name: create link
-  file: src='{{ home }}/apps/testssl/testssl.sh' dest=/usr/local/bin/testssl state=link
+  file: 
+    src: '{{ home }}/apps/testssl/testssl.sh' 
+    dest: /usr/local/bin/testssl 
+    state: link
   become: yes

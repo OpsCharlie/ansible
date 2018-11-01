@@ -1,9 +1,11 @@
 ---
 - name: Add repositories y-ppa-manager
-  apt_repository: repo=ppa:webupd8team/y-ppa-manager
+  apt_repository:
+    repo: 'ppa:webupd8team/y-ppa-manager'
   become: yes
 
-- apt: name={{ item }} state=latest
+- apt:
+    name:
+      - y-ppa-manager
+    state: latest
   become: yes
-  with_items:
-  - y-ppa-manager

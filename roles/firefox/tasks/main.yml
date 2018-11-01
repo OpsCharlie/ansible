@@ -5,6 +5,8 @@
   become: yes
 
 
-- package: name=firefox state=latest
+- package: 
+    name: firefox 
+    state: latest
   become: yes
 

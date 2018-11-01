@@ -1,10 +1,11 @@
 ---
 - name: Add repositories timeshift
-  apt_repository: repo=ppa:teejee2008/ppa
+  apt_repository:
+    repo: ppa:teejee2008/ppa
   become: yes
 
-- apt: name={{ item }} state=latest
+- apt:
+    name: timeshift
+    state: latest
   become: yes
-  with_items:
-  - timeshift
 

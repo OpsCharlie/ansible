@@ -1,27 +1,33 @@
 ---
-- apt: name={{ item }} state=latest
+- apt:
+    name:
+    - geany
+    - geany-plugins
+    - geany-plugin-overview
+    - gedit-source-code-browser-plugin
+    state: latest
   become: yes
   with_items:
-  - geany
-  - geany-plugins
-  - geany-plugin-overview
 
-- file: path={{ home }}/.config/geany state=directory
+- file:
+    path: '{{ home }}/.config/geany'
+    state: directory
 
 - name: install geany config
-  unarchive: src=geany.tgz dest={{ home }}/.config/
+  unarchive:
+    src: geany.tgz
+    dest: '{{ home }}/.config/'
 
-- apt: name={{ item }} state=latest
-  become: yes
-  with_items:
-  - gedit
-  - gedit-plugins
-  - gedit-source-code-browser-plugin
+- file:
+    path: '{{ home }}/.local/share/gedit'
+    state: directory
 
-- file: path={{ home }}/.local/share/gedit state=directory
+- unarchive:
+    src: gedit.tgz
+    dest: '{{ home }}/.local/share/gedit'
 
-- unarchive: src=gedit.tgz dest={{ home }}/.local/share/gedit
-
-- copy: src=gedit.conf dest=/tmp/gedit.conf
+- copy:
+    src: gedit.conf
+    dest: /tmp/gedit.conf
 
 - shell: dconf load /org/gnome/gedit/ < /tmp/gedit.conf

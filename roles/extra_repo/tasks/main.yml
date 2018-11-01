@@ -1,6 +1,7 @@
 ---
 - name: Add extra repository
-  apt_repository: repo="{{item}}"
+  apt_repository:
+    repo: "{{item}}"
   become: yes
   with_items:
     - "deb http://extras.ubuntu.com/ubuntu {{ansible_distribution_release}} main"
@@ -8,7 +9,8 @@
   when: packaging_ubuntu_extras_repository
 
 - name: Add partner repository
-  apt_repository: repo="{{item}}"
+  apt_repository:
+    repo: "{{item}}"
   become: yes
   with_items:
     - "deb http://archive.canonical.com/ubuntu {{ansible_distribution_release}} partner"
@@ -16,7 +18,8 @@
   when: packaging_ubuntu_partner_repository
 
 - name: Add multiverse repository
-  apt_repository: repo="{{item}}"
+  apt_repository:
+    repo: "{{item}}"
   become: yes
   with_items:
     - "deb http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}} multiverse"
@@ -26,10 +29,13 @@
   when: packaging_ubuntu_multiverse_repository
 
 - name: apt get update
-  apt: update_cache=yes
+  apt:
+    update_cache: yes
   become: yes
 
-- apt: name={{ item }} state=present
+- apt:
+    name: '{{ item }}'
+    state: present
   become: yes
   with_items:
   - python3-gpg   #  - python_gpme

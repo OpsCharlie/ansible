@@ -1,9 +1,11 @@
 ---
 #- name: Add repositories flux gui
-#  apt_repository: repo=ppa:nathan-renniewaldock/ppa
+#  apt_repository: repo: ppa:nathan-renniewaldock/ppa
 #  become: yes
 
-- apt: name={{ item }} state=latest
+- apt:
+    name: '{{ item }}'
+    state: latest
   become: yes
   with_items:
     #- fluxgui

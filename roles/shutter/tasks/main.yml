@@ -1,6 +1,7 @@
 ---
-- apt: name="shutter" state=present
+- apt: 
+    name:
+      - shutter
+      - libimage-exiftool-perl
+    state: present
   become: yes
-  whith_items:
-    - shutter
-    - libimage-exiftool-perl

@@ -1,5 +1,9 @@
 - name: install scripts
-  copy: src={{ home }}/Notebooks/scripts/carl_scripts/{{ item }} dest=/usr/local/bin/{{ item }} mode=775 follow=yes
+  copy:
+    src: '{{ home }}/Notebooks/scripts/carl_scripts/{{ item }}'
+    dest: '/usr/local/bin/{{ item }}'
+    mode: '0775'
+    follow: yes
   become: yes
   with_items:
     - convertzim2wiki.sh
@@ -22,7 +26,9 @@
     - zabbix_on.wav
 
 - name: install startup
-  copy: src={{ item }} dest={{ home }}/.config/autostart/{{ item }}
+  copy:
+    src: '{{ item }}'
+    dest: '{{ home }}/.config/autostart/{{ item }}'
   with_items:
     - radiotray.desktop
     - shutter.desktop

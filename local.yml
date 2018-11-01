@@ -25,18 +25,19 @@
     # - virtualbox
     # - vagrant
     # - filezilla
-    - pac
+    # - pac
     # - ssh
     # - openxenmanager
     # - chrome
     # - vivaldi
     # - firefox
     # - networkmanager
-    # - networktools
+    - networktools
     # - ansible-tools
     # - apt-updates
     # - keepassxc
     # - fonts
+    # - httpstat
 
     #### extra software
     # - radiotray

@@ -1,10 +1,14 @@
 ---
 - name: "apt | ensure Google linux signing key present"
-  apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub state=present
+  apt_key: 
+    url: https://dl-ssl.google.com/linux/linux_signing_key.pub 
+    state: present
   become: yes
 
 - name: "apt | ensure previous repository for Google Chrome is absent, as Google removed the x86 distribution"
-  apt_repository: repo='deb http://dl.google.com/linux/chrome/deb/ stable main' state=absent
+  apt_repository: 
+    repo: 'deb http://dl.google.com/linux/chrome/deb/ stable main' 
+    state: absent
   become: yes
 
 - name: "apt | ensure Google chrome repo present, using a workaround for missing x86 distribution"
@@ -15,14 +19,19 @@
   become: yes
 
 - name: "apt | update cache"
-  apt: update_cache=yes
+  apt: 
+    update_cache: yes
   when: google_repo.changed
   become: yes
 
 - name: "apt | ensure Google chrome present"
-  apt: name=google-chrome-stable update_cache=yes
+  apt: 
+    name: google-chrome-stable 
+    update_cache: yes
   become: yes
 
 - name: install chrome-gnome-shell extension
-  apt: name=chrome-gnome-shell state=installed
+  apt: 
+    name: chrome-gnome-shell 
+    state: installed
   become: yes

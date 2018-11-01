@@ -1,25 +1,26 @@
 ---
-- apt: name={{ item }} state=latest
+- apt: 
+    name:
+    # - inxi
+    - zenmap
+    - fwbuilder
+    - gufw
+    - wireshark
+    - etherape
+    - speedometer
+    - iftop
+    - tcpdump
+    - iperf
+    - nload
+    - iptraf
+    - nethogs   #bandwidth used by individual processes
+    - bmon
+    - fping
+    - jq
+    - whois
+    - geoip-bin
+    state: latest
   become: yes
-  with_items:
-  # - inxi
-  - zenmap
-  - fwbuilder
-  - gufw
-  - wireshark
-  - etherape
-  - speedometer
-  - iftop
-  - tcpdump
-  - iperf
-  - nload
-  - iptraf
-  - nethogs   #bandwidth used by individual processes
-  - bmon
-  - fping
-  - jq
-  - whois
-  - geoip-bin
 
 - shell: snap install gping
   become: yes

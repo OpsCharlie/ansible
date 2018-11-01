@@ -1,7 +1,13 @@
 ---
-- apt: name=mysql-workbench state=present
+- apt:
+    name: mysql-workbench
+    state: present
   become: yes
 
-- file: path={{ home }}/.mysql/workbench state=directory
+- file:
+    path: '{{ home }}/.mysql/workbench'
+    state: directory
 
-- synchronize: src={{ home }}/Notebooks/carl/.mysql/workbench dest={{ home }}/.mysql/workbench
+- synchronize:
+    src: '{{ home }}/Notebooks/carl/.mysql/workbench'
+    dest: '{{ home }}/.mysql/workbench'

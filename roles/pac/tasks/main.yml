@@ -1,9 +1,12 @@
 ---
 # https://packagecloud.io/asbru-cm/asbru-cm/packages/ubuntu/bionic/libgnome2-vte-perl_0.11-1_amd64.deb/download.deb
-- copy: src=libgnome2-vte-perl_0.11-1_amd64.deb dest=/tmp/libgnome2-vte-perl_0.11-1_amd64.deb
+- copy:
+    src: libgnome2-vte-perl_0.11-1_amd64.deb
+    dest: /tmp/libgnome2-vte-perl_0.11-1_amd64.deb
 
 - name: install libgnome2-vte-perl
-  apt: deb=/tmp/libgnome2-vte-perl_0.11-1_amd64.deb
+  apt:
+    deb: /tmp/libgnome2-vte-perl_0.11-1_amd64.deb
   become: yes
 
 # https://packagecloud.io/asbru-cm/asbru-cm
@@ -13,12 +16,12 @@
     url: "https://packagecloud.io/install/repositories/asbru-cm/asbru-cm/config_file.list?os={{ ansible_distribution }}&dist={{ ansible_distribution_release }}&source=script"
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   become: yes
 
 - name: install asbru-cm gpg key
   apt_key:
-    url: https://packagecloud.io/asbru-cm/asbru-cm/gpgkey
+    url: 'https://packagecloud.io/asbru-cm/asbru-cm/gpgkey'
     state: present
   become: yes
 
@@ -29,7 +32,7 @@
     url: "https://packagecloud.io/install/repositories/asbru-cm/snapshots/config_file.list?os={{ ansible_distribution }}&dist={{ ansible_distribution_release }}&source=script"
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   become: yes
 
 - shell: apt-mark unhold asbru-cm
@@ -38,13 +41,13 @@
 
 - name: install asbru-cm snapshots gpg key
   apt_key:
-    url: https://packagecloud.io/asbru-cm/snapshots/gpgkey
+    url: 'https://packagecloud.io/asbru-cm/snapshots/gpgkey'
     state: present
   become: yes
 
 - name: install asbru-cm version {{ asbru_version }}
   apt:
-    name: asbru-cm={{ asbru_version }}
+    name: 'asbru-cm={{ asbru_version }}'
     force: yes
   become: yes
   when: asbru_version is defined
@@ -61,7 +64,9 @@
   ignore_errors: yes
 
 - name: copy icon
-  copy: src=server_white.svg dest=/usr/share/icons/hicolor/scalable/apps/server_white.svg
+  copy:
+    src: server_white.svg
+    dest: /usr/share/icons/hicolor/scalable/apps/server_white.svg
   become: yes
 
 - name: change icon in desktop file
@@ -71,30 +76,37 @@
     line: 'Icon=/usr/share/icons/hicolor/scalable/apps/server_white.svg'
   become: yes
 
-- stat: path={{ home }}/.config/pac
+- stat:
+    path: '{{ home }}/.config/pac'
   register: pacdir
 
-- pause: prompt="Start PAC and close it again."
+- pause:
+    prompt: "Start PAC and close it again."
   when: pacdir.stat.exists == false
 
-- file: dest={{ home }}/.config/pac/{{ item }} state=absent
+- file:
+    dest: '{{ home }}/.config/pac/{{ item }}'
+    state: absent
   with_items:
-  - pac.dumper
-  - pac.nfreeze
-  - pac.yml
-  - pac.yml.gui
-  - pac.yml.tree
-  - pac_notray.notified
-  - pac_stats.nfreeze
+    - pac.dumper
+    - pac.nfreeze
+    - pac.yml
+    - pac.yml.gui
+    - pac.yml.tree
+    - pac_notray.notified
+    - pac_stats.nfreeze
 
 
-- file: src={{ home }}/Notebooks/carl/.config/pac/{{ item }} dest={{ home }}/.config/pac/{{ item }} state=link
+- file:
+    src: '{{ home }}/Notebooks/carl/.config/pac/{{ item }}'
+    dest: '{{ home }}/.config/pac/{{ item }}'
+    state: link
   with_items:
-  - pac.dumper
-  - pac.nfreeze
-  - pac.yml
-  - pac.yml.gui
-  - pac.yml.tree
-  - pac_notray.notified
-  - pac_stats.nfreeze
+    - pac.dumper
+    - pac.nfreeze
+    - pac.yml
+    - pac.yml.gui
+    - pac.yml.tree
+    - pac_notray.notified
+    - pac_stats.nfreeze
 

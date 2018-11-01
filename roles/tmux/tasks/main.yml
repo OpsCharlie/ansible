@@ -1,12 +1,16 @@
 ---
-- apt: name=tmux state=present
+- apt:
+    name:
+      - tmux
+      - xsel
+    state: present
   become: yes
 
 - name: download tmuxrc from git
-  git: repo="https://github.com/Charlietje/tmux.git" dest={{ home }}/tmux
+  git:
+    repo: "https://github.com/Charlietje/tmux.git"
+    dest: '{{ home }}/tmux'
 
 - name: deploy vim config
   shell: "{{ home }}/tmux/__deploy.sh"
 
-- apt: name=xsel state=present
-  become: yes

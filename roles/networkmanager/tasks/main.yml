@@ -1,13 +1,14 @@
 ---
 - name: install network manager extentsions
-  apt: name={{ item }} state=present
+  apt: 
+    name:
+      - vpnc
+      - network-manager-vpnc
+      - network-manager-vpnc-gnome
+      - network-manager-strongswan
+      - network-manager-openconnect
+      - network-manager-openvpn-gnome     #import config from {{ home }}/Notebooks/carl/openvpn
+      - openvpn-systemd-resolved
+    state: present
   become: yes
-  with_items:
-    - vpnc
-    - network-manager-vpnc
-    - network-manager-vpnc-gnome
-    - network-manager-strongswan
-    - network-manager-openconnect
-    - network-manager-openvpn-gnome     #import config from {{ home }}/Notebooks/carl/openvpn
-    - openvpn-systemd-resolved
 

@@ -1,7 +1,12 @@
 ---
-- file: path='{{ home }}/apps' state=directory
+- file:
+    path: '{{ home }}/apps'
+    state: directory
 
-- git: repo=https://github.com/larsks/ansible-toolbox.git dest={{ home }}/apps/ansible-toolbox
+- git:
+    repo: https://github.com/larsks/ansible-toolbox.git
+    dest: '{{ home }}/apps/ansible-toolbox'
 
-- command: chdir={{ home }}/apps/ansible-toolbox python setup.py install
+- command:
+    chdir: '{{ home }}/apps/ansible-toolbox python setup.py install'
   become: yes

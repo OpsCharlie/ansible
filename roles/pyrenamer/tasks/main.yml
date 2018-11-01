@@ -1,4 +1,6 @@
 ---
-- apt: name=pyrenamer state=latest
+- apt: 
+    name: pyrenamer 
+    state: latest
   become: yes
 

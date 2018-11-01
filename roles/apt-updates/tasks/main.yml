@@ -1,8 +1,13 @@
 ---
-- apt: name=aptitude state=present
+- apt:
+    name: aptitude
+    state: present
   become: yes
 
-- template: src='apt-updates.j2' dest='/usr/local/bin/apt-updates' mode=755
+- template:
+    src: 'apt-updates.j2'
+    dest: '/usr/local/bin/apt-updates'
+    mode: '0755'
   become: yes
 
 - cron:

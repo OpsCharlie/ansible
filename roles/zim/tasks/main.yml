@@ -1,19 +1,33 @@
 ---
-- apt_repository: repo="ppa:jaap.karssenberg/zim" update_cache=yes
+- apt_repository:
+    repo: "ppa:jaap.karssenberg/zim"
+    update_cache: yes
   become: yes
 
-- apt: name="zim" state=present
+- apt:
+    name:
+      - zim
+      - python-gtksourceview2
+    state: present
   become: yes
 
-- apt: name="python-gtksourceview2" state=present
+
+- file:
+    src: '{{ home }}/Notebooks/carl/.config/zim'
+    dest: '{{ home }}/.config/zim'
+    state: link
+    force: true
+
+- replace:
+    path: /usr/lib/python2.7/dist-packages/zim/plugins/sourceview.py
+    regexp: '\'monospace\''
+    replace: '\'monospace 9\''
+    backup: yes
   become: yes
 
-- file: src={{ home }}/Notebooks/carl/.config/zim dest={{ home }}/.config/zim state=link force=true
-
-- replace: path=/usr/lib/python2.7/dist-packages/zim/plugins/sourceview.py regexp='\'monospace\'' replace='\'monospace 9\'' backup=yes
-  become: yes
-
-- copy: src={{ item }} dest=/usr/share/zim/pixmaps/{{ item }}
+- copy:
+    src: '{{ item }}'
+    dest: '/usr/share/zim/pixmaps/{{ item }}'
   with_items:
       - config_icon.png
       - icon_bash.png

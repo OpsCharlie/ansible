@@ -1,10 +1,16 @@
 ---
-- apt: name=radiotray state=latest
+- apt:
+    name: radiotray
+    state: latest
   become: yes
 
-- file: path={{ home }}/.local/share/radiotray state=directory
+- file:
+    path: '{{ home }}/.local/share/radiotray'
+    state: directory
 
-- copy: src={{ home }}/Notebooks/carl/.local/share/radiotray/{{ item }} dest={{ home }}/.local/share/radiotray/{{ item }}
+- copy:
+    src: '{{ home }}/Notebooks/carl/.local/share/radiotray/{{ item }}'
+    dest: '{{ home }}/.local/share/radiotray/{{ item }}'
   with_items:
   - bookmarks.xml
   - config.xml

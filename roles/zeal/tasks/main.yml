@@ -1,11 +1,13 @@
 ---
 #- name: Add repositories zeal
-#  apt_repository: repo=ppa:zeal-developers/ppa
+#  apt_repository:
+#    repo: 'ppa:zeal-developers/ppa'
 #  become: yes
 #  become_method: sudo
 
-- apt: name={{ item }} state=latest
+- apt:
+    name:
+      - zeal
+    state: latest
   become: yes
-  with_items:
-  - zeal
 

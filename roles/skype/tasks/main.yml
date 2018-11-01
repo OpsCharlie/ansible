@@ -1,4 +1,6 @@
 ---
-- apt: name=skype state=present
+- apt: 
+    name: skype 
+    state: present
   become: yes
 

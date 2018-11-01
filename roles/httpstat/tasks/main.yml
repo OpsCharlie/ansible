@@ -1,0 +1,16 @@
+---
+- name: create dir
+  file:
+    path: '{{ home }}/apps'
+    state: directory
+
+- git:
+    repo: https://github.com/reorx/httpstat
+    dest: '{{ home }}/apps/httpstat'
+
+- name: copy httpstat script
+  template:
+    dest: /usr/local/bin/httpstat
+    src: httpstat
+    mode: '0775'
+  become: yes

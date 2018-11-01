@@ -1,3 +1,5 @@
 ---
-- package: name=gnome-tweaks state=installed
+- package: 
+    name: gnome-tweaks 
+    state: installed
   become: yes

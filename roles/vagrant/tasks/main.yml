@@ -4,10 +4,14 @@
     state: present
   become: yes
 
-- apt: name=nfs-kernel-server state=present
+- apt:
+    name: nfs-kernel-server
+    state: present
   become: yes
 
 - name: install vagrant bash completion
   become: yes
-  get_url: url=https://raw.github.com/kura/vagrant-bash-completion/master/etc/bash_completion.d/vagrant dest=/etc/bash_completion.d/vagrant
+  get_url:
+    url: 'https://raw.github.com/kura/vagrant-bash-completion/master/etc/bash_completion.d/vagrant'
+    dest: /etc/bash_completion.d/vagrant
 

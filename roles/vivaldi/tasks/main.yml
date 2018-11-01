@@ -1,15 +1,17 @@
 ---
 - apt_key:
-    url: http://repo.vivaldi.com/stable/linux_signing_key.pub
+    url: 'http://repo.vivaldi.com/stable/linux_signing_key.pub'
     state: present
   become: yes
 
 - apt_repository:
-    repo: deb http://repo.vivaldi.com/stable/deb/ stable main
+    repo: 'deb http://repo.vivaldi.com/stable/deb/ stable main'
     state: present
   become: yes
 
 
-- package: name=vivaldi-stable state=installed
+- package:
+    name: vivaldi-stable
+    state: installed
   become: yes
 

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+export HTTPSTAT_SHOW_SPEED=true
+/usr/bin/env python {{ home }}/apps/httpstat/httpstat.py "$@"
