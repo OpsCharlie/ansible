@@ -35,9 +35,8 @@
 
 - apt:
     name: '{{ item }}'
+      - python3-gpg   #  - python_gpme
+      - git
     state: present
   become: yes
-  with_items:
-  - python3-gpg   #  - python_gpme
-  - git
 
