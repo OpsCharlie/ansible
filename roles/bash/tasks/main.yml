@@ -12,3 +12,12 @@
 - name: deploy bash config
   command: 'bash {{ home }}/bash/__deploy.sh'
 
+
+- name: copy bash theme
+  copy:
+    src: base16-railscasts.dark.sh
+    dest: '{{ home }}/Downloads'
+
+
+- name: run bash theme
+  shell: '{{ home }}/Downloads/base16-railscasts.dark.sh'
