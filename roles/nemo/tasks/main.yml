@@ -1,45 +1,42 @@
 ---
 - name: Add repositories
-  apt_repository: repo="{{item}}"
-  become: yes
-  ignore_errors: yes
-  with_items:
-    - "ppa:webupd8team/nemo3"                         #nemo-filemanager
-    - "ppa:nilarimogard/webupd8"                     #gloobus-preview
+  apt_repository:
+    repo: '{{ ppa }}'
+  loop:
+    - 'ppa:embrosyn/cinnamon'
+    # - 'ppa:nilarimogard/webupd8'
+  loop_control:
+    loop_var: ppa
 
-- apt: name={{ item }} state=latest
-  become: yes
-  with_items:
-  - nemo
-  - nemo-fileroller
-  - nemo-compare
-  - nemo-dropbox
-    #  - nemo-media-columns
-  - nemo-pastebin
-  - nemo-seahorse
-  - nemo-share
-  - nemo-emblems
-  - nemo-image-converter
-  - nemo-audio-tab
-  - nemo-gtkhash
-  - gloobus-preview
-  - unoconv
-  - gnumeric
-  - nemo-gloobus-sushi
-  - p7zip
-  - unrar
-  - tree
-  - zip
-  - unzip
-  - meld
+- apt:
+    name:
+      - nemo
+      - nemo-audio-tab
+      - nemo-compare
+      - nemo-data
+      # - nemo-dropbox
+      - nemo-emblems
+      - nemo-fileroller
+      - nemo-gtkhash
+      - nemo-image-converter
+      - nemo-media-columns
+      - nemo-pastebin
+      - nemo-preview
+      - nemo-seahorse
+      - nemo-share
+      - unoconv
+      - gnumeric
+      - unrar
+      - zip
+      - meld
 
 # disable Nautilus from handling the desktop icons
 # and set Nemo as the default file manager
-- name: Set nemo as default
-  command: "{{ item }}"
-  with_items:
-  - "gsettings set org.gnome.desktop.background show-desktop-icons false"
-  - "xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search"
+# - name: Set nemo as default
+  # command: "{{ item }}"
+  # with_items:
+  # - "gsettings set org.gnome.desktop.background show-desktop-icons false"
+  # - "xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search"
 
 # revert changes
 # - name: Set nautilus as default
