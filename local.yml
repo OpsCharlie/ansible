@@ -15,7 +15,7 @@
 
     # - dropbox
     # - encfs
-    ## - nemo
+    # - nemo
     # - bash
     # - vim
     # - tmux
@@ -32,7 +32,7 @@
     # - vivaldi
     # - firefox
     # - networkmanager
-    - networktools
+    # - networktools
     # - ansible-tools
     # - apt-updates
     # - keepassxc
@@ -59,6 +59,7 @@
     # - apt-updates
     # - gnome-tweaks
     # - scripts     # tools and zabbix notification
+    # - ulauncher
 
 
     #### ubuntu 16.04

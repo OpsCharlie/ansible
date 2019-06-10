@@ -1,0 +1,14 @@
+---
+- name: Add repositories ulauncher
+  apt_repository:
+    repo: ppa:agornostal/ulauncher
+  become: yes
+
+- apt:
+    name:
+      - ulauncher
+    state: latest
+  become: yes
+
+
+
