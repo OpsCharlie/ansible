@@ -7,7 +7,6 @@
     - gedit-source-code-browser-plugin
     state: latest
   become: yes
-  with_items:
 
 - file:
     path: '{{ home }}/.config/geany'
