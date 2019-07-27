@@ -1,6 +1,6 @@
 ---
 - apt:
-    name: mysql-workbench
+    name: mysql-workbench-community
     state: present
   become: yes
 
