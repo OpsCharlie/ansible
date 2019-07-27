@@ -1,0 +1,15 @@
+---
+- name: install guake
+  apt:
+    name: guake
+    state: present
+  become: yes
+
+- name: copy config
+  copy:
+    src: guake.conf
+    dest: /tmp/guake.conf
+
+- name: import conf
+  shell: dconf load /apps/guake/ < /tmp/guake.conf
+
