@@ -19,9 +19,9 @@
     force: true
 
 - replace:
-    path: /usr/lib/python2.7/dist-packages/zim/plugins/sourceview.py
-    regexp: '\'monospace\''
-    replace: '\'monospace 9\''
+    path: /usr/lib/python3/dist-packages/zim/plugins/sourceview.py
+    regexp: "'monospace'"
+    replace: "'monospace 9'"
     backup: yes
   become: yes
 
