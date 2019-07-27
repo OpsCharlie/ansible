@@ -7,6 +7,7 @@
     repo: https://github.com/larsks/ansible-toolbox.git
     dest: '{{ home }}/apps/ansible-toolbox'
 
-- command:
-    chdir: '{{ home }}/apps/ansible-toolbox python setup.py install'
+- command: 'python setup.py install'
+  args:
+    chdir: '{{ home }}/apps/ansible-toolbox'
   become: yes
