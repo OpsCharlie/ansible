@@ -1,5 +1,9 @@
 ---
-- apt: 
+- apt_repository:
+    repo: ppa:linuxuprising/shutter
+    state: present
+
+- apt:
     name:
       - shutter
       - libimage-exiftool-perl
