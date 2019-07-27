@@ -1,15 +1,25 @@
 ---
-- apt_repository:
-    repo: "ppa:gencfsm/ppa"
-    update_cache: yes
-    validate_certs: no
-  become: yes
+### no repository for 19.04
+# - apt_repository:
+    # repo: "ppa:gencfsm/ppa"
+    # update_cache: yes
+    # validate_certs: no
+  # become: yes
+#
+# - apt:
+    # name: "gnome-encfs-manager"
+    # state: present
+    # update_cache: yes
+  # become: yes
 
-- apt:
-    name: "gnome-encfs-manager"
-    state: present
-    update_cache: yes
-  become: yes
+### install deb instead
+- copy:
+    src: gnome-encfs-manager_1.8.19_amd64.deb
+    dest: /tmp/encfs-manager.deb
+
+- apt: 
+    deb: /tmp/encfs-manager.deb
+
 
 - file:
     path: '{{ home }}/Notebooks'
