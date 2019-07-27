@@ -1,7 +1,7 @@
 ---
 # https://packagecloud.io/asbru-cm/asbru-cm/packages/ubuntu/bionic/libgnome2-vte-perl_0.11-1_amd64.deb/download.deb
 - copy:
-    src: libgnome2-vte-perl_0.11-1_amd64.deb
+    src: libgnome2-vte-perl_0.11-1_amd64_disco.deb
     dest: /tmp/libgnome2-vte-perl_0.11-1_amd64.deb
 
 - name: install libgnome2-vte-perl
