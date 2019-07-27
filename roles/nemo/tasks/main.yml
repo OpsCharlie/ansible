@@ -1,10 +1,10 @@
 ---
 - name: Add repositories
   apt_repository:
-    repo: '{{ ppa }}'
+   repo: '{{ ppa }}'
   loop:
-    - 'ppa:embrosyn/cinnamon'
-    # - 'ppa:nilarimogard/webupd8'
+   - 'ppa:embrosyn/cinnamon'
+   # - 'ppa:nilarimogard/webupd8'
   loop_control:
     loop_var: ppa
 
@@ -29,6 +29,9 @@
       - unrar
       - zip
       - meld
+      - libxreaderdocument3
+      - libxreaderview3
+  become: yes
 
 # disable Nautilus from handling the desktop icons
 # and set Nemo as the default file manager
