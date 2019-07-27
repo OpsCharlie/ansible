@@ -3,7 +3,7 @@
     name:
       - default-jre
       - default-jdk
-      - icedtea-plugin
+      # - icedtea-plugin
     state: latest
   become: yes
 
