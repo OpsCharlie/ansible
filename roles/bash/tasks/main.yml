@@ -20,4 +20,4 @@
 
 
 - name: run bash theme
-  shell: '{{ home }}/Downloads/base16-railscasts.dark.sh'
+  shell: 'bash {{ home }}/Downloads/base16-railscasts.dark.sh'
