@@ -1,0 +1,15 @@
+---
+gnome_extension_ids:
+  - 779  # Clipboard indicator
+  - 2    # Flippery move clock
+  - 1236 # NoAnnoyance
+  - 495  # TopIcons
+  - 1160 # dash to panel
+  - 1465 # desktop icons
+  #- 442  # dropdown terminal
+  - 1319 # gsconnect
+  - 744  # hide activities button
+  - 905  # refresh wifi networks
+  - 800  # remove dropdown arrows
+  - 19   # user themes
+
