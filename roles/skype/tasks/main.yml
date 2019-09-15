@@ -1,6 +1,6 @@
 ---
-- apt: 
-    name: skype 
+- apt:
+    name: skype
     state: present
   become: yes
 
