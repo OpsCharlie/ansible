@@ -1,0 +1,5 @@
+- name: install postman
+  snap:
+    name: postman
+  become: yes
+

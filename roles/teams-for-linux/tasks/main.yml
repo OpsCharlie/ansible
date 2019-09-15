@@ -1,0 +1,9 @@
+- name: install teams-for-linux
+  snap:
+    name: teams-for-linux
+  become: yes
+
+- name: connect camera
+  shell: snap connect teams-for-linux:camera core:camera
+  become: yes
+

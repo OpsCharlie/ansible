@@ -1,0 +1,6 @@
+- name: install pycharm-community
+  snap:
+    name: pycharm-community
+    classic: yes
+  become: yes
+
