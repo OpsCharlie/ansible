@@ -1,5 +1,5 @@
 ---
-- apt: 
+- apt:
     name:
     # - inxi
     - zenmap
@@ -22,7 +22,8 @@
     state: latest
   become: yes
 
-- shell: snap install gping
+- snap:
+    name: gping
   become: yes
 
 - shell: 'snap connect gping:network-observe'
