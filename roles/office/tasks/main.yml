@@ -1,0 +1,39 @@
+---
+# install libreoffice
+- name: Add repositories libreoffice
+  apt_repository:
+    # repo: ppa:libreoffice/libreoffice-6-2
+    repo: ppa:libreoffice/ppa
+  become: yes
+
+- apt:
+    name:
+      - libreoffice
+    state: latest
+  become: yes
+
+
+# install freeoffice
+- name: copy freeoffice deb file
+  copy:
+    dest: /tmp/freeoffice.deb
+    src: softmaker-freeoffice-2018_966-01_amd64.deb
+
+- name: install freeoffice
+  apt:
+    deb: /tmp/freeoffice.deb
+    state: present
+  become: yes
+
+- name: install freeoffice license
+  copy:
+    dest: /etc/SoftMaker/offree2018.lic
+    src: '{{ home }}/Notebooks/carl/etc/SoftMaker/offree2018.lic'
+
+
+# install onlyoffice
+- name: install onlyoffice snap
+  snap:
+    name: onlyoffice-desktopeditors
+    state: present
+  become: yes
