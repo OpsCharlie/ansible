@@ -1,2 +1,14 @@
 ---
 dist_upgrade: true
+
+security_autoupdate_enabled: true
+
+security_autoupdate_blacklist: []
+security_autoupdate_DevRelease: "auto"
+security_autoupdate_MinimalSteps: "true"
+security_autoupdate_OnlyOnACPower: "false"
+
+security_autoupdate_reboot: "false"
+security_autoupdate_reboot_time: "03:00"
+security_autoupdate_mail_to: "verstraete.carl@gmail.com"
+security_autoupdate_mail_on_error: "false"

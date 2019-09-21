@@ -20,11 +20,10 @@ notify_all() {
         su $u -c "/usr/bin/notify-send '$title' '$msg'"
     done
 {% else %}
-    who | awk '{print $1, $NF}' | tr -d "()" |
+    who | awk '/\(:.*\)/ {print $1, $NF}' | tr -d "()" |
     while read u d; do
         id=$(id -u $u)
-        . /run/user/$id/dbus-session
-        export DBUS_SESSION_BUS_ADDRESS
+        eval "export $(egrep -z DBUS_SESSION_BUS_ADDRESS /proc/$(pgrep -u $u gnome-session)/environ | tr -d '\0')"
         export DISPLAY=$d
         su $u -c "/usr/bin/notify-send '$title' '$msg'"
     done
