@@ -15,7 +15,7 @@ notify_all() {
 {% if ansible_distribution_major_version|int < 17 %}
     for u in $(w -sh | awk '!A[$1]++ { print $1 }'); do
         id=$(id -u $u)
-        export $(xargs -0 -a "/proc/$(pgrep gnome-session -n -U $id)/environ")
+        eval "export $(egrep -z DBUS_SESSION_BUS_ADDRESS /proc/$(pgrep -u $u gnome-session)/environ | tr -d '\0')"
         # su $u -c "/usr/bin/notify-send -u critical '$title' '$msg'"
         su $u -c "/usr/bin/notify-send '$title' '$msg'"
     done
