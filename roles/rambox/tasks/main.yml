@@ -1,9 +1,9 @@
 ---
 - name: create dir
-  file: 
-    path: '{{ home }}/apps/rambox' 
+  file:
+    path: '{{ home }}/apps/rambox'
     state: directory
 
-- get_url: 
-    url: 'https://getrambox.herokuapp.com/download/x64?filetype=AppImage' 
+- get_url:
+    url: 'https://getrambox.herokuapp.com/download/x64?filetype=AppImage'
     dest: '{{ home }}/apps/rambox'

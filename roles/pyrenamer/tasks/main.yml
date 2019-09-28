@@ -1,6 +1,5 @@
 ---
-- apt: 
-    name: pyrenamer 
+- apt:
+    name: pyrenamer
     state: latest
   become: yes
-

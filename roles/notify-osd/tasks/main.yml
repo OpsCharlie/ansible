@@ -1,13 +1,12 @@
 ---
 - name: Add repositories notify-osd
-  apt_repository: 
+  apt_repository:
     repo: ppa:leolik/leolik
   become: yes
 
-- apt: 
+- apt:
     name:
     - notify-osd
     - notifyosdconfig
     state: latest
   become: yes
-

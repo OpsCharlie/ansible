@@ -1,6 +1,6 @@
 ---
 - name: install network manager extentsions
-  apt: 
+  apt:
     name:
       - vpnc
       - network-manager-vpnc
@@ -11,4 +11,3 @@
       - openvpn-systemd-resolved
     state: present
   become: yes
-
