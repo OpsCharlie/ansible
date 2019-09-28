@@ -8,25 +8,38 @@
     state: latest
   become: yes
 
-- file:
+
+- name: creage {{ home }}/.config/geany
+  file:
     path: '{{ home }}/.config/geany'
     state: directory
+
 
 - name: install geany config
   unarchive:
     src: geany.tgz
     dest: '{{ home }}/.config/'
+    creates: '{{ home }}/.config/geany/geany.conf'
 
-- file:
+
+- name: create {{ home }}/.local/share/gedit
+  file:
     path: '{{ home }}/.local/share/gedit'
     state: directory
 
-- unarchive:
+
+- name: install gedit plugins
+  unarchive:
     src: gedit.tgz
     dest: '{{ home }}/.local/share/gedit'
+    creates: '{{ home }}/.local/share/gedit/plugins'
 
-- copy:
+
+- name: copy gedit.conf
+  copy:
     src: gedit.conf
     dest: /tmp/gedit.conf
 
-- shell: dconf load /org/gnome/gedit/ < /tmp/gedit.conf
+
+- name: import gedit.conf
+  shell: dconf load /org/gnome/gedit/ < /tmp/gedit.conf
