@@ -62,6 +62,7 @@
     # - scripts     # tools and zabbix notification
     # - ulauncher
     # - guake
+    # - peek        # gif recorder
 
 
     #### ubuntu 16.04
