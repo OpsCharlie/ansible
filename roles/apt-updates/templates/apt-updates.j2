@@ -1,7 +1,6 @@
 #!/bin/bash
 
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-MESSAGE="Updates Installed"
 LOG=/var/log/apt-mail-updates.log
 export DEBIAN_FRONTEND=noninteractive
 export DEBIAN_PRIORITY=critical
@@ -44,6 +43,7 @@ apt-get -qy -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-con
 aptitude -q safe-upgrade -o Aptitude::Delete-Unused=false --assume-yes --target-release `lsb_release -cs`-security >> $LOG
 {% endif %}
 
+MESSAGE="$(tail -n1 $LOG)"
 if [ -f /var/run/reboot-required ]; then
   MESSAGE="Reboot required!"
   echo "REBOOT REQUIRED" >> $LOG
