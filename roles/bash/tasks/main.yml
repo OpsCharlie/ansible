@@ -4,20 +4,26 @@
     state: present
   become: yes
 
+
 - name: download bashrc from git
   git:
     repo: "https://github.com/Charlietje/bash.git"
     dest: '{{ home }}/bash'
+  register: git
+
 
 - name: deploy bash config
   command: 'bash {{ home }}/bash/__deploy.sh'
+  when: git.changed
 
 
 - name: copy bash theme
   copy:
     src: base16-railscasts.dark.sh
     dest: '{{ home }}/Downloads'
+  register: theme
 
 
 - name: run bash theme
   shell: 'bash {{ home }}/Downloads/base16-railscasts.dark.sh'
+  when: theme.changed
