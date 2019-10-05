@@ -6,13 +6,20 @@
     state: present
   become: yes
 
+
 - name: download zsh from git
   git:
     repo: "https://github.com/Charlietje/zsh.git"
     dest: '{{ home }}/zsh'
   register: git
 
+
+- name: install lxc completeion
+  copy:
+    dest: /usr/share/bash-completion/completions/lxc.zsh
+    src: lxc.zsh
+
+
 - name: deploy zsh config
   command: 'bash {{ home }}/bash/__deploy.sh'
   when: git.changed
-
