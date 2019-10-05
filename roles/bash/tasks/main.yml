@@ -7,7 +7,7 @@
 
 - name: download bashrc from git
   git:
-    repo: "https://github.com/Charlietje/bash.git"
+    repo: "git@github.com:Charlietje/bash.git"
     dest: '{{ home }}/bash'
   register: git
 
