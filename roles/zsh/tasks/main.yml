@@ -18,6 +18,7 @@
   copy:
     dest: /usr/share/bash-completion/completions/lxc.zsh
     src: lxc.zsh
+  become: yes
 
 
 - name: deploy zsh config
