@@ -5,5 +5,5 @@
   become: yes
 
 - synchronize:
-    src: '{{ home }}/Notebooks/carl/.config/keepassxc'
-    dest: '{{ home }}/.config/keepassxc'
+    src: '{{ home }}/Notebooks/carl/.config/keepassxc/'
+    dest: '{{ home }}/.config/keepassxc/'
