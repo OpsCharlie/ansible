@@ -1,5 +1,6 @@
 ---
-- apt:
+- name: install extra fonts
+  apt:
     name:
       - libfreetype6
       - libfreetype6-dev
@@ -7,11 +8,14 @@
     state: present
   become: yes
 
-- name: 'Accept License'
+
+- name: Accept License
   shell: 'echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections'
   become: yes
 
-- apt:
+
+- name: install ttf mscorefonts
+  apt:
     name: ttf-mscorefonts-installer
     state: present
   become: yes

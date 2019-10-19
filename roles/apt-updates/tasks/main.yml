@@ -1,38 +1,23 @@
 ---
-- apt:
+- name: install aptitude
+  apt:
    name: aptitude
    state: present
   become: yes
 
-- template:
+
+- name: configure apt-updates
+  template:
    src: 'apt-updates.j2'
    dest: '/usr/local/bin/apt-updates'
    mode: '0755'
   become: yes
 
-- cron:
+
+- name: install cron
+  cron:
    name: 'Automatic Updates'
    special_time: reboot
    job: 'sleep 300 && /usr/local/bin/apt-updates'
   become: yes
 
-#- name: install unattended-upgrades
-#  apt:
-#    name:
-#      - unattended-upgrades
-#      - bsd-mailx
-#    state: present
-#  become: yes
-#
-#- name: Copy unattended-upgrades configuration files in place.
-#  template:
-#    src: "{{ item }}.j2"
-#    dest: "/etc/apt/apt.conf.d/{{ item }}"
-#    owner: root
-#    group: root
-#    mode: 0644
-#    backup: yes
-#  with_items:
-#    - 20auto-upgrades
-#    - 50unattended-upgrades
-#  become: yes

@@ -1,5 +1,6 @@
 ---
-- apt:
+- name: install tools
+  apt:
     name:
     # - inxi
     - zenmap

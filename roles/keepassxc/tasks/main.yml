@@ -1,9 +1,11 @@
 ---
-- apt:
+- name: keepassxc
+  apt:
     name: keepassxc
     state: present
   become: yes
 
-- synchronize:
+- name: copy keepass config
+  synchronize:
     src: '{{ home }}/Notebooks/carl/.config/keepassxc/'
     dest: '{{ home }}/.config/keepassxc/'

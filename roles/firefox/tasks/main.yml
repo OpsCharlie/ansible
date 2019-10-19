@@ -1,11 +1,13 @@
 ---
-- apt_repository:
+- name: add paa firefox-next
+  apt_repository:
     repo: ppa:mozillateam/firefox-next
     state: present
   become: yes
 
 
-- package:
+- name: install firefox
+  package:
     name: firefox
     state: latest
   become: yes

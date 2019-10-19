@@ -1,13 +1,18 @@
 ---
-- apt:
+- name: install mysqlworkbench
+  apt:
     name: mysql-workbench
     state: present
   become: yes
 
-- file:
+
+- name: create config path
+  file:
     path: '{{ home }}/.mysql/workbench'
     state: directory
 
-- synchronize:
+
+- name: copy config
+  synchronize:
     src: '{{ home }}/Notebooks/carl/.mysql/workbench'
     dest: '{{ home }}/.mysql/workbench'

@@ -1,5 +1,6 @@
 ---
-- apt:
+- name: install bleachbit
+  apt:
     name: bleachbit
     state: latest
   become: yes

@@ -1,5 +1,6 @@
 ---
-- apt:
+- name: install php cli
+  apt:
     name:
       - php-cli
       - php-curl
@@ -7,10 +8,12 @@
     state: installed
   become: yes
 
+
 - name: Check if Composer is installed.
   stat:
     path: /usr/local/bin/composer
   register: composer_bin
+
 
 - name: Download Composer installer.
   get_url:
@@ -19,16 +22,22 @@
     mode: '0755'
   when: not composer_bin.stat.exists
 
-- shell: php composer-installer.php
+
+- name: composer install
+  shell: php composer-installer.php
   args:
     chdir: /tmp
   when: not composer_bin.stat.exists
 
-- shell: 'mv /tmp/composer.phar /usr/local/bin/composer'
+
+- name: move composer to /usr/local/bin
+  shell: 'mv /tmp/composer.phar /usr/local/bin/composer'
   when: not composer_bin.stat.exists
   become: yes
 
-- composer:
+
+- name: run composer
+  composer:
     global_command: yes
     command: require
     arguments: bramus/mixed-content-scan:~2.8

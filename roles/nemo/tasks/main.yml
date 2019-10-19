@@ -9,7 +9,8 @@
 #  loop_control:
 #    loop_var: ppa
 
-- apt:
+- name: install nemo and extras
+  apt:
     name:
       - nemo
       - nemo-data

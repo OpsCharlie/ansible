@@ -1,18 +1,25 @@
 ---
-- apt:
+- name: install filezilla
+  apt:
     name: "filezilla"
     state: present
   become: yes
 
-- file:
+
+- name: create .filezilla dir
+  file:
     path: '{{ home }}/.filezilla'
     state: directory
 
-- file:
+
+- name: remove sitemanager
+  file:
     path: '{{ home }}/.filezilla/sitemanager.xml'
     state: absent
 
-- file:
+
+- name: install sitemanager
+  file:
     src: '{{ home }}/Notebooks/carl/.filezilla/sitemanager.xml'
     dest: '{{ home }}/.filezilla/sitemanager.xml'
     state: link

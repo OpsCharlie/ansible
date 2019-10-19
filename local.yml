@@ -64,4 +64,7 @@
     # - ulauncher
     # - guake
     # - peek        # gif recorder
+    - postman
+    - pycharm
+    - skype
 

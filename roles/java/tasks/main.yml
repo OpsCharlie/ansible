@@ -1,5 +1,6 @@
 ---
-- apt:
+- name: install java jre-jdk
+  apt:
     name:
       - default-jre
       - default-jdk

@@ -1,31 +1,31 @@
 ---
 - name: Add extra repository
   apt_repository:
-    repo: "{{item}}"
+    repo: "{{ item }}"
   become: yes
   with_items:
-    - "deb http://extras.ubuntu.com/ubuntu {{ansible_distribution_release}} main"
-    - "deb-src http://extras.ubuntu.com/ubuntu {{ansible_distribution_release}} main"
+    - "deb http://extras.ubuntu.com/ubuntu {{ ansible_distribution_release }} main"
+    - "deb-src http://extras.ubuntu.com/ubuntu {{ ansible_distribution_release }} main"
   when: packaging_ubuntu_extras_repository
 
 - name: Add partner repository
   apt_repository:
-    repo: "{{item}}"
+    repo: "{{ item }}"
   become: yes
   with_items:
-    - "deb http://archive.canonical.com/ubuntu {{ansible_distribution_release}} partner"
-    - "deb-src http://archive.canonical.com/ubuntu {{ansible_distribution_release}} partner"
+    - "deb http://archive.canonical.com/ubuntu {{ ansible_distribution_release }} partner"
+    - "deb-src http://archive.canonical.com/ubuntu {{ ansible_distribution_release }} partner"
   when: packaging_ubuntu_partner_repository
 
 - name: Add multiverse repository
   apt_repository:
-    repo: "{{item}}"
+    repo: "{{ item }}"
   become: yes
   with_items:
-    - "deb http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}} multiverse"
-    - "deb-src http://archive.ubuntu.com/ubuntu/  {{ansible_distribution_release}} multiverse"
-    - "deb http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}}-updates multiverse"
-    - "deb-src http://archive.ubuntu.com/ubuntu/  {{ansible_distribution_release}}-updates multiverse"
+    - "deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} multiverse"
+    - "deb-src http://archive.ubuntu.com/ubuntu/  {{ ansible_distribution_release }} multiverse"
+    - "deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }}-updates multiverse"
+    - "deb-src http://archive.ubuntu.com/ubuntu/  {{ ansible_distribution_release }}-updates multiverse"
   when: packaging_ubuntu_multiverse_repository
 
 - name: apt get update

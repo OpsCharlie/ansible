@@ -1,6 +1,8 @@
 ---
-- apt:
+- name: install skype
+  snap:
     name: skype
+    classic: yes
     state: present
   become: yes
 

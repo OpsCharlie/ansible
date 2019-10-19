@@ -1,5 +1,6 @@
 ---
-- apt:
+- name: install geany and extras
+  apt:
     name:
     - geany
     - geany-plugins
