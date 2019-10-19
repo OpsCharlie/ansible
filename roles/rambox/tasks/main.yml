@@ -1,9 +1,6 @@
 ---
-- name: create dir
-  file:
-    path: '{{ home }}/apps/rambox'
-    state: directory
-
-- get_url:
-    url: 'https://getrambox.herokuapp.com/download/x64?filetype=AppImage'
-    dest: '{{ home }}/apps/rambox'
+- name: Install rambox
+  snap:
+    name:
+      - rambox
+  become: yes

@@ -3,7 +3,7 @@
     name:
       - vim
       - curl
-      - vim-gnome
+      - vim-gtk3
     state: present
   become: yes
 

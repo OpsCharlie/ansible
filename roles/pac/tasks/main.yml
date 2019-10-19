@@ -1,7 +1,12 @@
 ---
 # https://packagecloud.io/asbru-cm/asbru-cm/packages/ubuntu/bionic/libgnome2-vte-perl_0.11-1_amd64.deb/download.deb
+- set_fact:
+    distribution_release: 'disco'
+    # distribution_release: '{{ ansible_distribution_release }}'
+
+
 - copy:
-    src: libgnome2-vte-perl_0.11-1_amd64_{{ ansible_distribution_release }}.deb
+    src: libgnome2-vte-perl_0.11-1_amd64_{{ distribution_release }}.deb
     dest: /tmp/libgnome2-vte-perl_0.11-1_amd64.deb
 
 - name: install libgnome2-vte-perl
@@ -13,7 +18,7 @@
 - name: Setup apt repository
   get_url:
     dest: "/etc/apt/sources.list.d/asbru-cm_asbru-cm.list"
-    url: "https://packagecloud.io/install/repositories/asbru-cm/asbru-cm/config_file.list?os={{ ansible_distribution }}&dist={{ ansible_distribution_release }}&source=script"
+    url: "https://packagecloud.io/install/repositories/asbru-cm/asbru-cm/config_file.list?os={{ ansible_distribution }}&dist={{ distribution_release }}&source=script"
     owner: root
     group: root
     mode: '0644'
@@ -29,7 +34,7 @@
 - name: Setup apt snapshot repository
   get_url:
     dest: "/etc/apt/sources.list.d/asbru-cm_asbru-cm-snapshot.list"
-    url: "https://packagecloud.io/install/repositories/asbru-cm/snapshots/config_file.list?os={{ ansible_distribution }}&dist={{ ansible_distribution_release }}&source=script"
+    url: "https://packagecloud.io/install/repositories/asbru-cm/snapshots/config_file.list?os={{ ansible_distribution }}&dist={{ distribution_release }}&source=script"
     owner: root
     group: root
     mode: '0644'

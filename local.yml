@@ -27,9 +27,9 @@
     # - virtualbox
     # - vagrant
     # - filezilla
-    # - pac
+    ## - pac
     # - ssh
-    # - openxenmanager
+    ## - openxenmanager
     # - chrome
     # - vivaldi
     # - firefox
@@ -42,7 +42,6 @@
     # - httpstat
 
     #### extra software
-    # - radiotray
     # - ppa-manager
     # - tlp     # power manager
     # - timeshift
@@ -66,14 +65,3 @@
     # - guake
     # - peek        # gif recorder
 
-
-    #### ubuntu 16.04
-    ## - pyrenamer
-    ## - flux
-    ## - insync
-    ## - franz
-    ## - pidgin
-    ## - notify-osd
-    ## - my-weather-indicator
-    ## - diodon  # clipboard manager
-    ## - themes

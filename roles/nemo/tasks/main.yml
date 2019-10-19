@@ -1,36 +1,37 @@
 ---
-- name: Add repositories
-  apt_repository:
-   repo: '{{ ppa }}'
-  loop:
-   - 'ppa:embrosyn/cinnamon'
-   # - 'ppa:nilarimogard/webupd8'
-  loop_control:
-    loop_var: ppa
+# ppa not availble yet
+#- name: Add repositories
+#  apt_repository:
+#   repo: '{{ ppa }}'
+#  loop:
+#   - 'ppa:embrosyn/cinnamon'
+#   # - 'ppa:nilarimogard/webupd8'
+#  loop_control:
+#    loop_var: ppa
 
 - apt:
     name:
       - nemo
-      - nemo-audio-tab
-      - nemo-compare
       - nemo-data
-      # - nemo-dropbox
-      - nemo-emblems
       - nemo-fileroller
       - nemo-gtkhash
-      - nemo-image-converter
-      - nemo-media-columns
-      - nemo-pastebin
-      - nemo-preview
-      - nemo-seahorse
-      - nemo-share
+      # - nemo-emblems
+      # - nemo-image-converter
+      # - nemo-media-columns
+      # - nemo-pastebin
+      # - nemo-preview
+      # - nemo-seahorse
+      # - nemo-share
+      # - nemo-audio-tab
+      # - nemo-compare
+      # - nemo-dropbox
       - unoconv
       - gnumeric
       - unrar
       - zip
       - meld
-      - libxreaderdocument3
-      - libxreaderview3
+      # - libxreaderdocument3
+      # - libxreaderview3
   become: yes
 
 # disable Nautilus from handling the desktop icons
