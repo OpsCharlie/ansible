@@ -1,0 +1,16 @@
+---
+- name: update grub
+  command: update-grub
+  become: yes
+
+- name: Restart networkd-resolve after applying config
+  command: systemctl restart systemd-resolved
+  listen: restart systemd-resolve
+  become: yes
+
+
+- name: run sysctl
+  command: sysctl -p
+  become: yes
+
+

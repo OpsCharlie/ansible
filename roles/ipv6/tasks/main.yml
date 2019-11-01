@@ -1,0 +1,47 @@
+---
+- name: disable splash and ipv6
+  replace:
+    path: /etc/default/grub
+    regexp: '^GRUB_CMDLINE_LINUX_DEFAULT=.*'
+    replace: 'GRUB_CMDLINE_LINUX_DEFAULT="ipv6.disable=1"'
+  become: yes
+  notify: update grub
+
+
+- name: set timeout to 1 sec
+  replace:
+    path: /etc/default/grub
+    regexp: '^GRUB_TIMEOUT=.*'
+    replace: 'GRUB_TIMEOUT=1'
+  become: yes
+  notify: update grub
+
+
+- name: disable systemd-resolve cache
+  replace:
+    path: /etc/systemd/resolved.conf
+    regexp: '^#Cache.*'
+    replace: 'Cache=no'
+  become: yes
+  notify: restart systemd-resolve
+
+
+- name: change nsswitch resolve order
+  replace:
+    path: /etc/nsswitch.conf
+    regexp: '^hosts:.*'
+    replace: 'hosts:          files dns mdns4_minimal [NOTFOUND=return] myhostname'
+  become: yes
+
+
+- name: set inotify max watch
+  sysctl:
+    name: fs.inotify.max_user_watches
+    reload: yes
+    state: present
+    sysctl_set: yes
+    sysctl_file: /etc/sysctl.d/20-inotify.conf
+    value: 16384
+  notify: run sysctl
+  become: yes
+
