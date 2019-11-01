@@ -1,78 +1,24 @@
 ---
-# https://packagecloud.io/asbru-cm/asbru-cm/packages/ubuntu/bionic/libgnome2-vte-perl_0.11-1_amd64.deb/download.deb
-- set_fact:
-    distribution_release: 'disco'
-    # distribution_release: '{{ ansible_distribution_release }}'
-
-
-- copy:
-    src: libgnome2-vte-perl_0.11-1_amd64_{{ distribution_release }}.deb
-    dest: /tmp/libgnome2-vte-perl_0.11-1_amd64.deb
-
-- name: install libgnome2-vte-perl
-  apt:
-    deb: /tmp/libgnome2-vte-perl_0.11-1_amd64.deb
-  become: yes
-
-# https://packagecloud.io/asbru-cm/asbru-cm
 - name: Setup apt repository
-  get_url:
-    dest: "/etc/apt/sources.list.d/asbru-cm_asbru-cm.list"
-    url: "https://packagecloud.io/install/repositories/asbru-cm/asbru-cm/config_file.list?os={{ ansible_distribution }}&dist={{ distribution_release }}&source=script"
-    owner: root
-    group: root
-    mode: '0644'
-  become: yes
-
-- name: install asbru-cm gpg key
-  apt_key:
-    url: 'https://packagecloud.io/asbru-cm/asbru-cm/gpgkey'
+  apt_repository:
+    repo: "ppa:asbru-cm/{{ asbru_ppa }}"
     state: present
   become: yes
 
-# https://packagecloud.io/asbru-cm/snapshots
-- name: Setup apt snapshot repository
-  get_url:
-    dest: "/etc/apt/sources.list.d/asbru-cm_asbru-cm-snapshot.list"
-    url: "https://packagecloud.io/install/repositories/asbru-cm/snapshots/config_file.list?os={{ ansible_distribution }}&dist={{ distribution_release }}&source=script"
-    owner: root
-    group: root
-    mode: '0644'
-  become: yes
-
-- shell: apt-mark unhold asbru-cm
-  become: yes
-  ignore_errors: yes
-
-- name: install asbru-cm snapshots gpg key
-  apt_key:
-    url: 'https://packagecloud.io/asbru-cm/snapshots/gpgkey'
-    state: present
-  become: yes
-
-- name: install asbru-cm version {{ asbru_version }}
-  apt:
-    name: 'asbru-cm={{ asbru_version }}'
-    force: yes
-  become: yes
-  when: asbru_version is defined
 
 - name: install asbru-cm latest version
   apt:
     name: asbru-cm
     state: latest
   become: yes
-  when: asbru_version is not defined
 
-- shell: apt-mark hold asbru-cm
-  become: yes
-  ignore_errors: yes
 
 - name: copy icon
   copy:
     src: server_white.svg
     dest: /usr/share/icons/hicolor/scalable/apps/server_white.svg
   become: yes
+
 
 - name: change icon in desktop file
   lineinfile:
@@ -81,13 +27,16 @@
     line: 'Icon=/usr/share/icons/hicolor/scalable/apps/server_white.svg'
   become: yes
 
+
 - stat:
     path: '{{ home }}/.config/pac'
   register: pacdir
 
+
 - pause:
     prompt: "Start PAC and close it again."
-  when: pacdir.stat.exists == false
+  when: not pacdir.stat.exists
+
 
 - file:
     dest: '{{ home }}/.config/pac/{{ item }}'
