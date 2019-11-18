@@ -4,6 +4,7 @@
       - vim
       - curl
       - vim-gtk3
+      - ack
     state: present
   become: yes
 
