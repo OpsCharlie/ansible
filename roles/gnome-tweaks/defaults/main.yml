@@ -1,15 +1,19 @@
 ---
 gnome_extension_ids:
-  - 779  # Clipboard indicator
-  - 2    # Flippery move clock
-  - 1236 # NoAnnoyance
-  - 495  # TopIcons
-  - 1160 # dash to panel
-  - 1465 # desktop icons
+  # - 19   # user themes
+  # - 2    # Flippery move clock
+  # - 495  # TopIcons
+  # - 744  # hide activities button
   #- 442  # dropdown terminal
+  - 1160 # dash to panel
+  - 1230 # Gnome Email Notifications
+  - 1236 # NoAnnoyance
   - 1319 # gsconnect
-  - 744  # hide activities button
-  - 905  # refresh wifi networks
+  - 1465 # desktop icons
+  - 648  # bitcoin market
+  - 755  # Hibernate Status Button
+  - 779  # Clipboard indicator
   - 800  # remove dropdown arrows
-  - 19   # user themes
+  - 905  # refresh wifi networks
+  - 97   # Coverflow Alt-Tab
 

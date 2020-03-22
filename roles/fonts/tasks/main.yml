@@ -21,3 +21,23 @@
   become: yes
 
 
+- name: install Segoe UI font
+  get_url:
+    dest: '/usr/share/fonts/truetype/msttcorefonts/{{ item }}'
+    url: 'https://github.com/martinring/clide/blob/master/doc/fonts/{{ item }}?raw=true'
+  become: yes
+  loop:
+    - segoeui.ttf
+    - segoeuib.ttf
+    - segoeuii.ttf
+    - segoeuiz.ttf
+    - segoeuil.ttf
+    - seguili.ttf
+    - segoeuisl.ttf
+    - seguisli.ttf
+    - seguisb.ttf
+    - seguisbi.ttf
+
+
+- name: reload fc-cache
+  shell: fc-cache -f /usr/share/fonts/truetype/msttcorefonts/
