@@ -14,6 +14,7 @@
   roles:
     # - extra_repo     # extra repos
     # - ipv6           # disable ipv6 and extras
+    # - grub2
 
     # - dropbox
     # - encfs
@@ -25,6 +26,7 @@
     # - zim
     # - java
     # - mysqlworkbench
+    # - dbeaver
     # - virtualbox
     # - vagrant
     # - filezilla

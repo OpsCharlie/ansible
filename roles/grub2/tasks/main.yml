@@ -1,0 +1,28 @@
+---
+- name: update 40_custom
+  blockinfile:
+    path: /etc/grub.d/40_custom
+    marker: "# {mark} grub ANSIBLE MANAGED BLOCK"
+    state: present
+    block: |
+      set superusers="{{ grub_user }}"
+      password_pbkdf2 {{ grub_user }} {{ grub_pwd }}
+  become: true
+  register: custom
+
+
+- name: add --unrestricted
+  replace:
+    path: /etc/grub.d/10_linux
+    regexp: "grub_quote\\)' \\${CLASS}"
+    replace: "grub_quote)' --unrestricted ${CLASS}"
+  become: true
+  register: linux
+
+
+- name: update grub
+  shell: update-grub2
+  become: true
+  when: custom.changed or linux.changed
+
+
