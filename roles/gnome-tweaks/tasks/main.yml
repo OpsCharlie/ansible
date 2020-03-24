@@ -4,7 +4,7 @@
     name:
       - gnome-tweaks
       - chrome-gnome-shell
-    state: installed
+    state: present
   become: yes
 
 
