@@ -12,6 +12,6 @@
 
 - package:
     name: vivaldi-stable
-    state: installed
+    state: present
   become: yes
 
