@@ -42,7 +42,7 @@
     # - httpstat
 
     #### extra software
-    # - radiotray
+    ##- radiotray
     # - ppa-manager
     # - tlp     # power manager
     # - timeshift
@@ -59,7 +59,6 @@
     # - vlc
     # - geany
     # - tools
-    # - apt-updates
     # - gnome-tweaks
     # - scripts     # tools and zabbix notification
     # - ulauncher
