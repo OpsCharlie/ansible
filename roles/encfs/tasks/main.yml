@@ -19,6 +19,7 @@
 
 - apt: 
     deb: /tmp/encfs-manager.deb
+  become: yes
 
 
 - file:
