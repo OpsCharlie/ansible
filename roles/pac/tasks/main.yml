@@ -49,6 +49,7 @@
   apt:
     name: 'asbru-cm={{ asbru_version }}'
     force: yes
+    update_cache: yes
   become: yes
   when: asbru_version is defined
 
@@ -56,6 +57,7 @@
   apt:
     name: asbru-cm
     state: latest
+    update_cache: yes
   become: yes
   when: asbru_version is not defined
 
