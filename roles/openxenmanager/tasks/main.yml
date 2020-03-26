@@ -8,7 +8,7 @@
       - python-glade2
       - python-configobj
       - python-setuptools
-    state: installed
+    state: present
   become: yes
 
 - name: git clone
