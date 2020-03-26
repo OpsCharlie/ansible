@@ -30,7 +30,6 @@
     src: '{{ item }}'
     dest: '{{ home }}/.config/autostart/{{ item }}'
   with_items:
-    - radiotray.desktop
     - shutter.desktop
     - remotecopy.sh.desktop
     - zabbixevents.sh.desktop
