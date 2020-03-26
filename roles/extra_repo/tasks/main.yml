@@ -34,7 +34,7 @@
   become: yes
 
 - apt:
-    name: '{{ item }}'
+    name:
       - python3-gpg   #  - python_gpme
       - git
     state: present
