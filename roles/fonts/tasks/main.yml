@@ -16,4 +16,6 @@
     state: present
   become: yes
 
-
+- name: flush font cache
+  shell: fc-cache -f -v
+  become: yes
