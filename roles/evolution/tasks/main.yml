@@ -1,4 +1,7 @@
 ---
 - name: install evolution
   apt:
-    name: evolution
+    name:
+      - evolution
+      - evolution-plugins
+      - evolution-plugins-experimental
