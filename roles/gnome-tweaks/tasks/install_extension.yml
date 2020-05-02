@@ -21,21 +21,14 @@
         dest: "{{ r_gnome_extension_download_dir.path }}/{{ gnome_extension_info.uuid }}.zip"
       register: r_gnome_extension_download
 
-    - name: create install directory - {{ gnome_extension_info.name }}
-      file:
-        path: "{{ ansible_user_dir }}/.local/share/gnome-shell/extensions/{{ gnome_extension_info.uuid }}"
-        state: directory
-        owner: "{{ ansible_user_uid }}"
-        group: "{{ ansible_user_gid }}"
-        mode: 0775
-
     - name: install gnome shell extension - {{ gnome_extension_info.name }}
-      unarchive:
-        src: "{{ r_gnome_extension_download.dest }}"
-        dest: "{{ ansible_user_dir }}/.local/share/gnome-shell/extensions/{{ gnome_extension_info.uuid }}"
+      shell: gnome-extensions install "{{ r_gnome_extension_download.dest }}"
 
     - name: enable gnome shell extension - {{ gnome_extension_info.name }}
-      command: gnome-shell-extension-tool --enable-extension {{ gnome_extension_info.uuid }}
+      command: gnome-extensions enable {{ gnome_extension_info.uuid }}
+
+    - set_fact:
+        installextension: true
   always:
     - name: Delete temporary download directory
       file:

@@ -1,13 +1,13 @@
 ---
-- apt_repository:
-    repo: "ppa:jaap.karssenberg/zim"
-    update_cache: yes
-  become: yes
+# - apt_repository:
+#     repo: "ppa:jaap.karssenberg/zim"
+#     update_cache: yes
+#   become: yes
 
 - apt:
     name:
       - zim
-      - python-gtksourceview2
+      # - python-gtksourceview2
     state: present
   become: yes
 

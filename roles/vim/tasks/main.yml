@@ -4,16 +4,19 @@
       - vim
       - curl
       - vim-gtk3
+      - python3-pip
       - ack
     state: present
   become: yes
 
 - name: download vimrc from git
   git:
-    repo: "git@github.com:Charlietje/vim.git"
+    repo: "https://github.com/Charlietje/vim.git"
     dest: '{{ home }}/vim'
 
 - name: deploy vim config
   shell: "{{ home }}/vim/__deploy.sh"
 
-
+- name: install pynvim
+  pip:
+    name: pynvim

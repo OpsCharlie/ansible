@@ -9,7 +9,7 @@ gnome_extension_ids:
   - 1230 # Gnome Email Notifications
   - 1236 # NoAnnoyance
   - 1319 # gsconnect
-  - 1465 # desktop icons
+  # - 1465 # desktop icons
   - 648  # bitcoin market
   - 755  # Hibernate Status Button
   - 779  # Clipboard indicator

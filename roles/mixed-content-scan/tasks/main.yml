@@ -5,7 +5,7 @@
       - php-cli
       - php-curl
       - php-dom
-    state: installed
+    state: present
   become: yes
 
 

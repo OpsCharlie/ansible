@@ -1,4 +1,8 @@
 ---
+- set_fact:
+    installextension: false
+
+
 - name: install gnome-tweaks
   package:
     name:
@@ -30,3 +34,9 @@
   vars:
     gnome_extension_info: "{{ item.json }}"
   loop: "{{ r_gnome_extension_info.results }}"
+  register: install_extension
+
+
+- name: reload gnome-shell
+  shell: killall -3 gnome-shell
+  when: installextension

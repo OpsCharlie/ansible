@@ -1,10 +1,15 @@
 ---
-- name: Setup apt repository
-  apt_repository:
-    repo: "ppa:asbru-cm/{{ asbru_ppa }}"
-    state: present
-  become: yes
+# - name: Setup apt repository
+#   apt_repository:
+#     repo: "ppa:asbru-cm/{{ asbru_ppa }}"
+#     state: present
+#   become: yes
 
+- name: install test script for 20.04
+  shell: curl -s https://packagecloud.io/install/repositories/asbru-cm/loki/script.deb.sh | bash
+  args:
+    creates: /usr/bin/asbru-cm
+  become: yes
 
 - name: install asbru-cm latest version
   apt:
@@ -39,28 +44,28 @@
 
 
 - file:
-    dest: '{{ home }}/.config/pac/{{ item }}'
+    dest: '{{ home }}/.config/asbru/{{ item }}'
     state: absent
   with_items:
-    - pac.dumper
-    - pac.nfreeze
-    - pac.yml
-    - pac.yml.gui
-    - pac.yml.tree
-    - pac_notray.notified
-    - pac_stats.nfreeze
+    - asbru.dumper
+    - asbru.nfreeze
+    - asbru.yml
+    - asbru.yml.gui
+    - asbru.yml.tree
+    - asbru_notray.notified
+    - asbru_stats.nfreeze
 
 
 - file:
-    src: '{{ home }}/Notebooks/carl/.config/pac/{{ item }}'
-    dest: '{{ home }}/.config/pac/{{ item }}'
+    src: '{{ home }}/Notebooks/carl/.config/pac/pac{{ item }}'
+    dest: '{{ home }}/.config/asbru/asbru{{ item }}'
     state: link
   with_items:
-    - pac.dumper
-    - pac.nfreeze
-    - pac.yml
-    - pac.yml.gui
-    - pac.yml.tree
-    - pac_notray.notified
-    - pac_stats.nfreeze
+    - .dumper
+    - .nfreeze
+    - .yml
+    - .yml.gui
+    - .yml.tree
+    - _notray.notified
+    - _stats.nfreeze
 

@@ -5,7 +5,7 @@
   connection: local
 
   vars:
-    - home: /home/carl
+    - home: '{{ ansible_user_dir }}'
     - packaging_ubuntu_extras_repository: no
     - packaging_ubuntu_partner_repository: yes
     - packaging_ubuntu_multiverse_repository: yes
@@ -18,56 +18,56 @@
 
     # - dropbox
     # - encfs
-    # - nemo
-    # - bash
-    # - zsh
+    - nemo
+    - bash
+    - zsh
     # - vim
-    # - tmux
-    # - zim
-    # - java
-    # - mysqlworkbench
-    # - dbeaver
-    # - virtualbox
-    # - vagrant
-    # - filezilla
-    # - pac
-    # - ssh
+    - tmux
+    - zim
+    - java
+    - mysqlworkbench
+    - dbeaver
+    - virtualbox
+    - vagrant
+    - filezilla
+    - pac
+    - ssh
     ## - openxenmanager
-    # - chrome
-    # - vivaldi
-    # - firefox
-    # - networkmanager
-    # - networktools
-    # - ansible-tools
-    # - apt-updates
-    # - keepassxc
-    # - fonts
-    # - httpstat
+    - chrome
+    - vivaldi
+    - firefox
+    - networkmanager
+    - networktools
+    - ansible-tools
+    - apt-updates
+    - keepassxc
+    - fonts
+    - httpstat
 
     #### extra software
-    # - ppa-manager
-    # - tlp     # power manager
-    # - timeshift
+    - ppa-manager
+    ## - tlp     # power manager
+    ## - timeshift
     ## - libreoffice
-    # - office
-    # - zeal
-    # - rambox
-    # - shutter
-    # - testssl
-    # - mixed-content-scan
-    # - powershell
-    # - masterpdf
-    # - bleachbit
-    # - vlc
-    # - geany
-    # - tools
-    # - apt-updates
-    # - gnome-tweaks
-    # - scripts     # tools and zabbix notification
-    # - ulauncher
-    # - guake
-    # - peek        # gif recorder
-    # - postman
-    # - pycharm
-    # - skype
+    - office
+    - zeal
+    - rambox
+    - shutter
+    - testssl
+    - mixed-content-scan
+    - powershell
+    - masterpdf
+    - bleachbit
+    - vlc
+    - geany
+    - tools
+    - apt-updates
+    - gnome-tweaks
+    - scripts     # tools and zabbix notification
+    - ulauncher
+    - guake
+    - peek        # gif recorder
+    - postman
+    - pycharm
+    - skype
 

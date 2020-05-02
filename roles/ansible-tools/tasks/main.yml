@@ -1,24 +1,8 @@
 ---
-- name: create dir
-  file:
-    path: '{{ home }}/apps'
-    state: directory
-
-
-- name: clone ansible-toolbox
-  git:
-    repo: https://github.com/larsks/ansible-toolbox.git
-    dest: '{{ home }}/apps/ansible-toolbox'
-
-
-- name: setup.py
-  command: 'python setup.py install'
-  args:
-    chdir: '{{ home }}/apps/ansible-toolbox'
-  become: yes
-
 
 - name: install ansible-lint
   pip:
-    name: ansible-lint
+    name:
+      - ansible-tools
+      - ansible-lint
   become: yes

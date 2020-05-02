@@ -1,7 +1,13 @@
 ---
+- name: get mysql-workbench deb
+  get_url:
+    dest: /tmp/mysqlworkbench.deb
+    url: https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community_8.0.20-1ubuntu20.04_amd64.deb
+
+
 - name: install mysqlworkbench
   apt:
-    name: mysql-workbench
+    deb: /tmp/mysqlworkbench.deb
     state: present
   become: yes
 

@@ -1,0 +1,6 @@
+---
+- name: install dbeaver
+  snap:
+    name: dbeaver-ce
+    state: present
+  become: yes

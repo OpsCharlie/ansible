@@ -1,9 +1,13 @@
 ---
+- name: gather package facts
+  package_facts:
+    manager: auto
+
 - name: install tools
   apt:
     name:
     # - inxi
-    - zenmap
+    # - zenmap
     - fwbuilder
     - gufw
     - wireshark
@@ -23,10 +27,28 @@
     state: latest
   become: yes
 
+
 - snap:
     name: gping
   become: yes
 
+
+- shell: 'snap connections gping'
+  changed_when: false
+  register: connections
+
+
 - shell: 'snap connect gping:network-observe'
+  when: "'network-observe' not in connections.stdout"
+  become: yes
+
+# zenmap
+- name: install zenmap debs
+  apt:
+    deb: '{{ item }}'
+  with_items:
+    - "http://mirrors.kernel.org/ubuntu/pool/universe/p/pygtk/python-gtk2_2.24.0-6_amd64.deb"
+    - "http://mirrors.kernel.org/ubuntu/pool/universe/n/nmap/zenmap_7.80+dfsg1-1build1_all.deb"
+  when: '"zenmap" not in ansible_facts.packages'
   become: yes
 

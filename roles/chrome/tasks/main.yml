@@ -33,5 +33,5 @@
 - name: install chrome-gnome-shell extension
   apt:
     name: chrome-gnome-shell
-    state: installed
+    state: present
   become: yes
