@@ -5,3 +5,6 @@
       - evolution
       - evolution-plugins
       - evolution-plugins-experimental
+      - evolution-ews
+      - evolution-indicator
+  become: yes
