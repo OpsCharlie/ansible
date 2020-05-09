@@ -21,6 +21,7 @@
     # - nemo
     # - bash
     # - zsh
+    # - fzf
     # - vim
     # - tmux
     # - zim
@@ -45,7 +46,7 @@
     # - httpstat
 
     #### extra software
-    - evolution
+    # - evolution
     # - ppa-manager
     ## - tlp     # power manager
     ## - timeshift
