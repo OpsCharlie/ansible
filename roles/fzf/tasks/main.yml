@@ -1,0 +1,14 @@
+---
+- name: create dir
+  file:
+    path: '{{ home }}/apps'
+    state: directory
+
+- git:
+    repo: https://github.com/junegunn/fzf.git
+    dest: '{{ home }}/apps/fzf'
+
+- name: configure fzf
+  shell: echo -e 'n\ny\nn\n' | ./install
+  args:
+    chdir: '{{ home }}/apps/fzf'
