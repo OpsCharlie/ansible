@@ -6,9 +6,9 @@
 
   vars:
     - home: '{{ ansible_user_dir }}'
-    - packaging_ubuntu_extras_repository: no
-    - packaging_ubuntu_partner_repository: yes
-    - packaging_ubuntu_multiverse_repository: yes
+    - packaging_ubuntu_extras_repository: false
+    - packaging_ubuntu_partner_repository: true
+    - packaging_ubuntu_multiverse_repository: true
 
 
   roles:
@@ -31,7 +31,7 @@
     # - virtualbox
     # - vagrant
     # - filezilla
-    # - pac
+    - pac
     # - ssh
     ## - openxenmanager
     # - chrome
@@ -72,4 +72,3 @@
     # - postman
     # - pycharm
     # - skype
-
