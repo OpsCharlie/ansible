@@ -24,7 +24,7 @@
 
 - name: download zsh from git
   git:
-    repo: "https://github.com/Charlietje/zsh.git"
+    repo: "https://github.com/OpsCharlie/zsh.git"
     dest: '{{ home }}/zsh'
   register: git
 

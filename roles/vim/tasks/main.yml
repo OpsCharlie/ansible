@@ -11,7 +11,7 @@
 
 - name: download vimrc from git
   git:
-    repo: "https://github.com/Charlietje/vim.git"
+    repo: "https://github.com/OpsCharlie/vim.git"
     dest: '{{ home }}/vim'
 
 - name: deploy vim config

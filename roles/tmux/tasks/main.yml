@@ -8,7 +8,7 @@
 
 - name: download tmuxrc from git
   git:
-    repo: "https://github.com/Charlietje/tmux.git"
+    repo: "https://github.com/OpsCharlie/tmux.git"
     dest: '{{ home }}/tmux'
 
 - name: deploy vim config
