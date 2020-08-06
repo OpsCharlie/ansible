@@ -1,0 +1,12 @@
+- apt:
+    name: flameshot
+    state: present
+  become: yes
+
+- name: copy config
+  copy:
+    src: flameshot.conf
+    dest: /tmp/flameshot.conf
+
+- name: import conf
+  shell: dconf load /org/gnome/settings-daemon/plugins/media-keys/ < /tmp/flameshot.conf
