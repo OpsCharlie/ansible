@@ -26,14 +26,10 @@
     # - tmux
     # - zim
     # - java
-    # - mysqlworkbench
-    # - dbeaver
     # - virtualbox
     # - vagrant
-    # - filezilla
-    - pac
+    # - pac
     # - ssh
-    ## - openxenmanager
     # - chrome
     # - vivaldi
     # - firefox
@@ -46,15 +42,21 @@
     # - httpstat
 
     #### extra software
-    # - evolution
-    # - ppa-manager
+    ## - openxenmanager
     ## - tlp     # power manager
     ## - timeshift
-    ## - libreoffice
+    ## - shutter
+    ## - rambox
+    # - filezilla
+    - beekeeperstudio
+    # - dbeaver
+    # - mysqlworkbench
+    # - evolution
+    # - ppa-manager
+    # - libreoffice
     # - office
     # - zeal
-    # - rambox
-    # - shutter
+    # - flameshot
     # - testssl
     # - mixed-content-scan
     # - powershell
