@@ -1,0 +1,20 @@
+---
+- name: add beekeeper key
+  apt_key:
+    url: https://bintray.com/user/downloadSubjectPublicKey?username=bintray
+    state: present
+  become: yes
+
+
+- name: add repository
+  apt_repository:
+    repo: "deb https://dl.bintray.com/beekeeper-studio/releases disco main"
+    state: present
+  become: yes
+
+
+- name: install beekeeper
+  apt:
+    name: beekeeper-studio
+    state: present
+  become: yes
