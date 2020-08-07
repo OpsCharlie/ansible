@@ -48,7 +48,8 @@
     ## - shutter
     ## - rambox
     # - filezilla
-    - beekeeperstudio
+    # - beekeeperstudio
+    # - vscode
     # - dbeaver
     # - mysqlworkbench
     # - evolution
