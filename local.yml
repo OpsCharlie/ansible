@@ -47,6 +47,7 @@
     ## - timeshift
     ## - shutter
     ## - rambox
+    # - translate
     # - filezilla
     # - beekeeperstudio
     # - vscode
