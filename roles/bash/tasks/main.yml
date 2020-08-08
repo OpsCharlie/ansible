@@ -6,15 +6,21 @@
   become: yes
 
 
+- name: create {{ home }}/apps directory
+  file:
+    path: '{{ home }}/apps'
+    state: directory
+
+
 - name: download bashrc from git
   git:
     repo: "https://github.com/OpsCharlie/bash.git"
-    dest: '{{ home }}/bash'
+    dest: '{{ home }}/apps/bash'
   register: git
 
 
 - name: deploy bash config
-  command: 'bash {{ home }}/bash/__deploy.sh'
+  command: 'bash {{ home }}/apps/bash/__deploy.sh'
   when: git.changed
 
 
