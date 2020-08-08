@@ -22,10 +22,16 @@
   become: yes
 
 
+- name: create {{ home }}/apps directory
+  file:
+    path: '{{ home }}/apps'
+    state: directory
+
+
 - name: download zsh from git
   git:
     repo: "https://github.com/OpsCharlie/zsh.git"
-    dest: '{{ home }}/zsh'
+    dest: '{{ home }}/apps/zsh'
   register: git
 
 
@@ -37,5 +43,5 @@
 
 
 - name: deploy zsh config
-  command: 'bash {{ home }}/bash/__deploy.sh'
+  command: 'bash {{ home }}/bash/apps/__deploy.sh'
   when: git.changed
