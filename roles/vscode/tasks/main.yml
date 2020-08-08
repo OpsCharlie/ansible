@@ -4,6 +4,11 @@
     name: code
     classic: true
     state: present
-  become: yes
+  become: true
 
 
+- name: install code extensions
+  shell: 'code --install-extension {{ item }}'
+  loop: '{{ vs_extensions }}'
+  register: vs_out
+  changed_when: '"already installed" not in vs_out.stdout'

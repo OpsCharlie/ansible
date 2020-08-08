@@ -1,0 +1,6 @@
+---
+vs_extensions:
+  - eamodio.gitlens
+  - EditorConfig.EditorConfig
+  - vscodevim.vim
+  - vscoss.vscode-ansible
