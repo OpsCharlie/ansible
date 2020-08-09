@@ -24,6 +24,7 @@
     # - fzf
     # - vim
     # - tmux
+    # - evolution
     # - zim
     # - java
     # - virtualbox
@@ -53,7 +54,7 @@
     # - vscode
     # - dbeaver
     # - mysqlworkbench
-    # - evolution
+    # - bingwall
     # - ppa-manager
     # - libreoffice
     # - office
