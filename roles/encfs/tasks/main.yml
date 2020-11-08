@@ -2,15 +2,15 @@
 - name: install encfs
   apt:
     name: encfs
-  become: yes
+  become: true
 
 
 - name: Download MolchEncfsManager
   get_url:
-    url: https://moritzmolch.com/apps/download/mencfsm/19.06/MolchEncfsManager.x86_64
+    url: https://moritzmolch.com/apps/files/mencfsm/19.06/MolchEncfsManager.x86_64
     dest: /usr/local/bin/MolchEncfsManager
     mode: '0775'
-  become: yes
+  become: true
 
 
 - name: install configuration
@@ -21,5 +21,3 @@
 
 - pause:
     prompt: "Start EncFS GUI  Directory {{ home }}/Dropbox/Notebooks  ; Mount {{ home }}/Notebooks"
-
-

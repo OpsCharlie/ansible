@@ -7,7 +7,7 @@
       - network-manager-vpnc-gnome
       - network-manager-strongswan
       - network-manager-openconnect
-      - network-manager-openvpn-gnome     #import config from {{ home }}/Notebooks/carl/openvpn
+      - network-manager-openvpn-gnome     #import config from {{ cloudstorage }}/carl/openvpn
       - openvpn-systemd-resolved
     state: present
   become: yes

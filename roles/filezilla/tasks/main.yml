@@ -20,6 +20,6 @@
 
 - name: install sitemanager
   file:
-    src: '{{ home }}/Notebooks/carl/.filezilla/sitemanager.xml'
+    src: '{{ cloudstorage }}/carl/.filezilla/sitemanager.xml'
     dest: '{{ home }}/.filezilla/sitemanager.xml'
     state: link

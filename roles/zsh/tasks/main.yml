@@ -43,5 +43,5 @@
 
 
 - name: deploy zsh config
-  command: 'bash {{ home }}/bash/apps/__deploy.sh'
+  command: 'bash {{ home }}/apps/zsh/__deploy.sh'
   when: git.changed

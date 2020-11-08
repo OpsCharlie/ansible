@@ -1,6 +1,6 @@
 - name: install scripts
   copy:
-    src: '{{ home }}/Notebooks/scripts/carl_scripts/{{ item }}'
+    src: '{{ cloudstorage }}/scripts/carl_scripts/{{ item }}'
     dest: '/usr/local/bin/{{ item }}'
     mode: '0775'
     follow: yes
@@ -15,15 +15,14 @@
     - ssl-cert-info
     - swap.sh
     - ps_mem
-    - sshrm
     - remove_color.sh
-    - zabbixevents.sh
-    - zabbix_off.wav
-    - zabbix_on_average.wav
-    - zabbix_on_disaster.wav
-    - zabbix_on_high.wav
-    - zabbix_on_warning.wav
-    - zabbix_on.wav
+    # - zabbixevents.sh
+    # - zabbix_off.wav
+    # - zabbix_on_average.wav
+    # - zabbix_on_disaster.wav
+    # - zabbix_on_high.wav
+    # - zabbix_on_warning.wav
+    # - zabbix_on.wav
 
 - name: install startup
   copy:
@@ -34,4 +33,3 @@
     - remotecopy.sh.desktop
     - zabbixevents.sh.desktop
     - gnome-encfs-manager.desktop
-

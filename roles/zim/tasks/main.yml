@@ -13,7 +13,7 @@
 
 
 - file:
-    src: '{{ home }}/Notebooks/carl/.config/zim'
+    src: '{{ cloudstorage }}/carl/.config/zim'
     dest: '{{ home }}/.config/zim'
     state: link
     force: true

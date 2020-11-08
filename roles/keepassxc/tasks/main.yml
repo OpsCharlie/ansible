@@ -7,5 +7,5 @@
 
 - name: copy keepass config
   synchronize:
-    src: '{{ home }}/Notebooks/carl/.config/keepassxc/'
+    src: '{{ cloudstorage }}/carl/.config/keepassxc/'
     dest: '{{ home }}/.config/keepassxc/'

@@ -3,26 +3,26 @@
 #   apt_repository:
 #     repo: "ppa:asbru-cm/{{ asbru_ppa }}"
 #     state: present
-#   become: yes
+#   become: true
 
 - name: install test script for 20.04
   shell: curl -s https://packagecloud.io/install/repositories/asbru-cm/loki/script.deb.sh | bash
   args:
     creates: /usr/bin/asbru-cm
-  become: yes
+  become: true
 
 - name: install asbru-cm latest version
   apt:
     name: asbru-cm
     state: latest
-  become: yes
+  become: true
 
 
 - name: copy icon
   copy:
     src: server_white.svg
     dest: /usr/share/icons/hicolor/scalable/apps/server_white.svg
-  become: yes
+  become: true
 
 
 - name: change icon in desktop file
@@ -30,7 +30,7 @@
     path: /usr/share/applications/asbru-cm.desktop
     regexp: '^Icon=.*'
     line: 'Icon=/usr/share/icons/hicolor/scalable/apps/server_white.svg'
-  become: yes
+  become: true
 
 
 - stat:
@@ -57,7 +57,7 @@
 
 
 - file:
-    src: '{{ home }}/Notebooks/carl/.config/pac/pac{{ item }}'
+    src: '{{ home }}/Documents/OneDrive/carl/.config/asbru/asbru{{ item }}'
     dest: '{{ home }}/.config/asbru/asbru{{ item }}'
     state: link
   with_items:
@@ -66,6 +66,4 @@
     - .yml
     - .yml.gui
     - .yml.tree
-    - _notray.notified
     - _stats.nfreeze
-

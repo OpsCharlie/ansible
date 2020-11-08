@@ -8,7 +8,7 @@
   become: yes
 
 - synchronize:
-    src: '{{ home }}/Notebooks/carl/.config/htop'
+    src: '{{ cloudstorage }}/carl/.config/htop'
     dest: '{{ home }}/.config/htop'
 
 - name: disable apport

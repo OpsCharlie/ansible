@@ -1,6 +1,6 @@
 ---
 - name: install bingwall
   snap:
-    name: bingwall
+    name: bing-wall
     state: present
   become: true

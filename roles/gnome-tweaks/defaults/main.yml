@@ -11,9 +11,8 @@ gnome_extension_ids:
   - 1319 # gsconnect
   # - 1465 # desktop icons
   - 648  # bitcoin market
-  - 755  # Hibernate Status Button
+  # - 755  # Hibernate Status Button
   - 779  # Clipboard indicator
   - 800  # remove dropdown arrows
   - 905  # refresh wifi networks
   - 97   # Coverflow Alt-Tab
-

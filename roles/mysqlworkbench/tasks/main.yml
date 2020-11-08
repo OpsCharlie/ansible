@@ -20,5 +20,5 @@
 
 - name: copy config
   synchronize:
-    src: '{{ home }}/Notebooks/carl/.mysql/workbench'
+    src: '{{ cloudstorage }}/carl/.mysql/workbench'
     dest: '{{ home }}/.mysql/workbench'

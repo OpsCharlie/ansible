@@ -1,4 +1,4 @@
 ---
 - synchronize:
-    src: '{{ home }}/Notebooks/carl/.ssh/'
+    src: '{{ cloudstorage }}/carl/.ssh/'
     dest: '{{ home }}/.ssh/'
