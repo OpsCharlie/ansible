@@ -1,0 +1,6 @@
+---
+- name: install bingwall
+  snap:
+    name: bingwall
+    state: present
+  become: true

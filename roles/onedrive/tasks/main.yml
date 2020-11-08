@@ -1,0 +1,54 @@
+---
+- name: add onedrive ppa repo
+  apt_repository:
+    repo: ppa:yann1ck/onedrive
+    state: present
+  become: true
+
+
+- name: install onedrive
+  apt:
+    name: onedrive
+    state: present
+  become: true
+
+
+## compile from source
+# - name: install dependencies
+#  apt:
+#    name:
+#      - libcurl4-openssl-dev
+#      - git
+#      - libsqlite3-dev
+#    state: present
+#  become: true
+#
+#
+# - name: install snap deps for building
+#  snap:
+#    name:
+#      - dmd
+#      - dub
+#    classic: true
+#  become: true
+#
+#
+# - name: clone onedrive from source
+#  git:
+#    repo: https://github.com/abraunegg/onedrive.git
+#    dest: '{{ home }}/apps/onedrive'
+#
+#
+# - name: compile onedrive
+#  shell: "./configure && make"
+#  args:
+#    chdir: '{{ home }}/apps/onedrive'
+#    creates: /usr/local/bin/onedrive
+#
+#
+# - name: build onedrive
+#  shell: "make install"
+#  args:
+#    chdir: '{{ home }}/apps/onedrive'
+#    creates: /usr/local/bin/onedrive
+#  become: true

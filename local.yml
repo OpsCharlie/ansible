@@ -17,56 +17,63 @@
     # - grub2
 
     # - dropbox
-    - encfs
-    - nemo
-    - bash
-    - zsh
-    - vim
-    - tmux
-    - zim
-    - java
-    - mysqlworkbench
-    - dbeaver
-    - virtualbox
-    - vagrant
-    - filezilla
-    - pac
-    - ssh
-    - chrome
-    - vivaldi
-    - firefox
-    - networkmanager
-    - networktools
-    - ansible-tools
-    - apt-updates
-    - keepassxc
-    - fonts
-    - httpstat
+    # - encfs
+    # - nemo
+    # - bash
+    # - zsh
+    # - fzf
+    # - vim
+    # - tmux
+    # - evolution
+    # - zim
+    # - java
+    # - virtualbox
+    # - vagrant
+    # - pac
+    # - ssh
+    # - chrome
+    # - vivaldi
+    # - firefox
+    # - networkmanager
+    # - networktools
+    # - ansible-tools
+    # - apt-updates
+    # - keepassxc
+    # - fonts
+    # - httpstat
 
     #### extra software
-    - ppa-manager
     ## - openxenmanager
     ## - tlp     # power manager
     ## - timeshift
-    ## - libreoffice
-    - office
-    - zeal
-    - rambox
-    - shutter
-    - testssl
-    - mixed-content-scan
-    - powershell
-    - masterpdf
-    - bleachbit
-    - vlc
-    - geany
-    - tools
-    - apt-updates
-    - gnome-tweaks
-    - scripts     # tools and zabbix notification
-    - ulauncher
-    - guake
-    - peek        # gif recorder
-    - postman
-    - pycharm
-    - skype
+    ## - shutter
+    ## - rambox
+    # - translate
+    # - filezilla
+    # - beekeeperstudio
+    # - vscode
+    # - dbeaver
+    # - mysqlworkbench
+    # - bingwall
+    # - ppa-manager
+    # - libreoffice
+    # - office
+    # - zeal
+    # - flameshot
+    # - testssl
+    # - mixed-content-scan
+    # - powershell
+    # - masterpdf
+    # - bleachbit
+    # - vlc
+    # - geany
+    # - tools
+    # - apt-updates
+    # - gnome-tweaks
+    # - scripts     # tools and zabbix notification
+    # - ulauncher
+    # - guake
+    # - peek        # gif recorder
+    # - postman
+    # - pycharm
+    # - skype

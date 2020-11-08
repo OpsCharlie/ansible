@@ -14,8 +14,8 @@
 - name: add --unrestricted
   replace:
     path: /etc/grub.d/10_linux
-    regexp: "grub_quote\\)' \\${CLASS}"
-    replace: "grub_quote)' --unrestricted ${CLASS}"
+    regexp: '^CLASS="--class gnu-linux --class gnu --class os"'
+    replace: 'CLASS="--class gnu-linux --class gnu --class os --unrestricted"'
   become: true
   register: linux
 
@@ -24,5 +24,3 @@
   shell: update-grub2
   become: true
   when: custom.changed or linux.changed
-
-

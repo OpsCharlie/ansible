@@ -1,7 +1,7 @@
 ---
 - name: Add repositories libreoffice
   apt_repository:
-    repo: ppa:libreoffice/libreoffice-6-0
+    repo: ppa:libreoffice/ppa
   become: yes
 
 - apt:
@@ -9,5 +9,3 @@
       - libreoffice
     state: latest
   become: yes
-
-

@@ -9,13 +9,22 @@
     state: present
   become: yes
 
+
+- name: create {{ home }}/apps directory
+  file:
+    path: '{{ home }}/apps'
+    state: directory
+
+
 - name: download vimrc from git
   git:
-    repo: "https://github.com/Charlietje/vim.git"
-    dest: '{{ home }}/vim'
+    repo: "https://github.com/OpsCharlie/vim.git"
+    dest: '{{ home }}/apps/vim'
+
 
 - name: deploy vim config
-  shell: "{{ home }}/vim/__deploy.sh"
+  shell: "{{ home }}/apps/vim/__deploy.sh"
+
 
 - name: install pynvim
   pip:
