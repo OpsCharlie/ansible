@@ -13,6 +13,12 @@
   become: true
 
 
+- name: install config
+  copy:
+    src: '{{ cloudstorage }}/carl/.config/onedrive/config'
+    dest: '{{ home }}/.config/onedrive'
+
+
 ## compile from source
 # - name: install dependencies
 #  apt:
