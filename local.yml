@@ -6,9 +6,9 @@
 
   vars:
     - home: '{{ ansible_user_dir }}'
-    - packaging_ubuntu_extras_repository: no
-    - packaging_ubuntu_partner_repository: yes
-    - packaging_ubuntu_multiverse_repository: yes
+    - packaging_ubuntu_extras_repository: false
+    - packaging_ubuntu_partner_repository: true
+    - packaging_ubuntu_multiverse_repository: true
 
 
   roles:
@@ -17,11 +17,11 @@
     # - grub2
 
     # - dropbox
-    # - encfs
+    - encfs
     - nemo
     - bash
     - zsh
-    # - vim
+    - vim
     - tmux
     - zim
     - java
@@ -32,7 +32,6 @@
     - filezilla
     - pac
     - ssh
-    ## - openxenmanager
     - chrome
     - vivaldi
     - firefox
@@ -46,6 +45,7 @@
 
     #### extra software
     - ppa-manager
+    ## - openxenmanager
     ## - tlp     # power manager
     ## - timeshift
     ## - libreoffice
@@ -70,4 +70,3 @@
     - postman
     - pycharm
     - skype
-
