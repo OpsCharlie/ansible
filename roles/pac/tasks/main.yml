@@ -5,8 +5,8 @@
 #     state: present
 #   become: true
 
-- name: install test script for 20.04
-  shell: curl -s https://packagecloud.io/install/repositories/asbru-cm/loki/script.deb.sh | bash
+- name: install test script for 20.10
+  shell: curl -1sLf 'https://dl.cloudsmith.io/public/asbru-cm/snapshots/cfg/setup/bash.deb.sh' | bash
   args:
     creates: /usr/bin/asbru-cm
   become: true
