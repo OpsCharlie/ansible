@@ -1,6 +1,6 @@
 ---
 - set_fact:
-    installextension: false
+    installextension: true
 
 
 - name: install gnome-tweaks
@@ -40,3 +40,16 @@
 - name: reload gnome-shell
   shell: killall -3 gnome-shell
   when: installextension
+
+
+- name: pause until gnome has reloaded
+  pause:
+    prompt: "Press enter when gnome is reloaded"
+  when: installextension
+
+
+- include_tasks: enable_extension.yml
+  vars:
+    gnome_extension_info: "{{ item.json }}"
+  loop: "{{ r_gnome_extension_info.results }}"
+  register: install_extension

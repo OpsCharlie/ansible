@@ -13,7 +13,6 @@
   changed_when: no
   when: not r_gnome_extensions_check_existing.stat.exists
 
-
 - block:
     - name: download gnome shell extension - {{ gnome_extension_info.name }}
       get_url:
@@ -23,9 +22,6 @@
 
     - name: install gnome shell extension - {{ gnome_extension_info.name }}
       shell: gnome-extensions install "{{ r_gnome_extension_download.dest }}"
-
-    - name: enable gnome shell extension - {{ gnome_extension_info.name }}
-      command: gnome-extensions enable {{ gnome_extension_info.uuid }}
 
     - set_fact:
         installextension: true

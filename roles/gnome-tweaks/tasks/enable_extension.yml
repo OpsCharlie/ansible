@@ -1,0 +1,3 @@
+---
+- name: enable gnome shell extension - {{ gnome_extension_info.name }}
+  command: gnome-extensions enable {{ gnome_extension_info.uuid }}
