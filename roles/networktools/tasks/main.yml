@@ -43,12 +43,12 @@
   become: yes
 
 # zenmap
-- name: install zenmap debs
-  apt:
-    deb: '{{ item }}'
-  with_items:
-    - "http://mirrors.kernel.org/ubuntu/pool/universe/p/pygtk/python-gtk2_2.24.0-6_amd64.deb"
-    - "http://mirrors.kernel.org/ubuntu/pool/universe/n/nmap/zenmap_7.80+dfsg1-1build1_all.deb"
-  when: '"zenmap" not in ansible_facts.packages'
-  become: yes
+# - name: install zenmap debs
+#   apt:
+#     deb: '{{ item }}'
+#   with_items:
+#     - "http://mirrors.kernel.org/ubuntu/pool/universe/p/pygtk/python-gtk2_2.24.0-6_amd64.deb"
+#     - "http://mirrors.kernel.org/ubuntu/pool/universe/n/nmap/zenmap_7.80+dfsg1-1build1_all.deb"
+#   when: '"zenmap" not in ansible_facts.packages'
+#   become: yes
 
