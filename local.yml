@@ -18,6 +18,7 @@
     # - grub2
 
     ## - dropbox
+    # - onedrive
     # - encfs
     # - nemo
     # - bash
@@ -54,28 +55,27 @@
     ## - mixed-content-scan
     ## - scripts     # tools and zabbix notification
     ## - beekeeperstudio
-    - translate
-    - filezilla
-    - vscode
-    - dbeaver
-    - bingwall
-    - ppa-manager
-    - libreoffice
-    - office
-    - zeal
-    - flameshot
-    - testssl
-    - powershell
-    - masterpdf
-    - bleachbit
-    - vlc
-    - geany
-    - tools
-    - apt-updates
-    - gnome-tweaks
-    - ulauncher
-    - guake
-    - peek        # gif recorder
-    - postman
-    - pycharm
-    - skype
+    ##- peek        # gif recorder
+    # - translate
+    # - filezilla
+    # - vscode
+    # - dbeaver
+    # - bingwall
+    # - ppa-manager
+    # - libreoffice
+    # - office
+    # - zeal
+    # - flameshot
+    # - testssl
+    # - powershell
+    # - masterpdf
+    # - bleachbit
+    # - vlc
+    # - geany
+    # - tools
+    # - gnome-tweaks
+    # - ulauncher
+    # - guake
+    # - postman
+    # - pycharm
+    # - skype
