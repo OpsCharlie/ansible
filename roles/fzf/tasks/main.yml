@@ -9,6 +9,6 @@
     dest: '{{ home }}/apps/fzf'
 
 - name: configure fzf
-  shell: echo -e 'n\ny\nn\n' | ./install
+  shell: echo -e 'n\ny\ny\n' | ./install
   args:
     chdir: '{{ home }}/apps/fzf'
