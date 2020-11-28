@@ -1,9 +1,18 @@
 ---
 - name: install git
   apt:
-    name: git
+    name:
+      - git
+      - fd-find
     state: present
   become: yes
+
+
+- name: create symlink fd
+  file:
+    src: /usr/bin/fdfind
+    dest: /usr/local/bin/find
+    state: link
 
 
 - name: create {{ home }}/apps directory
