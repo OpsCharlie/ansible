@@ -1,6 +1,28 @@
 ---
-- name: install dbeaver
-  snap:
+- name: Install dbeaver key
+  apt_key:
+    url: https://dbeaver.io/debs/dbeaver.gpg.key
+    state: present
+  become: yes
+
+
+- name: Install dbeaver repo
+  apt_repository:
+    repo: deb https://dbeaver.io/debs/dbeaver-ce /
+    state: present
+    update_cache: yes
+  become: yes
+
+
+- name: Install dbeaver
+  apt:
     name: dbeaver-ce
     state: present
   become: yes
+
+
+# - name: install dbeaver
+#   snap:
+#     name: dbeaver-ce
+#     state: present
+#   become: yes
