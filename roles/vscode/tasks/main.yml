@@ -8,7 +8,7 @@
 
 - name: Install vscode repo
   apt_repository:
-    repo: deb https://packages.microsoft.com/repos/code stable main
+    repo: deb [arch=amd64] https://packages.microsoft.com/repos/code stable main
     state: present
     update_cache: yes
   become: yes
