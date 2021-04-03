@@ -1,10 +1,32 @@
 ---
-- name: install vscode
-  snap:
-    name: code
-    classic: true
+- name: Install vscode key
+  apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
     state: present
-  become: true
+  become: yes
+
+
+- name: Install vscode repo
+  apt_repository:
+    repo: deb https://packages.microsoft.com/repos/code stable main
+    state: present
+    update_cache: yes
+  become: yes
+
+
+- name: Install code
+  apt:
+    name: code
+    state: present
+  become: yes
+
+
+# - name: install vscode
+#   snap:
+#     name: code
+#     classic: true
+#     state: present
+#   become: true
 
 
 - name: install code extensions
