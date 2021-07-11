@@ -1,17 +1,16 @@
 ---
 gnome_extension_ids:
-  # - 19   # user themes
-  # - 2    # Flippery move clock
-  # - 495  # TopIcons
-  # - 744  # hide activities button
-  #- 442  # dropdown terminal
+  # - 3780 # ddterm  # - 744  # hide activities button
   - 1160 # dash to panel
   - 1230 # Gnome Email Notifications
-  - 1236 # NoAnnoyance
+  - 1262 # Bing Wallpaper
+  - 1301 # Ubuntu Appearance
   - 1319 # gsconnect
-  # - 1465 # desktop icons
+  - 19   # user themes
+  - 234  # Steal My Focus (remove 'Windows is ready')
+  - 3628 # ArcMenu
+  - 3919 # Onedrive
   - 648  # bitcoin market
-  # - 755  # Hibernate Status Button
   - 779  # Clipboard indicator
   - 800  # remove dropdown arrows
   - 905  # refresh wifi networks
