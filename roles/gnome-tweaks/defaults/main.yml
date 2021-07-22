@@ -2,9 +2,9 @@
 gnome_extension_ids:
   # - 3780 # ddterm  # - 744  # hide activities button
   - 1160 # dash to panel
-  - 1230 # Gnome Email Notifications
-  - 1262 # Bing Wallpaper
-  - 1301 # Ubuntu Appearance
+  # - 1230 # Gnome Email Notifications
+  # - 1262 # Bing Wallpaper
+  # - 1301 # Ubuntu Appearance
   - 1319 # gsconnect
   - 19   # user themes
   - 234  # Steal My Focus (remove 'Windows is ready')
@@ -13,5 +13,5 @@ gnome_extension_ids:
   - 648  # bitcoin market
   - 779  # Clipboard indicator
   - 800  # remove dropdown arrows
-  - 905  # refresh wifi networks
+  #- 905  # refresh wifi networks
   - 97   # Coverflow Alt-Tab
