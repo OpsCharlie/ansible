@@ -11,7 +11,7 @@
 - name: create symlink fd
   file:
     src: /usr/bin/fdfind
-    dest: /usr/local/bin/find
+    dest: '{{ home }}/.local/bin/fd'
     state: link
 
 
