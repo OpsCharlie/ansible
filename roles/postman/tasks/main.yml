@@ -1,21 +1,21 @@
 ---
-- name: Add postman repo
-  apt_repository:
-    repo: 'ppa:tiagohillebrandt/postman'
-    state: present
-    update_cache: yes
-  become: yes
-
-
-- name: Install postman
-  apt:
-    name: postname
-    state: present
-  become: yes
-
-
-# - name: install postman
-#   snap:
-#     name: postman
+# - name: Add postman repo
+#   apt_repository:
+#     repo: 'ppa:tiagohillebrandt/postman'
+#     state: present
+#     update_cache: yes
 #   become: yes
+#
+#
+# - name: Install postman
+#   apt:
+#     name: postname
+#     state: present
+#   become: yes
+
+
+- name: install postman
+  snap:
+    name: postman
+  become: yes
 
