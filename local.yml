@@ -6,7 +6,7 @@
 
   vars:
     - home: '{{ ansible_user_dir }}'
-    - cloudstorage: '{{ home }}/Documents/OneDrive'
+    - cloudstorage: '{{ home }}/Documents/Dropbox'
     - packaging_ubuntu_extras_repository: false
     - packaging_ubuntu_partner_repository: true
     - packaging_ubuntu_multiverse_repository: true
@@ -17,8 +17,7 @@
     # - ipv6           # disable ipv6 and extras
     # - grub2
 
-    ## - dropbox
-    # - onedrive
+    # - dropbox
     # - encfs
     # - nemo
     # - bash
@@ -26,11 +25,10 @@
     # - fzf
     # - vim
     # - tmux
+    # - onedrive
     # - evolution
     # - zim
     # - java
-    # - virtualbox
-    # - vagrant
     # - pac
     # - ssh
     # - chrome
@@ -43,10 +41,10 @@
     # - keepassxc
     # - fonts
     # - httpstat
+    # - apport
 
     #### extra software
     ## - openxenmanager
-    ## - tlp     # power manager
     ## - timeshift
     ## - shutter
     ## - rambox
@@ -56,12 +54,15 @@
     ## - scripts     # tools and zabbix notification
     ## - beekeeperstudio
     ##- peek        # gif recorder
+    ## - virtualbox
+    ## - vagrant
+    ## - bingwall
+    ## - ppa-manager
+    # - tlp     # power manager
     # - translate
     # - filezilla
     # - vscode
     # - dbeaver
-    # - bingwall
-    # - ppa-manager
     # - libreoffice
     # - office
     # - zeal

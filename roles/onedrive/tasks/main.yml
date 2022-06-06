@@ -1,9 +1,9 @@
 ---
-- name: add onedrive ppa repo
-  apt_repository:
-    repo: ppa:yann1ck/onedrive
-    state: present
-  become: true
+#- name: add onedrive ppa repo
+#  apt_repository:
+#    repo: ppa:yann1ck/onedrive
+#    state: present
+#  become: true
 
 
 - name: install onedrive
@@ -16,7 +16,7 @@
 - name: install config
   copy:
     src: '{{ cloudstorage }}/carl/.config/onedrive/config'
-    dest: '{{ home }}/.config/onedrive'
+    dest: '{{ home }}/.config/onedrive/config'
 
 
 ## compile from source

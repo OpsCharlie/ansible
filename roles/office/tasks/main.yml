@@ -8,20 +8,20 @@
 
 - name: add softmaker repo
   apt_repository:
-    repo: 'deb http://shop.softmaker.com/repo/apt wheezy non-free'
+    repo: 'deb http://shop.softmaker.com/repo/apt stable non-free'
     state: present
     update_cache: yes
   become: yes
 
 - name: install softmaker
   apt:
-    name: softmaker-freeoffice-2018
+    name: softmaker-freeoffice-2021
     state: latest
   become: yes
 
 - name: install freeoffice license
   copy:
-    dest: /etc/SoftMaker/offree2018.lic
+    dest: /etc/SoftMaker/offree2021.lic
     src: '{{ cloudstorage }}/carl/etc/SoftMaker/offree2018.lic'
 
 

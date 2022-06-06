@@ -1,45 +1,54 @@
 ---
 - name: install git
-  apt:
+  ansible.builtin.apt:
     name:
       - git
       - fd-find
+      - tig
     state: present
-  become: yes
+  become: true
 
+- name: create {{ home }}/apps directory
+  ansible.builtin.file:
+    path: '{{ home }}/.local/bin'
+    state: directory
+    mode: "0755"
 
 - name: create symlink fd
-  file:
+  ansible.builtin.file:
     src: /usr/bin/fdfind
     dest: '{{ home }}/.local/bin/fd'
     state: link
 
 
 - name: create {{ home }}/apps directory
-  file:
+  ansible.builtin.file:
     path: '{{ home }}/apps'
     state: directory
+    mode: "0755"
 
 
 - name: download bashrc from git
-  git:
+  ansible.builtin.git:
     repo: "https://github.com/OpsCharlie/bash.git"
     dest: '{{ home }}/apps/bash'
   register: git
 
 
 - name: deploy bash config
-  command: 'bash {{ home }}/apps/bash/__deploy.sh'
+  ansible.builtin.command: 'bash {{ home }}/apps/bash/__deploy.sh'
+  changed_when: false
   when: git.changed
 
 
 - name: copy bash theme
-  copy:
+  ansible.builtin.copy:
     src: base16-railscasts.dark.sh
     dest: '{{ home }}/Downloads'
+    mode: "0644"
   register: theme
 
 
 - name: run bash theme
-  shell: 'bash {{ home }}/Downloads/base16-railscasts.dark.sh'
+  ansible.builtin.command: 'bash {{ home }}/Downloads/base16-railscasts.dark.sh'
   when: theme.changed

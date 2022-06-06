@@ -10,3 +10,10 @@
       - tlp-rdw
     state: latest
   become: yes
+
+
+- name: enable and start
+  service:
+    name: tlp
+    enabled: true
+    state: started

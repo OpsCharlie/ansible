@@ -1,13 +1,13 @@
 ---
 - name: install aptitude
-  apt:
+  ansible.builtin.apt:
    name: aptitude
    state: present
   become: yes
 
 
 - name: configure apt-updates
-  template:
+  ansible.builtin.template:
    src: 'apt-updates.j2'
    dest: '/usr/local/bin/apt-updates'
    mode: '0755'
@@ -15,9 +15,8 @@
 
 
 - name: install cron
-  cron:
+  ansible.builtin.cron:
    name: 'Automatic Updates'
    special_time: reboot
    job: 'sleep 300 && /usr/local/bin/apt-updates'
   become: yes
-

@@ -5,8 +5,8 @@
 #     state: present
 #   become: true
 
-- name: install test script for 20.10
-  shell: curl -1sLf 'https://dl.cloudsmith.io/public/asbru-cm/snapshots/cfg/setup/bash.deb.sh' | bash
+- name: install test script
+  shell: curl -1sLf 'https://dl.cloudsmith.io/public/asbru-cm/release/cfg/setup/bash.deb.sh' | bash
   args:
     creates: /usr/bin/asbru-cm
   become: true
@@ -57,7 +57,7 @@
 
 
 - file:
-    src: '{{ home }}/Documents/OneDrive/carl/.config/asbru/asbru{{ item }}'
+    src: '{{ cloudstorage }}/carl/.config/asbru/asbru{{ item }}'
     dest: '{{ home }}/.config/asbru/asbru{{ item }}'
     state: link
   with_items:
