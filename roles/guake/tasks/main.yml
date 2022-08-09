@@ -1,15 +1,16 @@
 ---
 - name: install guake
-  apt:
+  ansible.builtin.apt:
     name: guake
     state: present
-  become: yes
+  become: true
 
 - name: copy config
-  copy:
+  ansible.builtin.copy:
     src: guake.conf
     dest: /tmp/guake.conf
+    mode: '0644'
 
 - name: import conf
-  shell: dconf load /apps/guake/ < /tmp/guake.conf
-
+  ansible.builtin.shell: dconf load /apps/guake/ < /tmp/guake.conf
+  changed_when: false

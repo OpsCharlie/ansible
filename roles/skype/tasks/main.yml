@@ -2,7 +2,7 @@
 - name: install skype
   snap:
     name: skype
-    classic: yes
+    classic: true
     state: present
-  become: yes
+  become: true
 

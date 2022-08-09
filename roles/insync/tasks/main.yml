@@ -3,15 +3,15 @@
     keyserver: keyserver.ubuntu.com
     id: ACCAF35C
     state: present
-  become: yes
+  become: true
 
 - apt_repository:
     repo: 'deb http://apt.insynchq.com/ubuntu {{ ansible_distribution_release }} non-free contrib'
     state: present
-  become: yes
+  become: true
 
 - apt:
     name: insync
     state: latest
-    update_cache: yes
-  become: yes
+    update_cache: true
+  become: true

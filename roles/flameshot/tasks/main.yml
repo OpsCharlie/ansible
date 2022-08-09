@@ -1,12 +1,17 @@
-- apt:
+- name: install flameshot
+  ansible.builtin.apt:
     name: flameshot
     state: present
-  become: yes
+  become: true
+
 
 - name: copy config
-  copy:
+  ansible.builtin.copy:
     src: flameshot.conf
     dest: /tmp/flameshot.conf
+    mode: '0644'
+
 
 - name: import conf
-  shell: dconf load /org/gnome/settings-daemon/plugins/media-keys/ < /tmp/flameshot.conf
+  ansible.builtin.shell: dconf load /org/gnome/settings-daemon/plugins/media-keys/ < /tmp/flameshot.conf
+  changed_when: false

@@ -1,6 +1,6 @@
 ---
 - name: update 40_custom
-  blockinfile:
+  ansible.builtin.blockinfile:
     path: /etc/grub.d/40_custom
     marker: "# {mark} grub ANSIBLE MANAGED BLOCK"
     state: present
@@ -12,7 +12,7 @@
 
 
 - name: add --unrestricted
-  replace:
+  ansible.builtin.replace:
     path: /etc/grub.d/10_linux
     regexp: '^CLASS="--class gnu-linux --class gnu --class os"'
     replace: 'CLASS="--class gnu-linux --class gnu --class os --unrestricted"'
@@ -21,6 +21,6 @@
 
 
 - name: update grub
-  shell: update-grub2
+  ansible.builtin.shell: update-grub2
   become: true
   when: custom.changed or linux.changed

@@ -1,28 +1,28 @@
 ---
 - name: Install dbeaver key
-  apt_key:
+  ansible.builtin.apt_key:
     url: https://dbeaver.io/debs/dbeaver.gpg.key
     state: present
-  become: yes
+  become: true
 
 
 - name: Install dbeaver repo
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: deb https://dbeaver.io/debs/dbeaver-ce /
     state: present
-    update_cache: yes
-  become: yes
+    update_cache: true
+  become: true
 
 
 - name: Install dbeaver
-  apt:
+  ansible.builtin.apt:
     name: dbeaver-ce
     state: present
-  become: yes
+  become: true
 
 
 # - name: install dbeaver
 #   snap:
 #     name: dbeaver-ce
 #     state: present
-#   become: yes
+#   become: true

@@ -1,12 +1,12 @@
 ---
 - name: install encfs
-  apt:
+  ansible.builtin.apt:
     name: encfs
   become: true
 
 
 - name: Download MolchEncfsManager
-  get_url:
+  ansible.builtin.get_url:
     url: https://moritzmolch.com/apps/files/mencfsm/19.06/MolchEncfsManager.x86_64
     dest: /usr/local/bin/MolchEncfsManager
     mode: '0775'
@@ -14,10 +14,12 @@
 
 
 - name: install configuration
-  copy:
+  ansible.builtin.copy:
     src: 'Molch Encfs Manager.conf'
     dest: '{{ home }}/.config/Molch Encfs Manager.conf'
+    mode: '0644'
 
 
-- pause:
+- name: pause
+  ansible.builtin.pause:
     prompt: "Start EncFS GUI  Directory {{ home }}/Dropbox/Notebooks  ; Mount {{ home }}/Notebooks"

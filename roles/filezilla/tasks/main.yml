@@ -1,25 +1,26 @@
 ---
 - name: install filezilla
-  apt:
+  ansible.builtin.apt:
     name: "filezilla"
     state: present
-  become: yes
+  become: true
 
 
 - name: create .filezilla dir
-  file:
+  ansible.builtin.file:
     path: '{{ home }}/.filezilla'
     state: directory
+    mode: '0755'
 
 
 - name: remove sitemanager
-  file:
+  ansible.builtin.file:
     path: '{{ home }}/.filezilla/sitemanager.xml'
     state: absent
 
 
 - name: install sitemanager
-  file:
+  ansible.builtin.file:
     src: '{{ cloudstorage }}/carl/.filezilla/sitemanager.xml'
     dest: '{{ home }}/.filezilla/sitemanager.xml'
     state: link

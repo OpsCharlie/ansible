@@ -1,10 +1,10 @@
 ---
 - name: Add repositories peek
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: ppa:peek-developers/stable
-  become: yes
+  become: true
 
-- apt:
+- name: install
+  ansible.builtin.apt:
     name: peek
-    state: latest
-  become: yes
+  become: true

@@ -1,6 +1,5 @@
 ---
 - name: install bleachbit
-  apt:
+  ansible.builtin.apt:
     name: bleachbit
-    state: latest
-  become: yes
+  become: true

@@ -1,24 +1,24 @@
 ---
 - name: Install vscode key
-  apt_key:
+  ansible.builtin.apt_key:
     url: https://packages.microsoft.com/keys/microsoft.asc
     state: present
-  become: yes
+  become: true
 
 
 - name: Install vscode repo
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: deb [arch=amd64] https://packages.microsoft.com/repos/code stable main
     state: present
-    update_cache: yes
-  become: yes
+    update_cache: true
+  become: true
 
 
 - name: Install code
-  apt:
+  ansible.builtin.apt:
     name: code
     state: present
-  become: yes
+  become: true
 
 
 # - name: install vscode
@@ -30,7 +30,7 @@
 
 
 - name: install code extensions
-  shell: 'code --install-extension {{ item }}'
+  ansible.builtin.shell: 'code --install-extension {{ item }}'
   loop: '{{ vs_extensions }}'
   register: vs_out
   changed_when: '"already installed" not in vs_out.stdout'

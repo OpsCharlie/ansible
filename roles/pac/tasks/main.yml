@@ -6,44 +6,48 @@
 #   become: true
 
 - name: install test script
-  shell: curl -1sLf 'https://dl.cloudsmith.io/public/asbru-cm/release/cfg/setup/bash.deb.sh' | bash
+  ansible.builtin.shell: curl -1sLf 'https://dl.cloudsmith.io/public/asbru-cm/release/cfg/setup/bash.deb.sh' | bash
   args:
     creates: /usr/bin/asbru-cm
   become: true
 
 - name: install asbru-cm latest version
-  apt:
+  ansible.builtin.apt:
     name: asbru-cm
     state: latest
   become: true
 
 
 - name: copy icon
-  copy:
+  ansible.builtin.copy:
     src: server_white.svg
     dest: /usr/share/icons/hicolor/scalable/apps/server_white.svg
+    mode: '0644'
   become: true
 
 
 - name: change icon in desktop file
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /usr/share/applications/asbru-cm.desktop
     regexp: '^Icon=.*'
     line: 'Icon=/usr/share/icons/hicolor/scalable/apps/server_white.svg'
   become: true
 
 
-- stat:
+- name: stat
+  ansible.builtin.stat:
     path: '{{ home }}/.config/pac'
   register: pacdir
 
 
-- pause:
+- name: pause
+  ansible.builtin.pause:
     prompt: "Start PAC and close it again."
   when: not pacdir.stat.exists
 
 
-- file:
+- name: remove files
+  ansible.builtin.file:
     dest: '{{ home }}/.config/asbru/{{ item }}'
     state: absent
   with_items:
@@ -56,7 +60,8 @@
     - asbru_stats.nfreeze
 
 
-- file:
+- name: copy files
+  ansible.builtin.file:
     src: '{{ cloudstorage }}/carl/.config/asbru/asbru{{ item }}'
     dest: '{{ home }}/.config/asbru/asbru{{ item }}'
     state: link

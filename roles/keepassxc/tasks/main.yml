@@ -1,11 +1,11 @@
 ---
 - name: keepassxc
-  apt:
+  ansible.builtin.apt:
     name: keepassxc
     state: present
-  become: yes
+  become: true
 
 - name: copy keepass config
-  synchronize:
+  ansible.posix.synchronize:
     src: '{{ cloudstorage }}/carl/.config/keepassxc/'
     dest: '{{ home }}/.config/keepassxc/'

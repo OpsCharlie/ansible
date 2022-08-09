@@ -1,19 +1,22 @@
 ---
-- apt:
+- name: install
+  ansible.builtin.apt:
     name:
       - htop
       - powertop
       - ncdu
     state: present
-  become: yes
+  become: true
 
-- synchronize:
+- name: synchronize
+  synchronize:
     src: '{{ cloudstorage }}/carl/.config/htop'
     dest: '{{ home }}/.config/htop'
+    mode: '0644'
 
 - name: disable apport
-  service:
+  ansible.builtin.service:
     name: apport
     state: stopped
-    enabled: no
-  become: yes
+    enabled: false
+  become: true

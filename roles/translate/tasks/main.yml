@@ -1,7 +1,7 @@
 ---
 # https://github.com/soimort/translate-shell
 - name: get translate
-  get_url:
+  ansible.builtin.get_url:
     dest: '{{ home }}/.local/bin/trans'
     url: 'https://git.io/trans'
     mode: '0775'

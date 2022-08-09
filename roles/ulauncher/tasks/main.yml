@@ -1,14 +1,12 @@
 ---
 - name: Add repositories ulauncher
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: ppa:agornostal/ulauncher
-  become: yes
+  become: true
 
-- apt:
+- name: install
+  ansible.builtin.apt:
     name:
       - ulauncher
     state: latest
-  become: yes
-
-
-
+  become: true

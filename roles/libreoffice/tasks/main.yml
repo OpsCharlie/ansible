@@ -1,11 +1,12 @@
 ---
 - name: Add repositories libreoffice
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: ppa:libreoffice/ppa
-  become: yes
+  become: true
 
-- apt:
+- name: install
+  ansible.builtin.apt:
     name:
       - libreoffice
     state: latest
-  become: yes
+  become: true

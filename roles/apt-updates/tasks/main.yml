@@ -3,7 +3,7 @@
   ansible.builtin.apt:
    name: aptitude
    state: present
-  become: yes
+  become: true
 
 
 - name: configure apt-updates
@@ -11,7 +11,7 @@
    src: 'apt-updates.j2'
    dest: '/usr/local/bin/apt-updates'
    mode: '0755'
-  become: yes
+  become: true
 
 
 - name: install cron
@@ -19,4 +19,4 @@
    name: 'Automatic Updates'
    special_time: reboot
    job: 'sleep 300 && /usr/local/bin/apt-updates'
-  become: yes
+  become: true

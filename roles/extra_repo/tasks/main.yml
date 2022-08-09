@@ -1,26 +1,26 @@
 ---
 - name: Add extra repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: "{{ item }}"
-  become: yes
+  become: true
   with_items:
     - "deb http://extras.ubuntu.com/ubuntu {{ ansible_distribution_release }} main"
     - "deb-src http://extras.ubuntu.com/ubuntu {{ ansible_distribution_release }} main"
   when: packaging_ubuntu_extras_repository
 
 - name: Add partner repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: "{{ item }}"
-  become: yes
+  become: true
   with_items:
     - "deb http://archive.canonical.com/ubuntu {{ ansible_distribution_release }} partner"
     - "deb-src http://archive.canonical.com/ubuntu {{ ansible_distribution_release }} partner"
   when: packaging_ubuntu_partner_repository
 
 - name: Add multiverse repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: "{{ item }}"
-  become: yes
+  become: true
   with_items:
     - "deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} multiverse"
     - "deb-src http://archive.ubuntu.com/ubuntu/  {{ ansible_distribution_release }} multiverse"
@@ -29,15 +29,15 @@
   when: packaging_ubuntu_multiverse_repository
 
 - name: apt get update
-  apt:
-    update_cache: yes
-  become: yes
+  ansible.builtin.apt:
+    update_cache: true
+  become: true
 
-- apt:
+- name: install dependancies
+  ansible.builtin.apt:
     name:
       - python3-gpg   #  - python_gpme
       - git
       - aptitude
     state: present
-  become: yes
-
+  become: true

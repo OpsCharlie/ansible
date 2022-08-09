@@ -3,4 +3,4 @@
   snap:
     name:
       - rambox
-  become: yes
+  become: true

@@ -1,6 +1,6 @@
 ---
 - name: install network manager extentsions
-  apt:
+  ansible.builtin.apt:
     name:
       - vpnc
       - network-manager-vpnc
@@ -10,4 +10,4 @@
       - network-manager-openvpn-gnome     #import config from {{ cloudstorage }}/carl/openvpn
       - openvpn-systemd-resolved
     state: present
-  become: yes
+  become: true

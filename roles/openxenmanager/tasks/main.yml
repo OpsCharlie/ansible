@@ -1,6 +1,6 @@
 ---
 - name: install dependancies
-  apt:
+  ansible.builtin.apt:
     name:
       - python-gtk2
       - glade
@@ -9,25 +9,26 @@
       - python-configobj
       - python-setuptools
     state: present
-  become: yes
+  become: true
 
 - name: git clone
-  git:
+  ansible.builtin.git:
     repo: 'https://github.com/OpenXenManager/openxenmanager.git'
     dest: /opt/openxenmanager
-  become: yes
+  become: true
 
 - name: setup
-  shell: 'cd /opt/openxenmanager && python setup.py install'
-  become: yes
+  ansible.builtin.shell: 'cd /opt/openxenmanager && python setup.py install'
+  become: true
 
 - name: create icon
-  copy:
+  ansible.builtin.copy:
     src: AppIcon.ico
     dest: /opt/openxenmanager/AppIcon.ico
-  become: yes
+  become: true
 
 - name: create desktop file
-  copy:
+  ansible.builtin.copy:
     src: openxenmanager.desktop
     dest: '{{ home }}/.local/share/applications/openxenmanager.desktop'
+    mode: '0644'

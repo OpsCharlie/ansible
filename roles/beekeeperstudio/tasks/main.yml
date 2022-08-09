@@ -1,20 +1,20 @@
 ---
 - name: add beekeeper key
-  apt_key:
+  ansible.builtin.apt_key:
     url: https://bintray.com/user/downloadSubjectPublicKey?username=bintray
     state: present
-  become: yes
+  become: true
 
 
 - name: add repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: "deb https://dl.bintray.com/beekeeper-studio/releases disco main"
     state: present
-  become: yes
+  become: true
 
 
 - name: install beekeeper
-  apt:
+  ansible.builtin.apt:
     name: beekeeper-studio
     state: present
-  become: yes
+  become: true

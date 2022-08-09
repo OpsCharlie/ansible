@@ -1,0 +1,4 @@
+---
+- name: reload fc-cache
+  ansible.builtin.shell: fc-cache -f /usr/share/fonts/truetype/msttcorefonts/
+  when: fonts.changed

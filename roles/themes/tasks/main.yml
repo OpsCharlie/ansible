@@ -2,12 +2,13 @@
 - name: Add repositories themes
   apt_repository:
     repo: 'ppa:ravefinity-project/ppa'
-  become: yes
+  become: true
 
-- apt:
-    name: '{{ item }}'
+- name: install
+  apt:
+    name:
       - vibrancy-colors
       - vivacious-colors
     state: latest
-  become: yes
+  become: true
 

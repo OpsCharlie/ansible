@@ -1,32 +1,33 @@
 ---
 - name: install extra fonts
-  apt:
+  ansible.builtin.apt:
     name:
       - libfreetype6
       - libfreetype6-dev
       - libfontconfig
     state: present
-  become: yes
+  become: true
 
 
 - name: Accept License
-  shell: 'echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections'
+  ansible.builtin.shell: 'echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections'
   changed_when: false
-  become: yes
+  become: true
 
 
 - name: install ttf mscorefonts
-  apt:
+  ansible.builtin.apt:
     name: ttf-mscorefonts-installer
     state: present
-  become: yes
+  become: true
 
 
 - name: install Segoe UI font
-  get_url:
+  ansible.builtin.get_url:
     dest: '/usr/share/fonts/truetype/msttcorefonts/{{ item }}'
     url: 'https://github.com/martinring/clide/blob/master/doc/fonts/{{ item }}?raw=true'
-  become: yes
+    mode: '0644'
+  become: true
   loop:
     - segoeui.ttf
     - segoeuib.ttf
@@ -38,9 +39,4 @@
     - seguisli.ttf
     - seguisb.ttf
     - seguisbi.ttf
-  register: fonts
-
-
-- name: reload fc-cache
-  shell: fc-cache -f /usr/share/fonts/truetype/msttcorefonts/
-  when: fonts.changed
+  notify: "reload fc-cache"

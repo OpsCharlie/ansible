@@ -1,12 +1,13 @@
 ---
 # - apt: deb=https://github.com/PowerShell/PowerShell/releases/download/v6.1.0-preview.3/powershell-preview_6.1.0-preview.3-1.ubuntu.18.04_amd64.deb state=present
-  # become: yes
+  # become: true
 
 - name: install powershell snap - pwsh
-  command: snap install powershell --classic
-  become: yes
+  ansible.builtin.command: snap install powershell --classic
+  changed_when: false
+  become: true
 
 - name: install powershell snap - pwsh-preview
-  command: snap install powershell-preview --classic
-  become: yes
-
+  ansible.builtin.command: snap install powershell-preview --classic
+  changed_when: false
+  become: true

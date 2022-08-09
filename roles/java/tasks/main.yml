@@ -6,5 +6,5 @@
       - default-jdk
       # - icedtea-plugin
     state: latest
-  become: yes
+  become: true
 

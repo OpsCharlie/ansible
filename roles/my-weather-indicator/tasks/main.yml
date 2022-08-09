@@ -1,13 +1,14 @@
 ---
 - name: Add repositories my-weather-indicator
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: ppa:atareao/atareao
-    update_cache: yes
-  become: yes
+    update_cache: true
+  become: true
 
-- apt:
+- name: install
+  ansible.builtin.apt:
     name:
       - my-weather-indicator
     state: latest
-  become: yes
+  become: true
 

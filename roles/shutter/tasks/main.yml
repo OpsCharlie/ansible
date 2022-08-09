@@ -1,12 +1,14 @@
 ---
-- apt_repository:
+- name: add repository
+  ansible.builtin.apt_repository:
     repo: ppa:linuxuprising/shutter
     state: present
-  become: yes
+  become: true
 
-- apt:
+- name: install
+  ansible.builtin.apt:
     name:
       - shutter
       - libimage-exiftool-perl
     state: present
-  become: yes
+  become: true

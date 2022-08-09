@@ -1,23 +1,25 @@
 ---
-- apt:
+- name: install
+  ansible.builtin.apt:
     name:
       - tmux
       - xsel
     state: present
-  become: yes
+  become: true
 
 
 - name: create {{ home }}/apps directory
-  file:
+  ansible.builtin.file:
     path: '{{ home }}/apps'
     state: directory
+    mode: '0755'
 
 
 - name: download tmuxrc from git
-  git:
+  ansible.builtin.git:
     repo: "https://github.com/OpsCharlie/tmux.git"
     dest: '{{ home }}/apps/tmux'
 
 - name: deploy vim config
-  shell: "{{ home }}/apps/tmux/__deploy.sh"
-
+  ansible.builtin.shell: "{{ home }}/apps/tmux/__deploy.sh"
+  changed_when: false

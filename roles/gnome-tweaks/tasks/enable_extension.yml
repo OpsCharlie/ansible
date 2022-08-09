@@ -1,3 +1,4 @@
 ---
 - name: enable gnome shell extension - {{ gnome_extension_info.name }}
-  command: gnome-extensions enable {{ gnome_extension_info.uuid }}
+  ansible.builtin.command: gnome-extensions enable {{ gnome_extension_info.uuid }}
+  changed_when: false

@@ -1,10 +1,10 @@
 ---
 - name: gather package facts
-  package_facts:
+  ansible.builtin.package_facts:
     manager: auto
 
 - name: install tools
-  apt:
+  ansible.builtin.apt:
     name:
     # - inxi
     # - zenmap
@@ -18,19 +18,20 @@
     - iperf
     - nload
     - iptraf
-    - nethogs   #bandwidth used by individual processes
+    - nethogs   # bandwidth used by individual processes
     - bmon
     - fping
     - jq
     - whois
     - geoip-bin
-    state: latest
-  become: yes
+    state: present
+  become: true
 
 
-- snap:
+- name: install gping
+  snap:
     name: gping
-  become: yes
+  become: true
 
 
 - shell: 'snap connections gping'
@@ -40,7 +41,7 @@
 
 - shell: 'snap connect gping:network-observe'
   when: "'network-observe' not in connections.stdout"
-  become: yes
+  become: true
 
 # zenmap
 # - name: install zenmap debs
@@ -50,5 +51,4 @@
 #     - "http://mirrors.kernel.org/ubuntu/pool/universe/p/pygtk/python-gtk2_2.24.0-6_amd64.deb"
 #     - "http://mirrors.kernel.org/ubuntu/pool/universe/n/nmap/zenmap_7.80+dfsg1-1build1_all.deb"
 #   when: '"zenmap" not in ansible_facts.packages'
-#   become: yes
-
+#   become: true

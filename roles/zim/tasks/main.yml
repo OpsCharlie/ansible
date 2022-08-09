@@ -1,36 +1,40 @@
 ---
 # - apt_repository:
 #     repo: "ppa:jaap.karssenberg/zim"
-#     update_cache: yes
-#   become: yes
+#     update_cache: true
+#   become: true
 
-- apt:
+- name: install
+  ansible.builtin.apt:
     name:
       - zim
       # - python-gtksourceview2
     state: present
-  become: yes
+  become: true
 
 
-- file:
+- name: files
+  ansible.builtin.file:
     src: '{{ cloudstorage }}/carl/.config/zim'
     dest: '{{ home }}/.config/zim'
     state: link
     force: true
 
-- replace:
+- name: set mono font
+  ansible.builtin.replace:
     path: /usr/lib/python3/dist-packages/zim/plugins/sourceview.py
     regexp: "'monospace'"
     replace: "'monospace 9'"
-    backup: yes
-  become: yes
+    backup: true
+  become: true
 
-- copy:
+- name: copy
+  ansible.builtin.copy:
     src: '{{ item }}'
     dest: '/usr/share/zim/pixmaps/{{ item }}'
+    mode: '0644'
   with_items:
-      - config_icon.png
-      - icon_bash.png
-      - terminal_icon.png
-  become: yes
-
+    - config_icon.png
+    - icon_bash.png
+    - terminal_icon.png
+  become: true

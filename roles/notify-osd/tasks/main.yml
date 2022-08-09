@@ -1,12 +1,13 @@
 ---
 - name: Add repositories notify-osd
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: ppa:leolik/leolik
-  become: yes
+  become: true
 
-- apt:
+- name: install
+  ansible.builtin.apt:
     name:
-    - notify-osd
-    - notifyosdconfig
-    state: latest
-  become: yes
+      - notify-osd
+      - notifyosdconfig
+    state: present
+  become: true

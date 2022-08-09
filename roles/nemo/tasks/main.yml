@@ -1,16 +1,16 @@
 ---
 # ppa not availble yet
-#- name: Add repositories
-#  apt_repository:
-#   repo: '{{ ppa }}'
-#  loop:
-#   - 'ppa:embrosyn/cinnamon'
-#   # - 'ppa:nilarimogard/webupd8'
-#  loop_control:
-#    loop_var: ppa
+# - name: Add repositories
+#    apt_repository:
+#     repo: '{{ ppa }}'
+#    loop:
+#     - 'ppa:embrosyn/cinnamon'
+#     # - 'ppa:nilarimogard/webupd8'
+#    loop_control:
+#      loop_var: ppa
 
 - name: install nemo and extras
-  apt:
+  ansible.builtin.apt:
     name:
       - nemo
       - nemo-data
@@ -33,7 +33,7 @@
       - meld
       # - libxreaderdocument3
       # - libxreaderview3
-  become: yes
+  become: true
 
 # disable Nautilus from handling the desktop icons
 # and set Nemo as the default file manager
@@ -49,5 +49,3 @@
   # with_items:
   # - "gsettings set org.gnome.desktop.background show-desktop-icons true"
   # - "xdg-mime default nautilus.desktop inode/directory application/x-gnome-saved-search"
-
-

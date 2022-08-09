@@ -1,13 +1,13 @@
 ---
 - name: add paa firefox-next
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: ppa:mozillateam/firefox-next
     state: present
-  become: yes
+  become: true
 
 
 - name: install firefox
-  package:
+  ansible.builtin.package:
     name: firefox
     state: latest
-  become: yes
+  become: true

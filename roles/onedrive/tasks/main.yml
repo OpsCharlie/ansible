@@ -1,22 +1,23 @@
 ---
-#- name: add onedrive ppa repo
-#  apt_repository:
-#    repo: ppa:yann1ck/onedrive
-#    state: present
-#  become: true
+# - name: add onedrive ppa repo
+#   apt_repository:
+#     repo: ppa:yann1ck/onedrive
+#     state: present
+#   become: true
 
 
 - name: install onedrive
-  apt:
+  ansible.builtin.apt:
     name: onedrive
     state: present
   become: true
 
 
 - name: install config
-  copy:
+  ansible.builtin.copy:
     src: '{{ cloudstorage }}/carl/.config/onedrive/config'
     dest: '{{ home }}/.config/onedrive/config'
+    mode: '0644'
 
 
 ## compile from source

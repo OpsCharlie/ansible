@@ -1,8 +1,7 @@
 ---
-
 - name: install ansible-lint
-  pip:
+  ansible.builtin.pip:
     name:
       - ansible-tools
       - ansible-lint
-  become: yes
+  become: true

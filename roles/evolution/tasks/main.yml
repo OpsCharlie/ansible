@@ -1,6 +1,6 @@
 ---
 - name: install evolution
-  apt:
+  ansible.builtin.apt:
     name:
       - evolution
       - evolution-plugins

@@ -1,37 +1,31 @@
 ---
 - name: "apt | ensure Google linux signing key present"
-  apt_key:
+  ansible.builtin.apt_key:
     url: https://dl-ssl.google.com/linux/linux_signing_key.pub
     state: present
-  become: yes
+  become: true
 
 - name: "apt | ensure previous repository for Google Chrome is absent, as Google removed the x86 distribution"
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: 'deb http://dl.google.com/linux/chrome/deb/ stable main'
     state: absent
-  become: yes
+  become: true
 
 - name: "apt | ensure Google chrome repo present, using a workaround for missing x86 distribution"
-  copy:
+  ansible.builtin.copy:
     content: "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main"
     dest: "/etc/apt/sources.list.d/google-chrome.list"
   register: google_repo
-  become: yes
+  become: true
 
 - name: "apt | update cache"
-  apt:
-    update_cache: yes
+  ansible.builtin.apt:
+    update_cache: true
   when: google_repo.changed
-  become: yes
+  become: true
 
 - name: "apt | ensure Google chrome present"
-  apt:
+  ansible.builtin.apt:
     name: google-chrome-stable
-    update_cache: yes
-  become: yes
-
-- name: install chrome-gnome-shell extension
-  apt:
-    name: chrome-gnome-shell
-    state: present
-  become: yes
+    update_cache: true
+  become: true

@@ -1,17 +1,19 @@
 ---
-- apt_key:
+- name: key
+  ansible.builtin.apt_key:
     url: 'http://repo.vivaldi.com/stable/linux_signing_key.pub'
     state: present
-  become: yes
+  become: true
 
-- apt_repository:
+- name: repository
+  ansible.builtin.apt_repository:
     repo: 'deb http://repo.vivaldi.com/stable/deb/ stable main'
     state: present
-  become: yes
+  become: true
 
 
-- package:
+- name: install
+  ansible.builtin.package:
     name: vivaldi-stable
     state: present
-  become: yes
-
+  become: true

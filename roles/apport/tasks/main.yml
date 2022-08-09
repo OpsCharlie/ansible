@@ -3,8 +3,8 @@
   ansible.builtin.service:
     name: apport
     state: stopped
-    enabled: no
-  become: yes
+    enabled: false
+  become: true
 
 
 - name: Disable at boot
@@ -12,4 +12,4 @@
     path: /etc/default/apport
     regexp: "^enabled=.*"
     line: "enabled=0"
-  become: yes
+  become: true

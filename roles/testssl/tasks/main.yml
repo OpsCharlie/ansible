@@ -1,17 +1,17 @@
 ---
 - name: create dir
-  file:
+  ansible.builtin.file:
     path: '{{ home }}/apps'
     state: directory
 
 - name: clone repo
-  git:
+  ansible.builtin.git:
     repo: 'https://github.com/drwetter/testssl.sh.git'
     dest: '{{ home }}/apps/testssl'
 
 - name: create link
-  file:
+  ansible.builtin.file:
     src: '{{ home }}/apps/testssl/testssl.sh'
     dest: /usr/local/bin/testssl
     state: link
-  become: yes
+  become: true

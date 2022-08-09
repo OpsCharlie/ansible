@@ -1,10 +1,10 @@
 - name: install scripts
-  copy:
+  ansible.builtin.copy:
     src: '{{ cloudstorage }}/scripts/carl_scripts/{{ item }}'
     dest: '/usr/local/bin/{{ item }}'
     mode: '0775'
-    follow: yes
-  become: yes
+    follow: true
+  become: true
   with_items:
     - convertzim2wiki.sh
     - counter.sh
@@ -25,9 +25,10 @@
     # - zabbix_on.wav
 
 - name: install startup
-  copy:
+  ansible.builtin.copy:
     src: '{{ item }}'
     dest: '{{ home }}/.config/autostart/{{ item }}'
+    mode: '0644'
   with_items:
     - shutter.desktop
     - remotecopy.sh.desktop

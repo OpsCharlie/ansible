@@ -1,14 +1,13 @@
 ---
-#- name: Add repositories flux gui
-#  apt_repository: repo: ppa:nathan-renniewaldock/ppa
-#  become: yes
+# - name: Add repositories flux gui
+#   apt_repository: repo: ppa:nathan-renniewaldock/ppa
+#   become: true
 
-- apt:
+- name: install flux
+  ansible.builtin.apt:
     name: '{{ item }}'
-    state: latest
-  become: yes
+  become: true
   with_items:
-    #- fluxgui
-  - redshift
-  - redshift-gtk
-
+    # - fluxgui
+    - redshift
+    - redshift-gtk
