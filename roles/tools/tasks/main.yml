@@ -3,6 +3,7 @@
   ansible.builtin.apt:
     name:
       - htop
+      - btop
       - powertop
       - ncdu
     state: present
@@ -12,7 +13,6 @@
   synchronize:
     src: '{{ cloudstorage }}/carl/.config/htop'
     dest: '{{ home }}/.config/htop'
-    mode: '0644'
 
 - name: disable apport
   ansible.builtin.service:

@@ -1,15 +1,16 @@
 ---
-- name: install encfs
-  ansible.builtin.apt:
-    name: encfs
+- name: add paa ppa gencfsm
+  ansible.builtin.apt_repository:
+    repo: ppa:gencfsm
+    state: present
   become: true
 
 
-- name: Download MolchEncfsManager
-  ansible.builtin.get_url:
-    url: https://moritzmolch.com/apps/files/mencfsm/19.06/MolchEncfsManager.x86_64
-    dest: /usr/local/bin/MolchEncfsManager
-    mode: '0775'
+- name: install encfs
+  ansible.builtin.apt:
+    name:
+      - encfs
+      - gnome-encfs-manager
   become: true
 
 
@@ -22,4 +23,4 @@
 
 - name: pause
   ansible.builtin.pause:
-    prompt: "Start EncFS GUI  Directory {{ home }}/Dropbox/Notebooks  ; Mount {{ home }}/Notebooks"
+    prompt: "Start EncFS GUI  Directory {{ home }}/Dropbox/Documents  ; Mount {{ home }}/{{ cloudstorage }}"

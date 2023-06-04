@@ -9,6 +9,7 @@
   ansible.builtin.apt_repository:
     repo: 'deb http://repo.vivaldi.com/stable/deb/ stable main'
     state: present
+    filename: vivaldi
   become: true
 
 

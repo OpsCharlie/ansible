@@ -4,4 +4,5 @@
     name:
       - ansible-tools
       - ansible-lint
+    extra_args: "--break-system-packages"
   become: true

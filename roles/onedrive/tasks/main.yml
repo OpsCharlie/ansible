@@ -13,6 +13,12 @@
   become: true
 
 
+- name: Create onedrive dir
+  ansible.builtin.file:
+    path: '{{ cloudstorage }}/carl/.config/onedrive'
+    state: directory
+
+
 - name: install config
   ansible.builtin.copy:
     src: '{{ cloudstorage }}/carl/.config/onedrive/config'

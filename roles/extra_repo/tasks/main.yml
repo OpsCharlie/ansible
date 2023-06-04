@@ -1,39 +1,31 @@
 ---
-- name: Add extra repository
-  ansible.builtin.apt_repository:
-    repo: "{{ item }}"
-  become: true
-  with_items:
-    - "deb http://extras.ubuntu.com/ubuntu {{ ansible_distribution_release }} main"
-    - "deb-src http://extras.ubuntu.com/ubuntu {{ ansible_distribution_release }} main"
-  when: packaging_ubuntu_extras_repository
-
-- name: Add partner repository
-  ansible.builtin.apt_repository:
-    repo: "{{ item }}"
-  become: true
-  with_items:
-    - "deb http://archive.canonical.com/ubuntu {{ ansible_distribution_release }} partner"
-    - "deb-src http://archive.canonical.com/ubuntu {{ ansible_distribution_release }} partner"
-  when: packaging_ubuntu_partner_repository
-
 - name: Add multiverse repository
   ansible.builtin.apt_repository:
-    repo: "{{ item }}"
+    repo: "multiverse"
   become: true
-  with_items:
-    - "deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} multiverse"
-    - "deb-src http://archive.ubuntu.com/ubuntu/  {{ ansible_distribution_release }} multiverse"
-    - "deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }}-updates multiverse"
-    - "deb-src http://archive.ubuntu.com/ubuntu/  {{ ansible_distribution_release }}-updates multiverse"
   when: packaging_ubuntu_multiverse_repository
 
-- name: apt get update
+
+- name: Add universe repository
+  ansible.builtin.apt_repository:
+    repo: "universe"
+  become: true
+  when: packaging_ubuntu_universe_repository
+
+
+- name: Add restriced repository
+  ansible.builtin.apt_repository:
+    repo: "restriced"
+  become: true
+  when: packaging_ubuntu_universe_repository
+
+
+- name: Apt get update
   ansible.builtin.apt:
     update_cache: true
   become: true
 
-- name: install dependancies
+- name: Install dependancies
   ansible.builtin.apt:
     name:
       - python3-gpg   #  - python_gpme

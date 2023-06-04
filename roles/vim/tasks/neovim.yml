@@ -1,0 +1,34 @@
+- name: Get latest neovim release URL
+  ansible.builtin.uri:
+    url: "https://api.github.com/repos/neovim/neovim/releases/latest"
+    method: GET
+    return_content: yes
+    status_code: 200
+    body_format: json
+  register: release_info
+
+
+- name: Extract download URL for AppImage
+  set_fact:
+    appimage_asset: "{{ release_info.json.assets | select('match', '.*\\.appimage') | first }}"
+  failed_when: appimage_asset is not defined
+
+
+- name: Download nvim AppImage
+  ansible.builtin.get_url:
+    url: "{{ appimage_asset.browser_download_url }}"
+    dest: "{{ home }}/.local/bin/{{ appimage_asset.name }}"
+
+
+- name: Set file permissions
+  ansible.builtin.file:
+    path: "{{ home }}/.local/bin/{{ appimage_asset.name }}"
+    mode: "0755"
+
+
+- name: Create a symbolic link
+  ansible.builtin.file:
+    src: "{{ home }}/.local/bin/{{ appimage_asset.name }}"
+    dest: "{{ home }}/.local/bin/nvim"
+    state: link
+    force: true

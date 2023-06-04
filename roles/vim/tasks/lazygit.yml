@@ -1,0 +1,25 @@
+---
+- name: Get latest lazygit release URL
+  ansible.builtin.uri:
+    url: "https://api.github.com/repos/jesseduffield/lazygit/releases/latest"
+    method: GET
+    return_content: yes
+    status_code: 200
+    body_format: json
+  register: release_info
+
+
+- name: Extract download URL
+  set_fact:
+    appimage_asset: "{{ release_info.json.assets | select('match', '.*_Linux_x86_64.tar.gz') | first }}"
+  failed_when: appimage_asset is not defined
+
+
+- name: Download and install
+  ansible.builtin.unarchive:
+    src: "{{ appimage_asset.browser_download_url }}"
+    dest: "{{ home }}/.local/bin/"
+    remote_src: yes
+    include:
+      - lazygit
+    mode: '0755'

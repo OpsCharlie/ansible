@@ -7,9 +7,21 @@
   vars:
     - home: '{{ ansible_user_dir }}'
     - cloudstorage: '{{ home }}/Documents/Dropbox'
-    - packaging_ubuntu_extras_repository: false
-    - packaging_ubuntu_partner_repository: true
     - packaging_ubuntu_multiverse_repository: true
+    - packaging_ubuntu_universe_repository: true
+    - packaging_ubuntu_restriced_repository: true
+
+
+  pre_tasks:
+    - name: Create destination directory
+      ansible.builtin.file:
+        path: "{{ home }}/{{ item }}"
+        state: directory
+        mode: "0750"
+      loop:
+        - ".local/bin"
+        - ".icons"
+        - ".fonts"
 
 
   roles:
@@ -17,8 +29,8 @@
     # - ipv6           # disable ipv6 and extras
     # - grub2
 
-    # - dropbox
     # - encfs
+    # - ssh
     # - nemo
     # - bash
     # - zsh
@@ -28,22 +40,22 @@
     # - onedrive
     # - evolution
     # - zim
-    # - java
-    # - pac
-    # - ssh
+    - obsidian
+    # - java #?
+    # - pac #?
     # - chrome
     # - vivaldi
-    # - firefox
+    # - firefox #?
     # - networkmanager
     # - networktools
     # - ansible-tools
     # - apt-updates
     # - keepassxc
     # - fonts
-    # - httpstat
     # - apport
 
     #### extra software
+    # - dropbox  # not needed anymore
     ## - openxenmanager
     ## - timeshift
     ## - shutter
@@ -53,11 +65,12 @@
     ## - mixed-content-scan
     ## - scripts     # tools and zabbix notification
     ## - beekeeperstudio
-    ##- peek        # gif recorder
+    ## - peek        # gif recorder
     ## - virtualbox
     ## - vagrant
     ## - bingwall
     ## - ppa-manager
+    ## - httpstat
     # - tlp     # power manager
     # - translate
     # - filezilla
@@ -65,18 +78,19 @@
     # - dbeaver
     # - libreoffice
     # - office
-    # - zeal
-    # - flameshot
-    # - testssl
+    # - pycharm
     # - powershell
     # - masterpdf
     # - bleachbit
+    # - ulauncher
+    #
+    # - gnome-tweaks
+    # - zeal
+    # - flameshot
+    # - testssl
     # - vlc
     # - geany
     # - tools
-    # - gnome-tweaks
-    # - ulauncher
     # - guake
     # - postman
-    # - pycharm
     # - skype
