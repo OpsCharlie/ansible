@@ -33,15 +33,23 @@
     # - ssh
     # - chrome
     # - vivaldi
-    # - firefox
     # - networkmanager
     # - networktools
     # - ansible-tools
     # - apt-updates
     # - keepassxc
     # - fonts
-    # - httpstat
     # - apport
+    # - libreoffice
+    # - office
+    # - zeal
+    # - testssl
+    # - vlc
+    # - geany
+    # - tools
+    # - gnome-tweaks
+    # - skype
+    # - guake
 
     #### extra software
     ## - openxenmanager
@@ -58,25 +66,17 @@
     ## - vagrant
     ## - bingwall
     ## - ppa-manager
-    # - tlp     # power manager
+    ## - firefox
+    ## - httpstat
+    ## - tlp     # power manager
     # - translate
     # - filezilla
     # - vscode
     # - dbeaver
-    # - libreoffice
-    # - office
-    # - zeal
     # - flameshot
-    # - testssl
     # - powershell
     # - masterpdf
     # - bleachbit
-    # - vlc
-    # - geany
-    # - tools
-    # - gnome-tweaks
     # - ulauncher
-    # - guake
     # - postman
     # - pycharm
-    # - skype
