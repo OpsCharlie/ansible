@@ -1,5 +1,5 @@
 ---
-- name: install extra fonts
+- name: Install extra fonts
   ansible.builtin.apt:
     name:
       - libfreetype6
@@ -15,14 +15,14 @@
   become: true
 
 
-- name: install ttf mscorefonts
+- name: Install ttf mscorefonts
   ansible.builtin.apt:
     name: ttf-mscorefonts-installer
     state: present
   become: true
 
 
-- name: install Segoe UI font
+- name: Install Segoe UI font
   ansible.builtin.get_url:
     dest: '/usr/share/fonts/truetype/msttcorefonts/{{ item }}'
     url: 'https://github.com/martinring/clide/blob/master/doc/fonts/{{ item }}?raw=true'

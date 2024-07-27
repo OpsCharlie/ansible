@@ -13,7 +13,7 @@
   when: packaging_ubuntu_universe_repository
 
 
-- name: Add restriced repository
+- name: Add restricted repository
   ansible.builtin.apt_repository:
     repo: "restriced"
   become: true
@@ -25,7 +25,7 @@
     update_cache: true
   become: true
 
-- name: Install dependancies
+- name: Install dependencies
   ansible.builtin.apt:
     name:
       - python3-gpg   #  - python_gpme

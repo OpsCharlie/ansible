@@ -1,26 +1,26 @@
 ---
-- name: get mysql-workbench deb
+- name: Get mysql-workbench deb
   ansible.builtin.get_url:
     dest: /tmp/mysqlworkbench.deb
     url: https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community_8.0.20-1ubuntu20.04_amd64.deb
     mode: '0644'
 
 
-- name: install mysqlworkbench
+- name: Install mysqlworkbench
   ansible.builtin.apt:
     deb: /tmp/mysqlworkbench.deb
     state: present
   become: true
 
 
-- name: create config path
+- name: Create config path
   ansible.builtin.file:
     path: '{{ home }}/.mysql/workbench'
     state: directory
     mode: '0755'
 
 
-- name: copy config
+- name: Copy config
   synchronize:
     src: '{{ cloudstorage }}/carl/.mysql/workbench'
     dest: '{{ home }}/.mysql/workbench'
