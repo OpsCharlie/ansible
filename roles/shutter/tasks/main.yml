@@ -1,9 +1,9 @@
 ---
-- name: add repository
-  ansible.builtin.apt_repository:
-    repo: ppa:linuxuprising/shutter
-    state: present
-  become: true
+# - name: add repository
+#   ansible.builtin.apt_repository:
+#     repo: ppa:linuxuprising/shutter
+#     state: present
+#   become: true
 
 - name: install
   ansible.builtin.apt:

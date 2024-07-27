@@ -21,21 +21,21 @@
   include_tasks: lazygit.yml
 
 
-- name: create {{ home }}/apps directory
+- name: create {{ home }}/{{ git }} directory
   ansible.builtin.file:
-    path: '{{ home }}/apps'
+    path: '{{ home }}/{{ git }}'
     state: directory
     mode: '0755'
 
 
 - name: download vimrc from git
   ansible.builtin.git:
-    repo: "https://github.com/OpsCharlie/vim.git"
-    dest: '{{ home }}/apps/vim'
+    repo: "git@github.com:OpsCharlie/vim.git"
+    dest: '{{ home }}/{{ git }}/vim'
 
 
 - name: deploy vim config
-  ansible.builtin.shell: "{{ home }}/apps/vim/__deploy.sh"
+  ansible.builtin.shell: "{{ home }}/{{ git }}/vim/__deploy.sh"
   changed_when: false
 
 

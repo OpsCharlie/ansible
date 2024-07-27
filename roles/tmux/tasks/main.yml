@@ -8,18 +8,19 @@
   become: true
 
 
-- name: create {{ home }}/apps directory
+- name: create {{ home }}/{{ git }} directory
   ansible.builtin.file:
-    path: '{{ home }}/apps'
+    path: '{{ home }}/{{ git }}'
     state: directory
     mode: '0755'
 
 
 - name: download tmuxrc from git
   ansible.builtin.git:
-    repo: "https://github.com/OpsCharlie/tmux.git"
-    dest: '{{ home }}/apps/tmux'
+    repo: "git@github.com:OpsCharlie/tmux.git"
+    dest: '{{ home }}/{{ git }}/tmux'
+    accept_hostkey: true
 
 - name: deploy vim config
-  ansible.builtin.shell: "{{ home }}/apps/tmux/__deploy.sh"
+  ansible.builtin.shell: "{{ home }}/{{ git }}/tmux/__deploy.sh"
   changed_when: false

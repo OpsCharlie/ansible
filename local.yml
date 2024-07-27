@@ -1,16 +1,17 @@
 ---
 # Usage: ansible-playbook -K local.yml
 
-- hosts: 127.0.0.1
+- name: Configure laptop
+  hosts: 127.0.0.1
   connection: local
 
   vars:
-    - home: '{{ ansible_user_dir }}'
-    - cloudstorage: '{{ home }}/Documents/Dropbox'
-    - packaging_ubuntu_multiverse_repository: true
-    - packaging_ubuntu_universe_repository: true
-    - packaging_ubuntu_restriced_repository: true
-
+    home: "{{ ansible_user_dir }}"
+    git: "git"
+    cloudstorage: "{{ home }}/Documents/Dropbox"
+    packaging_ubuntu_multiverse_repository: false
+    packaging_ubuntu_universe_repository: false
+    packaging_ubuntu_restriced_repository: false
 
   pre_tasks:
     - name: Create destination directory
@@ -23,11 +24,10 @@
         - ".icons"
         - ".fonts"
 
-
   roles:
     # - extra_repo     # extra repos
-    # - ipv6           # disable ipv6 and extras
-    # - grub2
+    - ipv6           # disable ipv6 and extras
+    # - grub2 #?
 
     # - encfs
     # - ssh
@@ -37,28 +37,35 @@
     # - fzf
     # - vim
     # - tmux
-    # - onedrive
     # - evolution
-    # - zim
-    - obsidian
-    # - java #?
-    # - pac #?
-    # - chrome
+    # - obsidian
     # - vivaldi
-    # - firefox #?
     # - networkmanager
     # - networktools
-    # - ansible-tools
     # - apt-updates
     # - keepassxc
     # - fonts
     # - apport
+    # - gnome-tweaks
+    # - zeal
+    # - shutter
+    # - vlc
+    # - geany
+    # - tools
+    # - skype
+    # - office
 
     #### extra software
+    # - chrome
+    # - onedrive #?
     # - dropbox  # not needed anymore
+    # - ansible-tools #?
+    # - zim #?
+    # - java #?
+    # - pac #?
     ## - openxenmanager
+    # - firefox #?
     ## - timeshift
-    ## - shutter
     ## - rambox
     ## - beekeeperstudio
     ## - mysqlworkbench
@@ -77,20 +84,12 @@
     # - vscode
     # - dbeaver
     # - libreoffice
-    # - office
     # - pycharm
     # - powershell
     # - masterpdf
     # - bleachbit
     # - ulauncher
-    #
-    # - gnome-tweaks
-    # - zeal
     # - flameshot
     # - testssl
-    # - vlc
-    # - geany
-    # - tools
     # - guake
     # - postman
-    # - skype

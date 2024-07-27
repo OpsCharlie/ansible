@@ -12,7 +12,7 @@
 #   become: true
 
 
-- name: install git
+- name: Install git
   ansible.builtin.apt:
     name:
       - git
@@ -22,18 +22,19 @@
   become: true
 
 
-- name: create {{ home }}/apps directory
+- name: Create {{ home }}/{{ git }} directory
   ansible.builtin.file:
-    path: '{{ home }}/apps'
+    path: '{{ home }}/{{ git }}'
     state: directory
     mode: '0755'
 
 
 - name: download zsh from git
   ansible.builtin.git:
-    repo: "https://github.com/OpsCharlie/zsh.git"
-    dest: '{{ home }}/apps/zsh'
-  register: git
+    repo: "git@github.com:OpsCharlie/zsh.git"
+    dest: '{{ home }}/{{ git }}/zsh'
+    accept_hostkey: true
+  register: git_out
 
 
 - name: install lxc completeion
@@ -45,5 +46,5 @@
 
 
 - name: deploy zsh config
-  ansible.builtin.command: 'bash {{ home }}/apps/zsh/__deploy.sh'
-  when: git.changed
+  ansible.builtin.command: 'bash {{ home }}/{{ git }}/zsh/__deploy.sh'
+  when: git_out.changed

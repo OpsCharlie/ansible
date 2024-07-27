@@ -5,3 +5,4 @@
       - gnome-shell-extension-manager
       - gnome-tweaks
     state: present
+  become: true

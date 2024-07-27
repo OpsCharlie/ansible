@@ -1,28 +1,28 @@
 ---
 # install freeoffice
-- name: add softmaker repo key
-  ansible.builtin.apt_key:
-    data: "{{ lookup('file', 'softmaker.repository.gpg') }}"
-    state: present
-  become: true
-
-- name: add softmaker repo
-  ansible.builtin.apt_repository:
-    repo: 'deb http://shop.softmaker.com/repo/apt stable non-free'
-    state: present
-    update_cache: true
-  become: true
-
-- name: install softmaker
-  ansible.builtin.apt:
-    name: softmaker-freeoffice-2021
-  become: true
-
-- name: install freeoffice license
-  ansible.builtin.copy:
-    dest: /etc/SoftMaker/offree2021.lic
-    src: '{{ cloudstorage }}/carl/etc/SoftMaker/offree2018.lic'
-    mode: '0644'
+# - name: add softmaker repo key
+#   ansible.builtin.apt_key:
+#     data: "{{ lookup('file', 'softmaker.repository.gpg') }}"
+#     state: present
+#   become: true
+#
+# - name: add softmaker repo
+#   ansible.builtin.apt_repository:
+#     repo: 'deb http://shop.softmaker.com/repo/apt stable non-free'
+#     state: present
+#     update_cache: true
+#   become: true
+#
+# - name: install softmaker
+#   ansible.builtin.apt:
+#     name: softmaker-freeoffice-2021
+#   become: true
+#
+# - name: install freeoffice license
+#   ansible.builtin.copy:
+#     dest: /etc/SoftMaker/offree2021.lic
+#     src: '{{ cloudstorage }}/carl/etc/SoftMaker/offree2018.lic'
+#     mode: '0644'
 
 
 # install onlyoffice

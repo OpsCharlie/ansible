@@ -1,12 +1,12 @@
 ---
-- name: add paa ppa gencfsm
+- name: Add paa ppa gencfsm
   ansible.builtin.apt_repository:
     repo: ppa:gencfsm
     state: present
   become: true
 
 
-- name: install encfs
+- name: Install encfs
   ansible.builtin.apt:
     name:
       - encfs
@@ -14,13 +14,13 @@
   become: true
 
 
-- name: install configuration
-  ansible.builtin.copy:
-    src: 'Molch Encfs Manager.conf'
-    dest: '{{ home }}/.config/Molch Encfs Manager.conf'
-    mode: '0644'
+# - name: Install configuration
+#   ansible.builtin.copy:
+#     src: 'Molch Encfs Manager.conf'
+#     dest: '{{ home }}/.config/Molch Encfs Manager.conf'
+#     mode: '0644'
 
 
-- name: pause
+- name: Pause
   ansible.builtin.pause:
     prompt: "Start EncFS GUI  Directory {{ home }}/Dropbox/Documents  ; Mount {{ home }}/{{ cloudstorage }}"

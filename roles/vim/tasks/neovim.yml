@@ -1,3 +1,11 @@
+---
+- name: install
+  ansible.builtin.apt:
+    name:
+      - npm
+    state: present
+  become: true
+
 - name: Get latest neovim release URL
   ansible.builtin.uri:
     url: "https://api.github.com/repos/neovim/neovim/releases/latest"
@@ -32,3 +40,15 @@
     dest: "{{ home }}/.local/bin/nvim"
     state: link
     force: true
+    
+- name: create {{ home }}/{{ git }} directory
+  ansible.builtin.file:
+    path: '{{ home }}/{{ git }}'
+    state: directory
+    mode: '0755'
+
+
+- name: download vimrc from git
+  ansible.builtin.git:
+    repo: "git@github.com:OpsCharlie/vim.git"
+    dest: '{{ home }}/{{ git }}/nvim'
