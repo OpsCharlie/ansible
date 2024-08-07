@@ -4,11 +4,16 @@
 #     repo: ppa:linuxuprising/shutter
 #     state: present
 #   become: true
+#
+# - name: install
+#   ansible.builtin.apt:
+#     name:
+#       - shutter
+#       - libimage-exiftool-perl
+#     state: present
+#   become: true
 
-- name: install
+
+- name: Install shutter on wayland
   ansible.builtin.apt:
-    name:
-      - shutter
-      - libimage-exiftool-perl
-    state: present
-  become: true
+    deb: "https://github.com/mvivarelli/shutter-on-wayland/raw/master/shutter-on-wayland_0.99.4-6_all.deb"
