@@ -12,6 +12,7 @@
     packaging_ubuntu_multiverse_repository: false
     packaging_ubuntu_universe_repository: false
     packaging_ubuntu_restriced_repository: false
+    nvim_branch: "snacks"
 
   pre_tasks:
     - name: Create destination directory
@@ -21,12 +22,13 @@
         mode: "0750"
       loop:
         - ".local/bin"
+        - "bin"
         - ".icons"
         - ".fonts"
 
   roles:
     # - extra_repo     # extra repos
-    - ipv6           # disable ipv6 and extras
+    # - ipv6           # disable ipv6 and extras
     # - grub2 #?
 
     # - encfs
@@ -35,7 +37,7 @@
     # - bash
     # - zsh
     # - fzf
-    # - vim
+    - vim
     # - tmux
     # - evolution
     # - obsidian

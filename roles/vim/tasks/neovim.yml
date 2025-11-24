@@ -1,54 +1,43 @@
 ---
-- name: install
+- name: Install dependencies
   ansible.builtin.apt:
     name:
-      - npm
+      - curl
+      - git
+      - gcc
+      - inotify-tools
+      - python3-pip
+      - python3-venv
+      - ripgrep
+      - fd-find
+      - luarocks
+      - jq
     state: present
   become: true
 
-- name: Get latest neovim release URL
-  ansible.builtin.uri:
-    url: "https://api.github.com/repos/neovim/neovim/releases/latest"
-    method: GET
-    return_content: yes
-    status_code: 200
-    body_format: json
-  register: release_info
+
+- name: Install golong
+  community.general.snap:
+    name: go
+    classic: true
+  become: true
 
 
-- name: Extract download URL for AppImage
-  set_fact:
-    appimage_asset: "{{ release_info.json.assets | select('match', '.*\\.appimage') | first }}"
-  failed_when: appimage_asset is not defined
+- name: Install python venv
+  ansible.builtin.include_tasks: venv.yml
 
 
-- name: Download nvim AppImage
-  ansible.builtin.get_url:
-    url: "{{ appimage_asset.browser_download_url }}"
-    dest: "{{ home }}/.local/bin/{{ appimage_asset.name }}"
+- name: Install nvm
+  ansible.builtin.include_tasks: nvm.yml
 
 
-- name: Set file permissions
-  ansible.builtin.file:
-    path: "{{ home }}/.local/bin/{{ appimage_asset.name }}"
-    mode: "0755"
-
-
-- name: Create a symbolic link
-  ansible.builtin.file:
-    src: "{{ home }}/.local/bin/{{ appimage_asset.name }}"
-    dest: "{{ home }}/.local/bin/nvim"
-    state: link
-    force: true
-    
-- name: create {{ home }}/{{ git }} directory
-  ansible.builtin.file:
-    path: '{{ home }}/{{ git }}'
-    state: directory
-    mode: '0755'
-
-
-- name: download vimrc from git
+- name: Download vimrc from git
   ansible.builtin.git:
     repo: "git@github.com:OpsCharlie/vim.git"
     dest: '{{ home }}/{{ git }}/nvim'
+    version: '{{ nvim_branch }}'
+
+
+- name: Deploy vim script
+  ansible.builtin.command: 'bash {{ home }}/{{ git }}/vim/__deploy.sh'
+  changed_when: true

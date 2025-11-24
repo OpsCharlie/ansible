@@ -1,16 +1,21 @@
 ---
-- name: create dir
+- name: Create dir
   ansible.builtin.file:
     path: '{{ home }}/{{ git }}'
     state: directory
     mode: '0755'
 
-- name: git clone fzf
+
+- name: Git clone fzf
   ansible.builtin.git:
     repo: https://github.com/junegunn/fzf.git
     dest: '{{ home }}/{{ git }}/fzf'
 
-- name: configure fzf
-  ansible.builtin.shell: echo -e 'n\ny\ny\n' | ./install
+
+- name: Configure fzf
+  ansible.builtin.shell: |
+    set -o pipefail
+    echo -e 'n\ny\ny\n' | ./install
   args:
     chdir: '{{ home }}/{{ git }}/fzf'
+  changed_when: true

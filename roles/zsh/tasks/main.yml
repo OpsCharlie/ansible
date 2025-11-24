@@ -1,23 +1,9 @@
 ---
-# - name: add zsh completions apt key
-#   apt_key:
-#     url: 'https://download.opensuse.org/repositories/shells:zsh-users:zsh-completions/xUbuntu_{{ ansible_distribution_version }}/Release.key'
-#   become: true
-#
-#
-# - name: add zsh completions repository
-#   apt_repository:
-#     repo: 'deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-completions/xUbuntu_{{ ansible_distribution_version }}/ /'
-#     filename: 'zsh-competions'
-#   become: true
-
-
 - name: Install git
   ansible.builtin.apt:
     name:
       - git
       - zsh
-#      - zsh-completions
     state: present
   become: true
 
@@ -29,7 +15,7 @@
     mode: '0755'
 
 
-- name: download zsh from git
+- name: Download zsh from git
   ansible.builtin.git:
     repo: "git@github.com:OpsCharlie/zsh.git"
     dest: '{{ home }}/{{ git }}/zsh'
@@ -37,7 +23,7 @@
   register: git_out
 
 
-- name: install lxc completeion
+- name: Install lxc completion
   ansible.builtin.copy:
     dest: /usr/share/bash-completion/completions/lxc.zsh
     src: lxc.zsh
@@ -45,6 +31,6 @@
   become: true
 
 
-- name: deploy zsh config
+- name: Deploy zsh config
   ansible.builtin.command: 'bash {{ home }}/{{ git }}/zsh/__deploy.sh'
   when: git_out.changed

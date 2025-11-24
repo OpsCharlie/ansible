@@ -15,7 +15,7 @@
 
 - name: Add restricted repository
   ansible.builtin.apt_repository:
-    repo: "restriced"
+    repo: "restricted"
   become: true
   when: packaging_ubuntu_universe_repository
 

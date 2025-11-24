@@ -1,25 +1,35 @@
 ---
-- name: Get latest lazygit release URL
+- name: Get latest lazygit release info
   ansible.builtin.uri:
     url: "https://api.github.com/repos/jesseduffield/lazygit/releases/latest"
-    method: GET
-    return_content: yes
-    status_code: 200
-    body_format: json
+    return_content: true
   register: release_info
 
 
+- name: Set latest version fact
+  ansible.builtin.set_fact:
+    latest_lazygit_version: "{{ release_info.json.tag_name }}"
+
+
 - name: Extract download URL
-  set_fact:
-    appimage_asset: "{{ release_info.json.assets | select('match', '.*_Linux_x86_64.tar.gz') | first }}"
-  failed_when: appimage_asset is not defined
+  ansible.builtin.set_fact:
+    lazygit_asset: "{{ release_info.json.assets | select('match', '.*_linux_x86_64.tar.gz') | first }}"
+  failed_when: lazygit_asset is not defined
 
 
-- name: Download and install
+- name: Check installed lazygit version
+  ansible.builtin.command: "{{ home }}/.local/bin/lazygit --version"
+  register: installed_version
+  ignore_errors: true
+  changed_when: false
+
+
+- name: Download and install lazygit
   ansible.builtin.unarchive:
-    src: "{{ appimage_asset.browser_download_url }}"
+    src: "{{ lazygit_asset.browser_download_url }}"
     dest: "{{ home }}/.local/bin/"
-    remote_src: yes
+    remote_src: true
     include:
       - lazygit
     mode: '0755'
+  when: installed_version.failed or (installed_version.stdout | regex_replace('^.*version=([^,]+).*', '\\1') != latest_lazygit_version)

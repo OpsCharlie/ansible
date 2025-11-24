@@ -1,6 +1,6 @@
 ---
 # --break-system-packages
-- name: install
+- name: Install
   ansible.builtin.apt:
     name:
       - vim
@@ -14,21 +14,21 @@
 
 
 - name: Install neovim
-  include_tasks: neovim.yml
+  ansible.builtin.include_tasks: neovim.yml
 
 
 - name: Install lazygit
-  include_tasks: lazygit.yml
+  ansible.builtin.include_tasks: lazygit.yml
 
 
-- name: create {{ home }}/{{ git }} directory
+- name: Create {{ home }}/{{ git }} directory
   ansible.builtin.file:
     path: '{{ home }}/{{ git }}'
     state: directory
     mode: '0755'
 
 
-- name: download vimrc from git
+- name: Download vimrc from git
   ansible.builtin.git:
     repo: "git@github.com:OpsCharlie/vim.git"
     dest: '{{ home }}/{{ git }}/vim'

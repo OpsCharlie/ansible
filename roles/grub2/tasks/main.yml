@@ -21,6 +21,7 @@
 
 
 - name: Update grub
-  ansible.builtin.shell: update-grub2
+  ansible.builtin.command: update-grub2
   become: true
+  changed_when: true
   when: custom.changed or linux.changed

@@ -1,4 +1,5 @@
 ---
-- synchronize:
+- name: Sync ssh dir
+  ansible.posix.synchronize:
     src: '{{ cloudstorage }}/carl/.ssh/'
     dest: '{{ home }}/.ssh/'
