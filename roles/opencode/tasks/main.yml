@@ -1,0 +1,17 @@
+---
+- name: Install alacritty
+  ansible.builtin.package:
+    name: alacritty
+    state: present
+
+
+- name: Download opencode from git
+  ansible.builtin.git:
+    repo: "git@github.com:OpsCharlie/opencode.git"
+    dest: '{{ home }}/{{ git }}/opencode'
+    version: '{{ nvim_branch }}'
+
+
+- name: Deploy opencode
+  ansible.builtin.command: 'bash {{ home }}/{{ git }}/opencode/__deploy.sh'
+  changed_when: true

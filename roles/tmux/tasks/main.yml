@@ -1,5 +1,5 @@
 ---
-- name: install
+- name: Install
   ansible.builtin.apt:
     name:
       - tmux
@@ -8,19 +8,20 @@
   become: true
 
 
-- name: create {{ home }}/{{ git }} directory
+- name: Create {{ home }}/{{ git }} directory
   ansible.builtin.file:
-    path: '{{ home }}/{{ git }}'
+    path: "{{ home }}/{{ git }}"
     state: directory
-    mode: '0755'
+    mode: "0755"
 
 
-- name: download tmuxrc from git
+- name: Download tmuxrc from git
   ansible.builtin.git:
     repo: "git@github.com:OpsCharlie/tmux.git"
-    dest: '{{ home }}/{{ git }}/tmux'
+    dest: "{{ home }}/{{ git }}/tmux"
     accept_hostkey: true
 
-- name: deploy vim config
-  ansible.builtin.shell: "{{ home }}/{{ git }}/tmux/__deploy.sh"
-  changed_when: false
+
+- name: Deploy tmux config
+  ansible.builtin.command: "{{ home }}/{{ git }}/tmux/__deploy.sh"
+  changed_when: true

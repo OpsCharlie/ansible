@@ -5,16 +5,38 @@
     return_content: true
   register: nvm_release
 
+
 - name: Set nvm version fact
   ansible.builtin.set_fact:
-    nvm_version: "{{ nvm_release.json.tag_name }}"
+    latest_version: "{{ nvm_release.json.tag_name }}"
+
+
+- name: Check if nvm is already installed
+  ansible.builtin.command: "nvm --version"
+  register: installed_version
+  failed_when: false
+  changed_when: false
+
+
+- name: Set installation needed flag
+  ansible.builtin.set_fact:
+    install_needed: "{{ installed_version.rc != 0 or (installed_version.stdout | default('') != latest_version) }}"
+
+
+- name: Display version information
+  ansible.builtin.debug:
+    msg: |
+      Latest: {{ latest_version }}
+      Installed: {{ installed_version.stdout | default('Not installed') }}
+      Install needed: {{ install_needed }}
+
 
 - name: Install nvm
   ansible.builtin.shell: |
     set -o pipefail
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/{{ nvm_version }}/install.sh | bash
-  args:
-    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+  changed_when: true
+
 
 - name: Install Node LTS as default
   ansible.builtin.shell: source {{ ansible_env.HOME }}/.nvm/nvm.sh && nvm install --lts --default

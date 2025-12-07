@@ -18,7 +18,7 @@
 
 
 - name: Check installed lazygit version
-  ansible.builtin.command: "{{ home }}/.local/bin/lazygit --version"
+  ansible.builtin.command: "{{ bin_dir }}/lazygit --version"
   register: installed_version
   ignore_errors: true
   changed_when: false
@@ -27,9 +27,9 @@
 - name: Download and install lazygit
   ansible.builtin.unarchive:
     src: "{{ lazygit_asset.browser_download_url }}"
-    dest: "{{ home }}/.local/bin/"
+    dest: "{{ bin_dir }}"
     remote_src: true
     include:
       - lazygit
-    mode: '0755'
+    mode: '0750'
   when: installed_version.failed or (installed_version.stdout | regex_replace('^.*version=([^,]+).*', '\\1') != latest_lazygit_version)

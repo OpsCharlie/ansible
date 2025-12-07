@@ -1,5 +1,5 @@
 ---
-- name: install evolution
+- name: Install evolution
   ansible.builtin.apt:
     name:
       - evolution

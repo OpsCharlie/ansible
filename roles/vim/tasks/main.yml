@@ -19,27 +19,3 @@
 
 - name: Install lazygit
   ansible.builtin.include_tasks: lazygit.yml
-
-
-- name: Create {{ home }}/{{ git }} directory
-  ansible.builtin.file:
-    path: '{{ home }}/{{ git }}'
-    state: directory
-    mode: '0755'
-
-
-- name: Download vimrc from git
-  ansible.builtin.git:
-    repo: "git@github.com:OpsCharlie/vim.git"
-    dest: '{{ home }}/{{ git }}/vim'
-
-
-- name: deploy vim config
-  ansible.builtin.shell: "{{ home }}/{{ git }}/vim/__deploy.sh"
-  changed_when: false
-
-
-- name: install pynvim
-  ansible.builtin.pip:
-    name: pynvim
-    extra_args: "--break-system-packages"

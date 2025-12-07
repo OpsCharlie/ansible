@@ -12,27 +12,20 @@
 - name: Create symlink fd
   ansible.builtin.file:
     src: /usr/bin/fdfind
-    dest: '{{ home }}/.local/bin/fd'
+    dest: '{{ bin_dir }}/fd'
     state: link
-
-
-- name: Create {{ home }}/{{ git }} directory
-  ansible.builtin.file:
-    path: '{{ home }}/{{ git }}'
-    state: directory
-    mode: "0755"
 
 
 - name: Download bashrc from git
   ansible.builtin.git:
     repo: "git@github.com:OpsCharlie/bash.git"
-    dest: '{{ home }}/{{ git }}/bash'
+    dest: '{{ git_dir }}/bash'
     accept_hostkey: true
   register: git_out
 
 
 - name: Deploy bash config
-  ansible.builtin.command: 'bash {{ home }}/{{ git }}/bash/__deploy.sh'
+  ansible.builtin.command: 'bash {{ git_dir }}/__deploy.sh'
   changed_when: false
   when: git_out.changed
 
@@ -41,7 +34,7 @@
   ansible.builtin.copy:
     src: base16-railscasts.dark.sh
     dest: '{{ home }}/Downloads'
-    mode: "0644"
+    mode: "0640"
   register: theme
 
 

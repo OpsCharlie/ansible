@@ -31,7 +31,7 @@
   ansible.builtin.include_tasks: nvm.yml
 
 
-- name: Download vimrc from git
+- name: Download vim from git
   ansible.builtin.git:
     repo: "git@github.com:OpsCharlie/vim.git"
     dest: '{{ home }}/{{ git }}/nvim'

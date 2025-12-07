@@ -7,24 +7,29 @@
 
   vars:
     home: "{{ ansible_user_dir }}"
-    git: "git"
     cloudstorage: "{{ home }}/Documents/Dropbox"
     packaging_ubuntu_multiverse_repository: false
     packaging_ubuntu_universe_repository: false
     packaging_ubuntu_restriced_repository: false
     nvim_branch: "snacks"
+    bin_dir: "{{ home }}/.local/bin"
+    desktop_dir: "{{ home }}/.local/share/applications"
+    icons_dir: "{{ home }}/.local/share/icons"
+    fonts_dir: "{{ home }}/.local/share/fonts"
+    git_dir: "{{ home }}/git"
 
   pre_tasks:
     - name: Create destination directory
       ansible.builtin.file:
-        path: "{{ home }}/{{ item }}"
+        path: "{{ item }}"
         state: directory
         mode: "0750"
       loop:
-        - ".local/bin"
-        - "bin"
-        - ".icons"
-        - ".fonts"
+        - "{{ bin_dir }}"
+        - "{{ desktop_dir }}"
+        - "{{ icons_dir }}"
+        - "{{ fonts_dir }}"
+        - "{{ git_dir }}"
 
   roles:
     # - extra_repo     # extra repos
@@ -37,10 +42,11 @@
     # - bash
     # - zsh
     # - fzf
-    - vim
+    # - vim
+    # - opencode
     # - tmux
     # - evolution
-    # - obsidian
+    - obsidian
     # - vivaldi
     # - networkmanager
     # - networktools
