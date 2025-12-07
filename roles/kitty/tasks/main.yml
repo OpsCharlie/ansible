@@ -1,0 +1,170 @@
+---
+- name: Download kitty from git
+  ansible.builtin.git:
+    repo: "git@github.com:OpsCharlie/kitty.git"
+    dest: '{{ git_dir }}/kitty'
+
+
+- name: Set kitty vars
+  ansible.builtin.set_fact:
+    kitty_dir: "{{ ansible_user_dir }}/.local/kitty"
+    config_dir: "{{ ansible_user_dir }}/.config/kitty"
+    repo_url: "https://api.github.com/repos/kovidgoyal/kitty/releases/latest"
+
+
+- name: Determine architecture
+  ansible.builtin.set_fact:
+    arch: >-
+      {{
+        'x86_64' if ansible_architecture == 'x86_64' else
+        'arm64' if ansible_architecture in ['aarch64', 'armv8*'] else
+        'unsupported'
+      }}
+
+
+- name: Fail if architecture is unsupported
+  ansible.builtin.fail:
+    msg: "kitty binaries not available for architecture: {{ ansible_architecture }}"
+  when: arch == 'unsupported'
+
+
+- name: Create installation directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0750'
+  loop:
+    - "{{ config_dir }}"
+
+
+- name: Fetch latest release information
+  ansible.builtin.uri:
+    url: "{{ repo_url }}"
+    method: GET
+    return_content: true
+  register: release_info
+
+
+- name: Extract latest version
+  ansible.builtin.set_fact:
+    latest_version: "{{ release_info.json | json_query('tag_name') | regex_replace('^v', '') }}"
+    latest_tag: "{{ release_info.json | json_query('tag_name') }}"
+
+
+- name: Check if Kitty is already installed
+  ansible.builtin.command: "{{ bin_dir }}/kitty --version"
+  register: installed_version
+  failed_when: false
+  changed_when: false
+
+
+- name: Set installation needed flag
+  ansible.builtin.set_fact:
+    install_needed: >
+      {{
+        installed_version.rc != 0 or
+        (installed_version.stdout | regex_search('[0-9.]+') | default('') != latest_version)
+      }}
+
+
+- name: Display version information
+  ansible.builtin.debug:
+    msg: |
+      Latest: {{ latest_version }}
+      Installed: {{ installed_version.stdout | regex_search('[0-9.]+') | default('Not installed') }}
+      Install needed: {{ install_needed }}
+
+
+- name: Create temporary directory for download
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: kitty
+  register: temp_dir
+  when: install_needed
+
+
+- name: Download Kitty
+  ansible.builtin.get_url:
+    url: "https://github.com/kovidgoyal/kitty/releases/download/{{ latest_tag }}/kitty-{{ latest_version }}-{{ arch }}.txz"
+    dest: "{{ temp_dir.path }}/kitty-{{ latest_version }}-{{ arch }}.txz"
+    mode: '0644'
+  when: install_needed
+
+
+- name: Extract Kitty
+  ansible.builtin.unarchive:
+    src: "{{ temp_dir.path }}/kitty-{{ latest_version }}-{{ arch }}.txz"
+    dest: "{{ temp_dir.path }}"
+    remote_src: true
+  when: install_needed
+
+
+- name: Install Kitty files
+  ansible.builtin.copy:
+    src: "{{ temp_dir.path }}/"
+    dest: "{{ kitty_dir }}_{{ latest_version }}"
+    mode: '0750'
+    remote_src: true
+  when: install_needed
+
+
+- name: Create symlink for kitty directory
+  ansible.builtin.file:
+    src: "{{ kitty_dir }}_{{ latest_version }}"
+    dest: "{{ kitty_dir }}"
+    state: link
+  when: install_needed
+
+
+- name: Create symlinks for binaries
+  ansible.builtin.file:
+    src: "{{ kitty_dir }}/bin/{{ item }}"
+    dest: "{{ bin_dir }}/{{ item }}"
+    state: link
+  loop:
+    - kitty
+    - kitten
+
+
+- name: Read original desktop files
+  ansible.builtin.slurp:
+    src: "{{ kitty_dir }}/share/applications/{{ item }}"
+  register: desktop_files
+  loop:
+    - kitty.desktop
+    - kitty-open.desktop
+
+
+- name: Create updated desktop files with correct paths
+  ansible.builtin.copy:
+    content: |
+      {{
+        item.content | b64decode |
+        regex_replace('Icon=kitty', 'Icon=' + kitty_dir + '/share/icons/hicolor/256x256/apps/kitty.png') |
+        regex_replace('Exec=kitty', 'Exec=' + bin_dir + '/kitty')
+      }}
+    dest: "{{ desktop_dir }}/{{ item.item }}"
+    mode: '0640'
+  loop: "{{ desktop_files.results }}"
+
+
+- name: Copy Kitty configuration
+  ansible.builtin.copy:
+    src: "{{ git_dir }}/kitty/kitty.conf"
+    dest: "{{ config_dir }}/kitty.conf"
+    mode: '0640'
+    backup: true
+
+
+- name: Clean up temporary directory
+  ansible.builtin.file:
+    path: "{{ temp_dir.path }}"
+    state: absent
+  when: install_needed
+
+
+- name: Update desktop database
+  ansible.builtin.command:
+    cmd: update-desktop-database "{{ desktop_dir }}"
+  register: desktop_db_update
+  changed_when: desktop_db_update.rc == 0
