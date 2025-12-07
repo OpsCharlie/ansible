@@ -9,7 +9,8 @@
 - name: Configure fzf
   ansible.builtin.shell: |
     set -o pipefail
-    echo -e 'n\ny\ny\n' | ./install
+    printf 'n\ny\ny\n' | ./install
   args:
     chdir: '{{ git_dir }}/fzf'
+    executable: /bin/bash
   changed_when: true
