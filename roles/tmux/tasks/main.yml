@@ -8,20 +8,13 @@
   become: true
 
 
-- name: Create {{ home }}/{{ git }} directory
-  ansible.builtin.file:
-    path: "{{ home }}/{{ git }}"
-    state: directory
-    mode: "0755"
-
-
 - name: Download tmuxrc from git
   ansible.builtin.git:
     repo: "git@github.com:OpsCharlie/tmux.git"
-    dest: "{{ home }}/{{ git }}/tmux"
+    dest: "{{ git_dir }}/tmux"
     accept_hostkey: true
 
 
 - name: Deploy tmux config
-  ansible.builtin.command: "{{ home }}/{{ git }}/tmux/__deploy.sh"
+  ansible.builtin.command: "{{ git_dir }}/tmux/__deploy.sh"
   changed_when: true
