@@ -1,47 +1,74 @@
 ---
-- name: Get latest obsidian release URL
+- name: Download obsidian from git
+  ansible.builtin.git:
+    repo: "git@github.com:OpsCharlie/obsidian.git"
+    dest: '{{ git_dir }}/obsidian'
+
+
+- name: Fetch latest release information
   ansible.builtin.uri:
-    url: "https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest"
+    url: https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest
     method: GET
-    return_content: yes
-    status_code: 200
-    body_format: json
+    return_content: true
   register: release_info
 
 
-- name: Extract download URL for AppImage
-  set_fact:
-    appimage_asset: "{{ release_info.json.assets | select('match', '.*-\\d*\\.\\d*\\.\\d*\\.AppImage') | first }}"
-  failed_when: appimage_asset is not defined
+- name: Extract latest version, name and URL from GitHub API response
+  ansible.builtin.set_fact:
+    latest_version: "{{ release_info.json | json_query('tag_name') | regex_replace('^v', '') }}"
+    appimage_name: >-
+      {{
+        release_info.json |
+        json_query('assets[?contains(name, `AppImage`) && !contains(name, `arm64`)].name | [0]')
+      }}
+    appimage_url: >-
+      {{
+        release_info.json |
+        json_query('assets[?contains(name, `AppImage`) && !contains(name, `arm64`)].browser_download_url | [0]')
+      }}
 
 
-- name: Download obsidian AppImage
+- name: Download Obsidian AppImage
   ansible.builtin.get_url:
-    url: "{{ appimage_asset.browser_download_url }}"
-    dest: "{{ home }}/.local/bin/{{ appimage_asset.name }}"
+    url: "{{ appimage_url }}"
+    dest: "{{ bin_dir }}/{{ appimage_name }}"
+    mode: '0750'
 
 
-- name: Set file permissions
+- name: Create symlink
   ansible.builtin.file:
-    path: "{{ home }}/.local/bin/{{ appimage_asset.name }}"
-    mode: "0755"
-
-
-- name: Create a symbolic link
-  ansible.builtin.file:
-    src: "{{ home }}/.local/bin/{{ appimage_asset.name }}"
-    dest: "{{ home }}/.local/bin/obsidian"
+    src: "{{ bin_dir }}/{{ appimage_name }}"
+    dest: "{{ bin_dir }}/obsidian"
     state: link
-    force: true
 
 
-- name: Create desktop file
+- name: Copy icon file
   ansible.builtin.copy:
-    src: "{{ cloudstorage }}/carl/.local/share/applications/obsidian.desktop"
-    dest: "{{ home }}/.local/share/applications/"
+    src: "{{ git_dir }}/obsidian/obsidian.svg"
+    dest: "{{ icons_dir }}/obsidian.svg"
+    mode: '0640'
 
 
-- name: Create desktop file
+- name: Create desktop file with templated content
   ansible.builtin.copy:
-    src: "{{ cloudstorage }}/carl/.local/share/applications/obsidian.svg"
-    dest: "{{ home }}/.icons/"
+    dest: "{{ desktop_dir }}/obsidian.desktop"
+    mode: '0640'
+    content: |
+      [Desktop Entry]
+      Name=Obsidian
+      GenericName=Sharpen your thinking
+      StartupWMClass=obsidian
+      Exec={{ bin_dir }}/obsidian --no-sandbox
+      Icon={{ icons_dir }}/obsidian.svg
+      Terminal=false
+      Type=Application
+      Categories=Utility;Office
+      MimeType=application/x-md;x-scheme-handler/obsidian;
+      X-Desktop-File-Install-Version=0.22
+
+
+- name: Update desktop database
+  ansible.builtin.command:
+    cmd: update-desktop-database "{{ desktop_dir }}"
+  register: desktop_db_update
+  changed_when: desktop_db_update.rc == 0
