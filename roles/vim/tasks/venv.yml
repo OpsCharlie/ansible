@@ -1,23 +1,23 @@
 ---
-- name: Get Python version
+- name: venv | Get Python version
   ansible.builtin.command: python3 --version
   changed_when: false
   register: py_version_raw
 
 
-- name: Extract Python version string
+- name: venv | Extract Python version string
   ansible.builtin.set_fact:
     py_version: "{{ py_version_raw.stdout.split(' ')[1] }}"
 
 
-- name: Create Python virtual environment
+- name: venv | Create Python virtual environment
   ansible.builtin.command:
     cmd: python3 -m venv  "{{ home }}/venv/{{ py_version }}"
   args:
     creates: "{{ home }}/venv/{{ py_version }}/bin/activate"
 
 
-- name: Ensure Python venv activation line is present in .bashrc
+- name: venv | Ensure Python venv activation line is present in .bashrc
   ansible.builtin.lineinfile:
     path: ~/.bashrc
     line: "[ -f ~/venv/{{ py_version }}/bin/activate ] && source ~/venv/{{ py_version }}/bin/activate"
@@ -25,7 +25,7 @@
     insertafter: EOF
 
 
-- name: Ensure Python venv activation line is present in .zshrc
+- name: venv | Ensure Python venv activation line is present in .zshrc
   ansible.builtin.lineinfile:
     path: ~/.zshrc
     line: "[ -f ~/venv/{{ py_version }}/bin/activate ] && source ~/venv/{{ py_version }}/bin/activate"

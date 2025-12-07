@@ -42,11 +42,11 @@
     # - bash
     # - zsh
     # - fzf
-    # - vim
+    - vim
     # - opencode
     # - tmux
     # - evolution
-    - obsidian
+    # - obsidian
     # - vivaldi
     # - networkmanager
     # - networktools

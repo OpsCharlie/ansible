@@ -1,30 +1,52 @@
 ---
-- name: Get latest lazygit release info
+- name: lazygit | Get latest lazygit release info
   ansible.builtin.uri:
     url: "https://api.github.com/repos/jesseduffield/lazygit/releases/latest"
     return_content: true
   register: release_info
 
 
-- name: Set latest version fact
+- name: lazygit | Set latest version fact
   ansible.builtin.set_fact:
-    latest_lazygit_version: "{{ release_info.json.tag_name }}"
+    latest_version: "{{ release_info.json | json_query('tag_name') | regex_replace('^v', '') }}"
 
 
-- name: Extract download URL
+- name: lazygit | Extract download URL
   ansible.builtin.set_fact:
     lazygit_asset: "{{ release_info.json.assets | select('match', '.*_linux_x86_64.tar.gz') | first }}"
   failed_when: lazygit_asset is not defined
 
 
-- name: Check installed lazygit version
+- name: lazygit | Check installed lazygit version
   ansible.builtin.command: "{{ bin_dir }}/lazygit --version"
   register: installed_version
-  ignore_errors: true
+  failed_when: false
   changed_when: false
 
 
-- name: Download and install lazygit
+- name: lazygit | Extract git version from lazygit --version output
+  ansible.builtin.set_fact:
+    lazygit_git_version: >-
+      {{
+        (installed_version.stdout | regex_search(', version=([0-9.]+)', '\\1')) | first if installed_version.rc == 0 else
+        ''
+      }}
+
+
+- name: lazygit | Set installation needed flag
+  ansible.builtin.set_fact:
+    install_needed: "{{ installed_version.rc != 0 or (lazygit_git_version | default('') != latest_version) }}"
+
+
+- name: lazygit | Display version information
+  ansible.builtin.debug:
+    msg: |
+      Latest: {{ latest_version }}
+      Installed: {{ lazygit_git_version | default('Not installed') }}
+      Install needed: {{ install_needed }}
+
+
+- name: lazygit | Download and install lazygit
   ansible.builtin.unarchive:
     src: "{{ lazygit_asset.browser_download_url }}"
     dest: "{{ bin_dir }}"
@@ -32,4 +54,4 @@
     include:
       - lazygit
     mode: '0750'
-  when: installed_version.failed or (installed_version.stdout | regex_replace('^.*version=([^,]+).*', '\\1') != latest_lazygit_version)
+  when: install_needed

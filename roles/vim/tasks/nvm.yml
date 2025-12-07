@@ -1,29 +1,31 @@
 ---
-- name: Get latest nvm version
+- name: nvm | Get latest nvm version
   ansible.builtin.uri:
     url: https://api.github.com/repos/nvm-sh/nvm/releases/latest
     return_content: true
-  register: nvm_release
+  register: release_info
 
 
-- name: Set nvm version fact
+- name: nvm | Set nvm version fact
   ansible.builtin.set_fact:
-    latest_version: "{{ nvm_release.json.tag_name }}"
+    latest_version: "{{ release_info.json | json_query('tag_name') | regex_replace('^v', '') }}"
 
 
-- name: Check if nvm is already installed
-  ansible.builtin.command: "nvm --version"
+- name: nvm | Check if nvm is already installed
+  ansible.builtin.shell: source {{ ansible_env.HOME }}/.nvm/nvm.sh && nvm --version
+  args:
+    executable: /bin/bash
   register: installed_version
   failed_when: false
   changed_when: false
 
 
-- name: Set installation needed flag
+- name: nvm | Set installation needed flag
   ansible.builtin.set_fact:
     install_needed: "{{ installed_version.rc != 0 or (installed_version.stdout | default('') != latest_version) }}"
 
 
-- name: Display version information
+- name: nvm | Display version information
   ansible.builtin.debug:
     msg: |
       Latest: {{ latest_version }}
@@ -31,15 +33,19 @@
       Install needed: {{ install_needed }}
 
 
-- name: Install nvm
+- name: nvm | Install nvm
   ansible.builtin.shell: |
     set -o pipefail
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/{{ nvm_version }}/install.sh | bash
-  changed_when: true
-
-
-- name: Install Node LTS as default
-  ansible.builtin.shell: source {{ ansible_env.HOME }}/.nvm/nvm.sh && nvm install --lts --default
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v{{ latest_version }}/install.sh | /bin/bash
   args:
     executable: /bin/bash
   changed_when: true
+  when: install_needed
+
+
+- name: nvm | Install Node LTS as default
+  ansible.builtin.shell: source {{ ansible_env.HOME }}/.nvm/nvm.sh && nvm install --lts --default
+  args:
+    executable: /bin/bash
+  register: node_install
+  changed_when: "'is already installed' not in node_install.stderr"
