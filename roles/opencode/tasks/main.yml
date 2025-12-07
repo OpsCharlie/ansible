@@ -8,10 +8,10 @@
 - name: Download opencode from git
   ansible.builtin.git:
     repo: "git@github.com:OpsCharlie/opencode.git"
-    dest: '{{ home }}/{{ git }}/opencode'
-    version: '{{ nvim_branch }}'
+    dest: '{{ git_dir }}/opencode'
 
 
 - name: Deploy opencode
-  ansible.builtin.command: 'bash {{ home }}/{{ git }}/opencode/__deploy.sh'
-  changed_when: true
+  ansible.builtin.command: 'bash {{ git_dir }}/opencode/__deploy.sh'
+  register: deploy_opencode
+  changed_when: "'latest version' not in deploy_opencode.stdout"
