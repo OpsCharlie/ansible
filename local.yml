@@ -42,11 +42,12 @@
     # - bash
     # - zsh
     # - fzf
-    - vim
+    # - vim
     # - opencode
     # - tmux
     # - evolution
     # - obsidian
+    # - kitty
     # - vivaldi
     # - networkmanager
     # - networktools
@@ -60,7 +61,6 @@
     # - vlc
     # - geany
     # - tools
-    # - skype
     # - office
 
     #### extra software
