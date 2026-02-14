@@ -1,0 +1,4 @@
+---
+- name: Deploy zsh config
+  ansible.builtin.command: 'bash {{ git_dir }}/zsh/__deploy.sh'
+  changed_when: false

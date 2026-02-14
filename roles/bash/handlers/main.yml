@@ -1,0 +1,9 @@
+---
+- name: Deploy bash config
+  ansible.builtin.command: 'bash {{ git_dir }}/__deploy.sh'
+  changed_when: false
+
+
+- name: Run bash theme
+  ansible.builtin.command: 'bash {{ home }}/Downloads/base16-railscasts.dark.sh'
+  changed_when: false

@@ -19,3 +19,7 @@
 
 - name: Install lazygit
   ansible.builtin.include_tasks: lazygit.yml
+
+
+- name: Install neovide
+  ansible.builtin.include_tasks: neovide.yml

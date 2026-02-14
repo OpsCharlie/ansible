@@ -13,7 +13,7 @@
     repo: "git@github.com:OpsCharlie/zsh.git"
     dest: '{{ git_dir }}/zsh'
     accept_hostkey: true
-  register: git_out
+  notify: Deploy zsh config
 
 
 - name: Install lxc completion
@@ -24,6 +24,3 @@
   become: true
 
 
-- name: Deploy zsh config
-  ansible.builtin.command: 'bash {{ git_dir }}/zsh/__deploy.sh'
-  when: git_out.changed

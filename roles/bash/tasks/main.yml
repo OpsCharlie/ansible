@@ -21,13 +21,7 @@
     repo: "git@github.com:OpsCharlie/bash.git"
     dest: '{{ git_dir }}/bash'
     accept_hostkey: true
-  register: git_out
-
-
-- name: Deploy bash config
-  ansible.builtin.command: 'bash {{ git_dir }}/__deploy.sh'
-  changed_when: false
-  when: git_out.changed
+  notify: Deploy bash config
 
 
 - name: Copy bash theme
@@ -35,9 +29,8 @@
     src: base16-railscasts.dark.sh
     dest: '{{ home }}/Downloads'
     mode: "0640"
-  register: theme
+  notify: Run bash theme
 
 
-- name: Run bash theme
-  ansible.builtin.command: 'bash {{ home }}/Downloads/base16-railscasts.dark.sh'
-  when: theme.changed
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers

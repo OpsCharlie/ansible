@@ -1,0 +1,12 @@
+---
+- name: neovide | Download vim from git
+  ansible.builtin.git:
+    repo: "git@github.com:OpsCharlie/neovide.git"
+    dest: '{{ git_dir }}/neovide'
+    version: '{{ nvim_branch }}'
+
+
+- name: neovide | Deploy vim script
+  ansible.builtin.command: 'bash {{ git_dir }}/neovide/__deploy.sh'
+  register: deploy_nvim
+  changed_when: true
