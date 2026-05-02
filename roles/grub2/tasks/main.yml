@@ -8,6 +8,7 @@
       set superusers="{{ grub_user }}"
       password_pbkdf2 {{ grub_user }} {{ grub_pwd }}
   become: true
+  notify: Update grub
   register: custom
 
 
@@ -17,10 +18,5 @@
     regexp: '^CLASS="--class gnu-linux --class gnu --class os"'
     replace: 'CLASS="--class gnu-linux --class gnu --class os --unrestricted"'
   become: true
+  notify: Update grub
   register: linux
-
-
-- name: Update grub
-  ansible.builtin.shell: update-grub2
-  become: true
-  when: custom.changed or linux.changed
