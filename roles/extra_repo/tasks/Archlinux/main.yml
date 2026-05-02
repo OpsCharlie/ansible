@@ -4,6 +4,7 @@
     name:
       - base-devel
       - git
+      - go
     state: present
   become: true
 
@@ -11,23 +12,41 @@
 - name: Archlinux | Clone yay AUR repository
   ansible.builtin.git:
     repo: https://aur.archlinux.org/yay.git
-    dest: /tmp/yay
+    dest: "{{ home }}/{{ git }}/yay"
     version: HEAD
     update: false
 
 
-- name: Archlinux | Build and install yay
-  ansible.builtin.command: makepkg -si --noconfirm
+- name: Archlinux | Check if yay package already built
+  ansible.builtin.find:
+    paths: "{{ home }}/{{ git }}/yay"
+    patterns: "yay-*.pkg.tar.*"
+  register: yay_pkg
+  changed_when: false
+
+
+- name: Archlinux | Build yay package
+  ansible.builtin.command: makepkg -s --noconfirm
   args:
-    chdir: /tmp/yay
+    chdir: "{{ home }}/{{ git }}/yay"
   changed_when: true
+  when: yay_pkg.matched == 0
+
+
+- name: Archlinux | Check if yay is installed
+  ansible.builtin.command: pacman -Qi yay
+  register: yay_installed
+  changed_when: false
+  failed_when: false
+
+
+- name: Archlinux | Install yay via pacman
+  ansible.builtin.shell: pacman -U --noconfirm *.pkg.tar.zst
+  args:
+    chdir: "{{ home }}/{{ git }}/yay"
   become: true
-
-
-- name: Archlinux | Clean up yay build directory
-  ansible.builtin.file:
-    path: /tmp/yay
-    state: absent
+  changed_when: true
+  when: yay_installed.rc != 0
 
 
 - name: Archlinux | Install flatpak
