@@ -1,0 +1,35 @@
+- name: Ubuntu | Add multiverse repository
+  ansible.builtin.apt_repository:
+    repo: "multiverse"
+  become: true
+  when: packaging_ubuntu_multiverse_repository
+
+
+- name: Ubuntu | Add universe repository
+  ansible.builtin.apt_repository:
+    repo: "universe"
+  become: true
+  when: packaging_ubuntu_universe_repository
+
+
+- name: Ubuntu | Add restricted repository
+  ansible.builtin.apt_repository:
+    repo: "restricted"
+  become: true
+  when: packaging_ubuntu_universe_repository
+
+
+- name: Ubuntu | Apt get update
+  ansible.builtin.apt:
+    update_cache: true
+  become: true
+
+- name: Ubuntu | Install dependencies
+  ansible.builtin.apt:
+    name:
+      - python3-gpg   #  - python_gpme
+      - git
+      - aptitude
+    state: present
+  become: true
+
