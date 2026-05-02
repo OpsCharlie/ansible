@@ -1,11 +1,11 @@
 ---
-- name: Disable splash and ipv6
+- name: Disable ipv6
   ansible.builtin.replace:
     path: /etc/default/grub
     regexp: '^GRUB_CMDLINE_LINUX_DEFAULT=.*'
     replace: 'GRUB_CMDLINE_LINUX_DEFAULT="ipv6.disable=1 quiet splash"'
   become: true
-  notify: update grub
+  notify: Update grub
 
 
 - name: Set timeout to 1 sec
@@ -14,7 +14,7 @@
     regexp: '^GRUB_TIMEOUT=.*'
     replace: 'GRUB_TIMEOUT=1'
   become: true
-  notify: update grub
+  notify: Update grub
 
 
 - name: Disable systemd-resolve cache
@@ -23,7 +23,7 @@
     regexp: '^#Cache.*'
     replace: 'Cache=no'
   become: true
-  notify: restart systemd-resolve
+  notify: Restart systemd-resolve
 
 
 - name: Change nsswitch resolve order
@@ -42,5 +42,4 @@
     sysctl_set: true
     sysctl_file: /etc/sysctl.d/20-inotify.conf
     value: 16384
-  notify: run sysctl
   become: true

@@ -1,14 +1,14 @@
 ---
-- name: update grub
-  ansible.builtin.command: update-grub
+- name: Update grub configuration
+  ansible.builtin.command: grub-mkconfig -o /boot/grub/grub.cfg
   become: true
-
-- name: Restart networkd-resolve after applying config
-  ansible.builtin.command: systemctl restart systemd-resolved
-  listen: restart systemd-resolve
-  become: true
+  changed_when: true
+  listen: Update grub
 
 
-- name: run sysctl
-  ansible.builtin.command: sysctl -p
+- name: Restart systemd-resolved
+  ansible.builtin.systemd_service:
+    name: systemd-resolved
+    state: restarted
+  listen: Restart systemd-resolve
   become: true
