@@ -1,0 +1,12 @@
+---
+- name: Ubuntu | Install gocryptfs and sirikali
+  ansible.builtin.apt:
+    name:
+      - gocryptfs
+      - sirikali
+    state: present
+  become: true
+
+- name: Ubuntu | Pause
+  ansible.builtin.pause:
+    prompt: "Start SiriKali - Directory {{ home }}/Dropbox/Documents  ; Mount {{ home }}//{{ cloudstorage }}"

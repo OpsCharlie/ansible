@@ -1,0 +1,57 @@
+---
+- name: Archlinux | Install gocryptfs and dependencies
+  community.general.pacman:
+    name:
+      - gocryptfs
+      - qt6-base
+      - cmake
+      - libsecret
+    state: present
+  become: true
+
+
+- name: Archlinux | Check if sirikali is installed
+  ansible.builtin.command: pacman -Qi sirikali
+  register: sirikali_installed
+  changed_when: false
+  failed_when: false
+
+
+- name: Archlinux | Clone sirikali AUR repository
+  ansible.builtin.git:
+    repo: https://aur.archlinux.org/sirikali.git
+    dest: "{{ home }}/{{ git }}/sirikali"
+    version: HEAD
+    update: false
+  when: sirikali_installed.rc != 0
+
+
+- name: Archlinux | Check if sirikali package is already built
+  ansible.builtin.find:
+    paths: "{{ home }}/{{ git }}/sirikali"
+    patterns: "sirikali-*.pkg.tar.*"
+  register: sirikali_pkg
+  changed_when: false
+  when: sirikali_installed.rc != 0
+
+
+- name: Archlinux | Build sirikali package
+  ansible.builtin.command: makepkg --noconfirm
+  args:
+    chdir: "{{ home }}/{{ git }}/sirikali"
+  changed_when: true
+  when: sirikali_installed.rc != 0 and sirikali_pkg.matched == 0
+
+
+- name: Archlinux | Install sirikali via pacman
+  ansible.builtin.shell: pacman -U --noconfirm sirikali-*.pkg.tar.*
+  args:
+    chdir: "{{ home }}/{{ git }}/sirikali"
+  become: true
+  changed_when: true
+  when: sirikali_installed.rc != 0
+
+
+- name: Archlinux | Pause
+  ansible.builtin.pause:
+    prompt: "Start SiriKali - Directory {{ home }}/Dropbox/Documents  ; Mount {{ home }}//{{ cloudstorage }}"
