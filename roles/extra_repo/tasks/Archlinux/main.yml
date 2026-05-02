@@ -1,4 +1,35 @@
 ---
+- name: Archlinux | Install base-devel and git for AUR
+  community.general.pacman:
+    name:
+      - base-devel
+      - git
+    state: present
+  become: true
+
+
+- name: Archlinux | Clone yay AUR repository
+  ansible.builtin.git:
+    repo: https://aur.archlinux.org/yay.git
+    dest: /tmp/yay
+    version: HEAD
+    update: false
+
+
+- name: Archlinux | Build and install yay
+  ansible.builtin.command: makepkg -si --noconfirm
+  args:
+    chdir: /tmp/yay
+  changed_when: true
+  become: true
+
+
+- name: Archlinux | Clean up yay build directory
+  ansible.builtin.file:
+    path: /tmp/yay
+    state: absent
+
+
 - name: Archlinux | Install flatpak
   ansible.builtin.package:
     name: flatpak
