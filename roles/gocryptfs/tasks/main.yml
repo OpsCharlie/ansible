@@ -1,5 +1,5 @@
 ---
-- name: Install encfs for {{ ansible_facts.distribution }}
+- name: Install gocryptfs for {{ ansible_facts.distribution }}
   ansible.builtin.include_tasks: "{{ ansible_facts.distribution }}/main.yml"
 
 
