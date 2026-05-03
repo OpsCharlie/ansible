@@ -1,0 +1,13 @@
+---
+- name: Ubuntu | Add paa firefox-next
+  ansible.builtin.apt_repository:
+    repo: ppa:mozillateam/firefox-next
+    state: present
+  become: true
+
+
+- name: Ubuntu | Install firefox
+  ansible.builtin.package:
+    name: firefox
+    state: present
+  become: true

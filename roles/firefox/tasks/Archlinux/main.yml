@@ -1,0 +1,6 @@
+---
+- name: Archlinux | Install firefox
+  ansible.builtin.package:
+    name: firefox
+    state: present
+  become: true
