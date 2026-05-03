@@ -1,0 +1,15 @@
+---
+- name: Ubuntu | Disable apport
+  ansible.builtin.service:
+    name: apport
+    state: stopped
+    enabled: false
+  become: true
+
+
+- name: Ubuntu | Disable at boot
+  ansible.builtin.lineinfile:
+    path: /etc/default/apport
+    regexp: "^enabled=.*"
+    line: "enabled=0"
+  become: true
