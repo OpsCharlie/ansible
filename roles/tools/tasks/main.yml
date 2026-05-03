@@ -1,6 +1,6 @@
 ---
-- name: install
-  ansible.builtin.apt:
+- name: Install
+  ansible.builtin.package:
     name:
       - htop
       - btop
@@ -9,14 +9,7 @@
     state: present
   become: true
 
-- name: synchronize
-  synchronize:
+- name: Synchronize
+  ansible.posix.synchronize:
     src: '{{ cloudstorage }}/carl/.config/htop'
     dest: '{{ home }}/.config/htop'
-
-- name: disable apport
-  ansible.builtin.service:
-    name: apport
-    state: stopped
-    enabled: false
-  become: true
