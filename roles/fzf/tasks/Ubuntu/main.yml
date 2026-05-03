@@ -1,0 +1,12 @@
+---
+- name: Ubuntu | git clone fzf
+  ansible.builtin.git:
+    repo: https://github.com/junegunn/fzf.git
+    dest: '{{ home }}/{{ git }}/fzf'
+
+
+- name: Ubuntu | Install fzf
+  ansible.builtin.command: bash ./install --bin
+  changed_when: true
+  args:
+    chdir: '{{ home }}/{{ git }}/fzf'

@@ -1,0 +1,4 @@
+---
+- name: Archlinux | Install dependencies
+  ansible.builtin.package:
+    name: fzf

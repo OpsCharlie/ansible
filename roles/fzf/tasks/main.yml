@@ -1,16 +1,3 @@
 ---
-- name: create dir
-  ansible.builtin.file:
-    path: '{{ home }}/{{ git }}'
-    state: directory
-    mode: '0755'
-
-- name: git clone fzf
-  ansible.builtin.git:
-    repo: https://github.com/junegunn/fzf.git
-    dest: '{{ home }}/{{ git }}/fzf'
-
-- name: configure fzf
-  ansible.builtin.shell: echo -e 'n\ny\ny\n' | ./install
-  args:
-    chdir: '{{ home }}/{{ git }}/fzf'
+- name: Install dependencies for {{ ansible_facts.distribution }}
+  ansible.builtin.include_tasks: "{{ ansible_facts.distribution }}/main.yml"
