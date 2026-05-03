@@ -1,0 +1,44 @@
+---
+- name: Ubuntu | Get latest obsidian release URL
+  ansible.builtin.uri:
+    url: "https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest"
+    method: GET
+    return_content: true
+    status_code: 200
+    body_format: json
+  register: release_info
+
+
+- name: Ubuntu | Extract download URL for AppImage
+  ansible.builtin.set_fact:
+    appimage_asset: "{{ release_info.json.assets | select('match', '.*-\\d*\\.\\d*\\.\\d*\\.AppImage') | first }}"
+  failed_when: appimage_asset is not defined
+
+
+- name: Ubuntu | Download obsidian AppImage
+  ansible.builtin.get_url:
+    url: "{{ appimage_asset.browser_download_url }}"
+    dest: "{{ home }}/.local/bin/{{ appimage_asset.name }}"
+    mode: "0755"
+
+
+- name: Ubuntu | Create a symbolic link
+  ansible.builtin.file:
+    src: "{{ home }}/.local/bin/{{ appimage_asset.name }}"
+    dest: "{{ home }}/.local/bin/obsidian"
+    state: link
+    force: true
+
+
+- name: Ubuntu | Create desktop file
+  ansible.builtin.copy:
+    src: "{{ cloudstorage }}/carl/.local/share/applications/obsidian.desktop"
+    dest: "{{ home }}/.local/share/applications/"
+    mode: "0644"
+
+
+- name: Ubuntu | Create desktop file
+  ansible.builtin.copy:
+    src: "{{ cloudstorage }}/carl/.local/share/applications/obsidian.svg"
+    dest: "{{ home }}/.icons/"
+    mode: "0644"
