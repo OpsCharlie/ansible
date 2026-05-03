@@ -1,9 +1,7 @@
 ---
-- name: install evolution
-  ansible.builtin.apt:
+- name: Install evolution
+  ansible.builtin.package:
     name:
       - evolution
-      - evolution-plugins
-      - evolution-plugins-experimental
       - evolution-ews
   become: true
