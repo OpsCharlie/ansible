@@ -1,0 +1,20 @@
+---
+- name: Ubuntu | Key
+  ansible.builtin.apt_key:
+    url: 'http://repo.vivaldi.com/stable/linux_signing_key.pub'
+    state: present
+  become: true
+
+- name: Ubuntu | Repository
+  ansible.builtin.apt_repository:
+    repo: 'deb http://repo.vivaldi.com/stable/deb/ stable Ubuntu'
+    state: present
+    filename: vivaldi
+  become: true
+
+
+- name: Ubuntu | Install
+  ansible.builtin.package:
+    name: vivaldi-stable
+    state: present
+  become: true

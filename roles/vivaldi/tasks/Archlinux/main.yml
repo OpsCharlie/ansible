@@ -1,0 +1,6 @@
+---
+- name: Archlinux | Install vivaldi
+  ansible.builtin.package:
+    name: vivaldi
+    state: present
+  become: true
