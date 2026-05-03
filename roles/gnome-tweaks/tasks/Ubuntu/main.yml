@@ -1,0 +1,8 @@
+---
+- name: Install gnome-shell-extension-manager
+  ansible.builtin.apt:
+    name:
+      - gnome-shell-extension-manager
+      - gnome-tweaks
+    state: present
+  become: true
