@@ -1,0 +1,66 @@
+---
+- name: Archlinux | Install tools
+  ansible.builtin.package:
+    name:
+      - bmon
+      - etherape
+      - fping
+      - fwbuilder
+      - geoip
+      - gping
+      - gufw
+      - iftop
+      - iperf
+      - iptraf-ng
+      - jq
+      - nethogs   # bandwidth used by individual processes
+      - nload
+      - tcpdump
+      - whois
+      - wireshark-qt
+      - python-psutil
+      - python-urwid
+    state: present
+  become: true
+
+
+- name: Archlinux | Check if speedometer is installed
+  ansible.builtin.command: pacman -Qi speedometer
+  register: speedometer_installed
+  changed_when: false
+  failed_when: false
+
+
+- name: Archlinux | Clone speedometer AUR repository
+  ansible.builtin.git:
+    repo: https://aur.archlinux.org/speedometer.git
+    dest: "{{ home }}/{{ git }}/speedometer"
+    version: HEAD
+    update: false
+  when: speedometer_installed.rc != 0
+
+
+- name: Archlinux | Check if speedometer package is already built
+  ansible.builtin.find:
+    paths: "{{ home }}/{{ git }}/speedometer"
+    patterns: "speedometer-*.pkg.tar.*"
+  register: speedometer_pkg
+  changed_when: false
+  when: speedometer_installed.rc != 0
+
+
+- name: Archlinux | Build speedometer package
+  ansible.builtin.command: makepkg --noconfirm
+  args:
+    chdir: "{{ home }}/{{ git }}/speedometer"
+  changed_when: true
+  when: speedometer_installed.rc != 0 and speedometer_pkg.matched == 0
+
+
+- name: Archlinux | Install speedometer via pacman
+  ansible.builtin.shell: pacman -U --noconfirm speedometer-*.pkg.tar.*
+  args:
+    chdir: "{{ home }}/{{ git }}/speedometer"
+  become: true
+  changed_when: true
+  when: speedometer_installed.rc != 0
