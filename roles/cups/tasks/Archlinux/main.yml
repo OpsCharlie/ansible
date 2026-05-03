@@ -1,0 +1,19 @@
+---
+- name: Archlinux | Install cups
+  ansible.builtin.package:
+    name:
+      - cups
+      - cups-browsed
+      - cups-pdf
+      - cups-pk-helper
+      - system-config-printer
+    state: present
+  become: true
+
+
+- name: Archlinux | Enable and start cups
+  ansible.builtin.service:
+    name: cups-browsed
+    enabled: true
+    state: started
+  become: true
