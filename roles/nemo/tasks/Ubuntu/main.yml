@@ -1,0 +1,11 @@
+---
+- name: Ubuntu | Install nemo and extras
+  ansible.builtin.apt:
+    name:
+      - nemo
+      - nemo-compare
+      - nemo-data
+      - nemo-fileroller
+      - nemo-gtkhash
+    state: present
+  become: true

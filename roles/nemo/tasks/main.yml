@@ -1,51 +1,14 @@
----
-# ppa not availble yet
-# - name: Add repositories
-#    apt_repository:
-#     repo: '{{ ppa }}'
-#    loop:
-#     - 'ppa:embrosyn/cinnamon'
-#     # - 'ppa:nilarimogard/webupd8'
-#    loop_control:
-#      loop_var: ppa
+- name: Install nemo for {{ ansible_facts.distribution }}
+  ansible.builtin.include_tasks: "{{ ansible_facts.distribution }}/main.yml"
 
-- name: install nemo and extras
-  ansible.builtin.apt:
-    name:
-      - nemo
-      - nemo-data
-      - nemo-fileroller
-      - nemo-gtkhash
-      # - nemo-emblems
-      # - nemo-image-converter
-      # - nemo-media-columns
-      # - nemo-pastebin
-      # - nemo-preview
-      # - nemo-seahorse
-      # - nemo-share
-      # - nemo-audio-tab
-      # - nemo-compare
-      # - nemo-dropbox
-      - unoconv
-      - gnumeric
-      - unrar
-      - zip
-      - meld
-      # - libxreaderdocument3
-      # - libxreaderview3
-  become: true
 
-# disable Nautilus from handling the desktop icons
-# and set Nemo as the default file manager
-# - name: Set nemo as default
-  # command: "{{ item }}"
-  # with_items:
-  # - "gsettings set org.gnome.desktop.background show-desktop-icons false"
-  # - "xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search"
+- name: Set nemo as default file manager
+  ansible.builtin.command: xdg-mime default nemo.desktop {{ item }}
+  loop:
+    - inode/directory
+    - application/x-gnome-saved-search
+  changed_when: false
 
-# revert changes
-# - name: Set nautilus as default
-  # shell: {{ item }}
-  # with_items:
-  # - "gsettings set org.gnome.desktop.background show-desktop-icons true"
-  # - "xdg-mime default nautilus.desktop inode/directory application/x-gnome-saved-search"
+# To revert to Nautilus:
+#   xdg-mime default nautilus.desktop inode/directory
+#   xdg-mime default nautilus.desktop application/x-gnome-saved-search

@@ -1,0 +1,14 @@
+---
+- name: Archlinux | Install nemo and extras
+  community.general.pacman:
+    name:
+      - nemo
+      - nemo-audio-tab
+      - nemo-compare
+      - nemo-emblems
+      - nemo-image-converter
+      - nemo-media-columns
+      - nemo-fileroller
+      - nemo-share
+    state: present
+  become: true
