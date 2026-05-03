@@ -1,0 +1,11 @@
+---
+- name: Archlinux | Install network manager extensions
+  ansible.builtin.package:
+    name:
+      - vpnc
+      - networkmanager-vpnc
+      - networkmanager-openconnect
+      - networkmanager-strongswan
+      - networkmanager-openvpn
+    state: present
+  become: true
