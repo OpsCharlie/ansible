@@ -1,6 +1,6 @@
 ---
-- name: install
-  ansible.builtin.apt:
+- name: Install
+  ansible.builtin.package:
     name: vlc
-    state: latest
+    state: present
   become: true
