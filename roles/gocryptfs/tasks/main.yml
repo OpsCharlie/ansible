@@ -3,9 +3,16 @@
   ansible.builtin.include_tasks: "{{ ansible_facts.distribution }}/main.yml"
 
 
+- name: Make sure .config/autostart exists
+  ansible.builtin.file:
+    path: "{{ home }}/.config/autostart"
+    state: directory
+    mode: "0750"
+
+
 - name: Create startup file
   ansible.builtin.copy:
-    dest: /home/carl/.config/autostart/sirikali.desktop
+    dest: "{{ home }}/.config/autostart/sirikali.desktop"
     content: |
       [Desktop Entry]
       Type=Application

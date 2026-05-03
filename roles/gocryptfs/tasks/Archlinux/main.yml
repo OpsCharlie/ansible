@@ -54,4 +54,4 @@
 
 - name: Archlinux | Pause
   ansible.builtin.pause:
-    prompt: "Start SiriKali - Directory {{ home }}/Dropbox/Documents  ; Mount {{ home }}//{{ cloudstorage }}"
+    prompt: "Start SiriKali - Directory {{ home }}/Dropbox/Documents  ; Mount {{ cloudstorage }}"
