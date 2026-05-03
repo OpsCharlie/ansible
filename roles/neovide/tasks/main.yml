@@ -1,0 +1,21 @@
+---
+- name: Install
+  ansible.builtin.package:
+    name: neovide
+    state: present
+  become: true
+  when: ansible_facts.distribution == "Archlinux"
+
+
+- name: Download neovide from git
+  ansible.builtin.git:
+    repo: "git@github.com:OpsCharlie/neovide.git"
+    dest: '{{ home }}/{{ git }}/neovide'
+    accept_hostkey: true
+
+
+- name: Deploy neovide config
+  ansible.builtin.command: "{{ home }}/{{ git }}/neovide/__deploy.sh"
+  args:
+    chdir: "{{ home }}/{{ git }}/neovide"
+  changed_when: false
