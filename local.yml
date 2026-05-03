@@ -6,12 +6,13 @@
   connection: local
 
   vars:
-    home: "{{ ansible_user_dir }}"
-    git: "git"
+    home: "{{ ansible_facts.user_dir }}"
+    git: "Projects"
     cloudstorage: "{{ home }}/Documents/Dropbox"
     packaging_ubuntu_multiverse_repository: false
     packaging_ubuntu_universe_repository: false
     packaging_ubuntu_restriced_repository: false
+    packaging_archlinux_flatpak: true
 
   pre_tasks:
     - name: Create destination directory
@@ -22,38 +23,43 @@
       loop:
         - ".local/bin"
         - ".icons"
+        - ".local/share/icons/"
         - ".fonts"
+        - "{{ git }}"
 
   roles:
-    # - extra_repo     # extra repos
+    - extra_repo     # extra repos
     - ipv6           # disable ipv6 and extras
-    # - grub2 #?
+    # # - grub2 # ?
 
-    # - encfs
-    # - ssh
-    # - nemo
-    # - bash
-    # - zsh
-    # - fzf
-    # - vim
-    # - tmux
-    # - evolution
-    # - obsidian
-    # - vivaldi
-    # - networkmanager
-    # - networktools
-    # - apt-updates
-    # - keepassxc
-    # - fonts
-    # - apport
-    # - gnome-tweaks
-    # - zeal
-    # - shutter
-    # - vlc
-    # - geany
-    # - tools
-    # - skype
-    # - office
+    - gocryptfs
+    - ssh
+    - nemo
+    - bash
+    - zsh
+    - fzf
+    - nvim
+    - tmux
+    - kitty
+    - neovide
+    - evolution
+    - obsidian
+    - vivaldi
+    - firefox
+    - networkmanager
+    - networktools
+    - apt-updates
+    - keepassxc
+    - fonts
+    - apport
+    - gnome-tweaks
+    - zeal
+    - shutter
+    - vlc
+    - geany
+    - tools
+    - office
+    - cups
 
     #### extra software
     # - chrome
@@ -63,6 +69,7 @@
     # - zim #?
     # - java #?
     # - pac #?
+    # - skype
     ## - openxenmanager
     # - firefox #?
     ## - timeshift
