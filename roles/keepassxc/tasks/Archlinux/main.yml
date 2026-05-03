@@ -1,0 +1,12 @@
+---
+- name: Archlinux | Install keepassxc
+  ansible.builtin.package:
+    name: keepassxc
+    state: present
+  become: true
+
+
+- name: Archlinux | copy keepass config
+  ansible.posix.synchronize:
+    src: '{{ cloudstorage }}/carl/.config/keepassxc/'
+    dest: '{{ home }}/.config/keepassxc/'
