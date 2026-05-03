@@ -1,0 +1,8 @@
+---
+- name: Install geany
+  ansible.builtin.package:
+    name:
+      - geany
+      - geany-plugins
+    state: present
+  become: true

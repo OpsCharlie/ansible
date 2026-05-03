@@ -1,49 +1,42 @@
 ---
-- name: install geany and extras
-  ansible.builtin.apt:
-    name:
-      - geany
-      - geany-plugins
-      - geany-plugin-overview
-      - gedit-source-code-browser-plugin
-    state: present
-  become: true
+- name: Install dependencies for {{ ansible_facts.distribution }}
+  ansible.builtin.include_tasks: "{{ ansible_facts.distribution }}/main.yml"
 
 
-- name: creage {{ home }}/.config/geany
+- name: Create {{ home }}/.config/geany
   ansible.builtin.file:
     path: '{{ home }}/.config/geany'
     state: directory
     mode: '0755'
 
 
-- name: install geany config
+- name: Install geany config
   ansible.builtin.unarchive:
     src: geany.tgz
     dest: '{{ home }}/.config/'
     creates: '{{ home }}/.config/geany/geany.conf'
 
 
-- name: create {{ home }}/.local/share/gedit
+- name: Create {{ home }}/.local/share/gedit
   ansible.builtin.file:
     path: '{{ home }}/.local/share/gedit'
     state: directory
     mode: '0755'
 
 
-- name: install gedit plugins
+- name: Install gedit plugins
   ansible.builtin.unarchive:
     src: gedit.tgz
     dest: '{{ home }}/.local/share/gedit'
     creates: '{{ home }}/.local/share/gedit/plugins'
 
 
-- name: copy gedit.conf
+- name: Copy gedit.conf
   ansible.builtin.copy:
     src: gedit.conf
     dest: /tmp/gedit.conf
     mode: '0644'
 
 
-- name: import gedit.conf
+- name: Import gedit.conf
   ansible.builtin.shell: dconf load /org/gnome/gedit/ < /tmp/gedit.conf

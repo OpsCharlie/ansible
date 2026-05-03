@@ -1,0 +1,10 @@
+---
+- name: Ubuntu | Install geany and extras
+  ansible.builtin.apt:
+    name:
+      - geany
+      - geany-plugins
+      - geany-plugin-overview
+      - gedit-source-code-browser-plugin
+    state: present
+  become: true
