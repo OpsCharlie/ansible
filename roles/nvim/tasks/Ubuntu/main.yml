@@ -1,0 +1,43 @@
+---
+# --break-system-packages
+- name: Ubuntu | Install
+  ansible.builtin.apt:
+    name:
+      - ack
+      - curl
+      - fd-find
+      - gcc
+      - git
+      - inotify-tools
+      - jq
+      - luarocks
+      - python3-pip
+      - python3-venv
+      - ripgrep
+      - tree-sitter-cli
+      - vim
+      - vim-gtk3
+    state: present
+  become: true
+
+
+- name: Ubuntu | Install lazygit
+  ansible.builtin.include_tasks: Ubuntu/lazygit.yml
+
+
+- name: Ubuntu | download vimrc from git
+  ansible.builtin.git:
+    repo: "git@github.com:OpsCharlie/vim.git"
+    dest: '{{ home }}/{{ git }}/vim'
+    version: "{{ nvim_git_branch }}"
+
+
+- name: Ubuntu | Deploy vim config
+  ansible.builtin.command: "{{ home }}/{{ git }}/vim/__deploy.sh"
+  changed_when: false
+
+
+- name: Ubuntu | install pynvim
+  ansible.builtin.pip:
+    name: pynvim
+    extra_args: "--break-system-packages"

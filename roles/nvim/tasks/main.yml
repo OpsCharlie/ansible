@@ -1,0 +1,3 @@
+---
+- name: Install on{{ ansible_facts.distribution }}
+  ansible.builtin.include_tasks: "{{ ansible_facts.distribution }}/main.yml"

@@ -1,0 +1,47 @@
+---
+- name: Archlinux | install
+  ansible.builtin.package:
+    name:
+      - curl
+      - fd
+      - gcc
+      - go
+      - jq
+      - lazygit
+      - luarocks
+      - nvim
+      - nvm
+      - python
+      - python-pip
+      - python-pynvim
+      - ripgrep
+      - tree-sitter-cli
+    state: present
+  become: true
+
+
+- name: Create Python virtual environment
+  ansible.builtin.command: python -m venv "{{ venv_path }}"
+  args:
+    creates: "{{ venv_path }}/pyvenv.cfg"
+  vars:
+    venv_path: "{{ home }}/venv/{{ ansible_facts.python_version.split('.')[:2] | join('.') }}"
+
+
+- name: Create nvm environment
+  ansible.builtin.shell: |
+    source /usr/share/nvm/init-nvm.sh
+    nvm install --lts --default
+  changed_when: true
+
+
+- name: Archlinux | Download config from git
+  ansible.builtin.git:
+    repo: "git@github.com:OpsCharlie/vim.git"
+    dest: '{{ home }}/{{ git }}/nvim'
+    version: "{{ nvim_git_branch }}"
+
+
+- name: Archlinux | Deploy vim config
+  ansible.builtin.command: "{{ home }}/{{ git }}/nvim/__deploy.sh"
+  changed_when: false
