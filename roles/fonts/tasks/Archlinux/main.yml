@@ -1,0 +1,12 @@
+---
+- name: Install extra fonts
+  ansible.builtin.package:
+    name:
+      - ttf-iosevkaterm-nerd
+      - ttf-ubuntu-font-family
+      - ttf-ubuntu-mono-nerd
+      - gnome-font-viewer
+      - ttf-inconsolata
+      - ttf-inconsolata-nerd
+    state: present
+  become: true
