@@ -1,3 +1,21 @@
 ---
 - name: Install encfs for {{ ansible_facts.distribution }}
   ansible.builtin.include_tasks: "{{ ansible_facts.distribution }}/main.yml"
+
+
+- name: Create startup file
+  ansible.builtin.copy:
+    dest: /home/carl/.config/autostart/sirikali.desktop
+    content: |
+      [Desktop Entry]
+      Type=Application
+      Exec=/usr/bin/sirikali
+      Hidden=false
+      NoDisplay=false
+      X-GNOME-Autostart-enabled=true
+      Name[en_US]=GoCryptFs
+      Name=GoCryptFs
+      Comment[en_US]=
+      Comment=
+    backup: true
+    mode: "0640"
