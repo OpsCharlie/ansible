@@ -1,0 +1,10 @@
+- name: Archlinux | Install dependencies
+  ansible.builtin.package:
+    name:
+      - git
+      - fd
+      - tig
+      - inetutils
+      - bash-completion
+    state: present
+  become: true

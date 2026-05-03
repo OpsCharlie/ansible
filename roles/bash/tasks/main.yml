@@ -1,26 +1,6 @@
 ---
-- name: Install git
-  ansible.builtin.apt:
-    name:
-      - git
-      - fd-find
-      - tig
-    state: present
-  become: true
-
-
-- name: Create symlink fd
-  ansible.builtin.file:
-    src: /usr/bin/fdfind
-    dest: '{{ home }}/.local/bin/fd'
-    state: link
-
-
-- name: Create {{ home }}/{{ git }} directory
-  ansible.builtin.file:
-    path: '{{ home }}/{{ git }}'
-    state: directory
-    mode: "0755"
+- name: Install dependencies for {{ ansible_facts.distribution }}
+  ansible.builtin.include_tasks: "{{ ansible_facts.distribution }}/main.yml"
 
 
 - name: Download bashrc from git

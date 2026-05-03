@@ -1,0 +1,17 @@
+---
+- name: Ubuntu | Install dependencies
+  ansible.builtin.package:
+    name:
+      - git
+      - fd-find
+      - tig
+      - bash-completion
+    state: present
+  become: true
+
+
+- name: Create symlink fd
+  ansible.builtin.file:
+    src: /usr/bin/fdfind
+    dest: '{{ home }}/.local/bin/fd'
+    state: link
