@@ -1,0 +1,21 @@
+---
+- name: Install
+  ansible.builtin.package:
+    name: kitty
+    state: present
+  become: true
+  when: ansible_facts.distribution == "Archlinux"
+
+
+- name: Download kitty from git
+  ansible.builtin.git:
+    repo: "git@github.com:OpsCharlie/kitty.git"
+    dest: '{{ home }}/{{ git }}/kitty'
+    accept_hostkey: true
+
+
+- name: Deploy kitty config
+  ansible.builtin.command: "{{ home }}/{{ git }}/kitty/__deploy.sh tmux"
+  args:
+    chdir: "{{ home }}/{{ git }}/kitty"
+  changed_when: false
