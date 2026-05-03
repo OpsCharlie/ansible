@@ -1,0 +1,6 @@
+---
+- name: Ubuntu | Install onlyoffice snap
+  community.general.snap:
+    name: onlyoffice-desktopeditors
+    state: present
+  become: true

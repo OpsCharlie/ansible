@@ -1,0 +1,6 @@
+---
+- name: Archlinux | Install ONLYOFFICE
+  community.general.flatpak:
+    name: org.onlyoffice.desktopeditors
+    state: present
+  become: true
