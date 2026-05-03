@@ -1,13 +1,6 @@
 ---
-# - name: Add repositories zeal
-#   apt_repository:
-#     repo: 'ppa:zeal-developers/ppa'
-#   become: yes
-#   become_method: sudo
-
-- name: install
-  ansible.builtin.apt:
-    name:
-      - zeal
-    state: latest
+- name: Install
+  ansible.builtin.package:
+    name: zeal
+    state: present
   become: true
