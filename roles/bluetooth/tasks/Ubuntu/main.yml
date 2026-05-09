@@ -1,0 +1,16 @@
+---
+- name: Ubuntu | Install bluetooth packages
+  ansible.builtin.apt:
+    name:
+      - bluez
+      - pulseaudio-module-bluetooth
+      - gnome-bluetooth-sendto
+    state: present
+  become: true
+
+- name: Ubuntu | Enable bluetooth service
+  ansible.builtin.systemd:
+    name: bluetooth
+    enabled: true
+    state: started
+  become: true

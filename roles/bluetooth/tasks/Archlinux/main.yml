@@ -1,0 +1,14 @@
+---
+- name: Archlinux | Install bluetooth packages
+  ansible.builtin.package:
+    name:
+      - bluez-utils
+    state: present
+  become: true
+
+- name: Archlinux | Enable bluetooth service
+  ansible.builtin.systemd:
+    name: bluetooth
+    enabled: true
+    state: started
+  become: true
