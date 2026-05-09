@@ -6,6 +6,8 @@
       - qt6-base
       - cmake
       - libsecret
+      - wget
+      - rsync
     state: present
   become: true
 

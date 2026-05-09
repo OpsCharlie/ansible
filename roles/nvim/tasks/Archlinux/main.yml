@@ -15,6 +15,7 @@
       - python-pip
       - python-pynvim
       - ripgrep
+      - rust
       - tree-sitter-cli
     state: present
   become: true
