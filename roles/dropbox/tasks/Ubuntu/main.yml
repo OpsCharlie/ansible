@@ -1,0 +1,6 @@
+---
+- name: Ubuntu | Install Dropbox
+  ansible.builtin.apt:
+    name: dropbox
+    state: present
+  become: true

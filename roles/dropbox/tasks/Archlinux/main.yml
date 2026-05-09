@@ -1,0 +1,59 @@
+---
+- name: Archlinux | Install dependencies
+  ansible.builtin.package:
+    name:
+      - libxmu
+      - gendesk
+    state: present
+  become: true
+
+
+- name: Archlinux | Clone dropbox AUR repository
+  ansible.builtin.git:
+    repo: https://aur.archlinux.org/dropbox.git
+    dest: "{{ home }}/{{ git }}/dropbox"
+    version: HEAD
+    update: false
+
+
+- name: Archlinux | Check if dropbox package is already built
+  ansible.builtin.find:
+    paths: "{{ home }}/{{ git }}/dropbox"
+    patterns: "dropbox-*.pkg.tar.*"
+  register: dropbox_pkg
+  changed_when: false
+
+
+- name: Archlinux | Import Dropbox GPG key
+  ansible.builtin.uri:
+    url: https://linux.dropbox.com/fedora/rpm-public-key.asc
+    dest: "{{ home }}/{{ git }}/dropbox"
+
+
+- name: Archlinux | Import Dropbox GPG key into keyring
+  ansible.builtin.command: gpg --import  "{{ home }}/{{ git }}/dropbox/rpm-public-key.asc"
+  changed_when: false
+
+
+- name: Archlinux | Build dropbox package
+  ansible.builtin.command: makepkg -s --noconfirm
+  args:
+    chdir: "{{ home }}/{{ git }}/dropbox"
+  changed_when: true
+  when: dropbox_pkg.matched == 0
+
+
+- name: Archlinux | Check if dropbox is installed
+  ansible.builtin.command: pacman -Qi dropbox
+  register: dropbox_installed
+  changed_when: false
+  failed_when: false
+
+
+- name: Archlinux | Install dropbox via pacman
+  ansible.builtin.shell: pacman -U --noconfirm dropbox-*.pkg.tar.*
+  args:
+    chdir: "{{ home }}/{{ git }}/dropbox"
+  become: true
+  changed_when: true
+  when: dropbox_installed.rc != 0

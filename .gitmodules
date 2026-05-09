@@ -1,3 +1,0 @@
-[submodule "ansible-role-dropbox"]
-    path = roles/dropbox
-    url = https://github.com/jdauphant/ansible-role-dropbox
