@@ -28,38 +28,41 @@
         - "{{ git }}"
 
   roles:
-    - extra_repo     # extra repos
-    - ipv6           # disable ipv6 and extras
+    # - extra_repo     # extra repos
+    # - ipv6           # disable ipv6 and extras
     # # - grub2 # ?
 
-    - gocryptfs
-    - ssh
-    - nemo
-    - bash
-    - zsh
-    - fzf
-    - nvim
-    - tmux
-    - kitty
-    - neovide
-    - evolution
-    - obsidian
-    - vivaldi
-    - firefox
-    - networkmanager
-    - networktools
-    - apt-updates
-    - keepassxc
-    - fonts
-    - apport
-    - gnome-tweaks
-    - zeal
-    - shutter
-    - vlc
-    - geany
-    - tools
-    - office
-    - cups
+    # - gocryptfs
+    # - dropbox
+
+    # - ssh
+    # - nemo
+    # - bash
+    # - zsh
+    # - fzf
+    # - nvim
+    # - tmux
+    # - kitty
+    # - neovide
+    # - evolution
+    # - obsidian
+    # - vivaldi
+    # - firefox
+    # - bluetooth
+    # - networkmanager
+    # - networktools
+    # - apt-updates
+    # - keepassxc
+    # - fonts
+    # - apport
+    # - gnome-tweaks
+    # - zeal
+    # - shutter
+    # - vlc
+    # - geany
+    # - tools
+    # - office
+    # - cups
 
     #### extra software
     # - chrome
