@@ -48,6 +48,7 @@
     # - obsidian
     # - vivaldi
     # - firefox
+    - chrome
     # - bluetooth
     # - networkmanager
     # - networktools
@@ -65,7 +66,6 @@
     # - cups
 
     #### extra software
-    # - chrome
     # - onedrive #?
     # - dropbox  # not needed anymore
     # - ansible-tools #?

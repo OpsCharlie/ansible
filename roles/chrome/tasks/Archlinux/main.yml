@@ -1,0 +1,46 @@
+---
+- name: Archlinux | Install dependencies
+  ansible.builtin.package:
+    name: ttf-liberation
+    state: present
+  become: true
+
+
+- name: Archlinux | Clone google-chrome AUR repository
+  ansible.builtin.git:
+    repo: https://aur.archlinux.org/google-chrome.git
+    dest: "{{ home }}/{{ git }}/google-chrome"
+    version: HEAD
+    update: false
+
+
+- name: Archlinux | Check if google-chrome package is already built
+  ansible.builtin.find:
+    paths: "{{ home }}/{{ git }}/google-chrome"
+    patterns: "google-chrome-*.pkg.tar.*"
+  register: chrome_pkg
+  changed_when: false
+
+
+- name: Archlinux | Build google-chrome package
+  ansible.builtin.command: makepkg -s --noconfirm
+  args:
+    chdir: "{{ home }}/{{ git }}/google-chrome"
+  changed_when: true
+  when: chrome_pkg.matched == 0
+
+
+- name: Archlinux | Check if google-chrome is installed
+  ansible.builtin.command: pacman -Qi google-chrome
+  register: chrome_installed
+  changed_when: false
+  failed_when: false
+
+
+- name: Archlinux | Install google-chrome via pacman
+  ansible.builtin.shell: pacman -U --noconfirm google-chrome-*.pkg.tar.*
+  args:
+    chdir: "{{ home }}/{{ git }}/google-chrome"
+  become: true
+  changed_when: true
+  when: chrome_installed.rc != 0
