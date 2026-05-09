@@ -1,0 +1,53 @@
+---
+- name: Ubuntu | Install build dependencies
+  ansible.builtin.apt:
+    name:
+      - libcurl4-openssl-dev
+      - libsqlite3-dev
+      - git
+    state: present
+  become: true
+
+
+- name: Ubuntu | Clone onedrive source
+  ansible.builtin.git:
+    repo: https://github.com/abraunegg/onedrive.git
+    dest: '{{ home }}/{{ git }}/onedrive'
+
+
+- name: Ubuntu | Install dmd and dub
+  ansible.builtin.snap:
+    name:
+      - dmd
+      - dub
+    classic: true
+  become: true
+
+
+- name: Ubuntu | Configure and compile onedrive
+  ansible.builtin.command: ./configure && make
+  args:
+    chdir: '{{ home }}/{{ git }}/onedrive'
+    creates: /usr/local/bin/onedrive
+
+
+- name: Ubuntu | Install onedrive
+  ansible.builtin.command: make install
+  args:
+    chdir: '{{ home }}/{{ git }}/onedrive'
+    creates: /usr/local/bin/onedrive
+  become: true
+
+
+- name: Ubuntu | Create onedrive config directory
+  ansible.builtin.file:
+    path: '{{ home }}/.config/onedrive'
+    state: directory
+    mode: '0700'
+
+
+- name: Ubuntu | Install onedrive config
+  ansible.builtin.copy:
+    src: '{{ cloudstorage }}/carl/.config/onedrive/config'
+    dest: '{{ home }}/.config/onedrive/config'
+    mode: '0644'

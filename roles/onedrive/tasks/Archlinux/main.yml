@@ -1,0 +1,65 @@
+---
+- name: Archlinux | Install onedrive build dependencies
+  ansible.builtin.package:
+    name:
+      - dmd
+      - liblphobos
+      - git
+      - curl
+      - sqlite
+    state: present
+  become: true
+
+
+- name: Archlinux | Clone onedrive AUR repository
+  ansible.builtin.git:
+    repo: https://aur.archlinux.org/onedrive-abraunegg.git
+    dest: "{{ home }}/{{ git }}/onedrive"
+    version: HEAD
+    update: false
+
+
+- name: Archlinux | Check if onedrive package is already built
+  ansible.builtin.find:
+    paths: "{{ home }}/{{ git }}/onedrive"
+    patterns: "onedrive-*.pkg.tar.*"
+  register: onedrive_pkg
+  changed_when: false
+
+
+- name: Archlinux | Build onedrive package
+  ansible.builtin.command: makepkg -s --noconfirm
+  args:
+    chdir: "{{ home }}/{{ git }}/onedrive"
+  changed_when: true
+  when: onedrive_pkg.matched == 0
+
+
+- name: Archlinux | Check if onedrive is installed
+  ansible.builtin.command: pacman -Qi onedrive-abraunegg
+  register: onedrive_installed
+  changed_when: false
+  failed_when: false
+
+
+- name: Archlinux | Install onedrive via pacman
+  ansible.builtin.command: pacman -U --noconfirm onedrive-*.pkg.tar.*
+  args:
+    chdir: "{{ home }}/{{ git }}/onedrive"
+  become: true
+  changed_when: true
+  when: onedrive_installed.rc != 0
+
+
+- name: Archlinux | Create onedrive config directory
+  ansible.builtin.file:
+    path: '{{ home }}/.config/onedrive'
+    state: directory
+    mode: '0700'
+
+
+- name: Archlinux | Install onedrive config
+  ansible.builtin.copy:
+    src: '{{ cloudstorage }}/carl/.config/onedrive/config'
+    dest: '{{ home }}/.config/onedrive/config'
+    mode: '0644'
